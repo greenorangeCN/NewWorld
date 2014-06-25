@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HomePageView.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UITabBarController *tabBarController;
+
+@property (strong, nonatomic) HomePageView * homePage;
 
 @end

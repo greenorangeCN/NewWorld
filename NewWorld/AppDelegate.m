@@ -10,10 +10,34 @@
 
 @implementation AppDelegate
 
+@synthesize window = _window;
+@synthesize tabBarController = _tabBarController;
+@synthesize homePage;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //显示系统托盘
+    [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    self.homePage = [[HomePageView alloc] initWithNibName:@"HomePageView" bundle:nil];
+    UINavigationController *homePageNav = [[UINavigationController alloc] initWithRootViewController:self.homePage];
+
+    
+    if (IS_IOS7) {
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"top_bg7"]  forBarMetrics:UIBarMetricsDefault];
+    }else
+    {
+        [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"top_bg"]  forBarMetrics:UIBarMetricsDefault];
+    }
+    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:
+                                             homePageNav,
+                                             nil];
+    [[self.tabBarController tabBar] setSelectedImageTintColor:[UIColor redColor]];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    [self.window setRootViewController:self.tabBarController ];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
