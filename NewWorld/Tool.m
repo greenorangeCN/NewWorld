@@ -61,13 +61,20 @@
     return @"请先登录后发表评论";
 }
 
-+ (void)roundTextView:(UITextView *)txtView
++ (void)roundTextView:(UIView *)txtView
 {
     txtView.layer.borderColor = [[UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:235.0/255.0 alpha:1.0] CGColor];
     txtView.layer.borderWidth = 1;
     txtView.layer.cornerRadius = 6.0;
     txtView.layer.masksToBounds = YES;
     txtView.clipsToBounds = YES;
+}
+
++ (void)roundView:(UIView *)view andCornerRadius:(float)radius
+{
+    view.layer.cornerRadius = radius;
+    view.layer.masksToBounds = YES;
+    view.clipsToBounds = YES;
 }
 
 + (void)noticeLogin:(UIView *)view andDelegate:(id)delegate andTitle:(NSString *)title
@@ -229,7 +236,7 @@
 + (UIColor *)getBackgroundColor
 {
 //    return [UIColor colorWithPatternImage:[UIImage imageNamed:@"fb_bg.jpg"]];
-    return [UIColor colorWithRed:184.0/255 green:231.0/255 blue:244.0/255 alpha:1.0];
+    return [UIColor colorWithRed:221.0/255 green:221.0/255 blue:221.0/255 alpha:1.0];
 }
 + (UIColor *)getCellBackgroundColor
 {
@@ -323,6 +330,15 @@
     NSDate * d = [f dateFromString:string];
     return d;
 }
+
++ (NSString *)TimestampToDateStr:(NSString *)timestamp andFormatterStr:(NSString *)formatter
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:formatter];
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[timestamp longLongValue]];
+    return [dateFormatter stringFromDate:confromTimesp];
+}
+
 + (NSString *)GenerateTags:(NSMutableArray *)tags
 {
     if (tags == nil || tags.count == 0) {
@@ -352,6 +368,72 @@
     
     NSString *value = [settings objectForKey:key];
     return value;
+}
+
++ (NSMutableArray *)readJsonStrToHousesArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSArray *shopArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSMutableArray *houses = [[NSMutableArray alloc] init] ;
+    if ( [shopArray count] <= 0) {
+        return nil;
+    }
+    
+    for (int i = 0; i < [shopArray count] ; i++) {
+        NSDictionary *houseJSONItem = [shopArray objectAtIndex:i];
+        Houses *house = [RMMapper objectWithClass:[Houses class] fromDictionary:houseJSONItem];
+        if([NSNull null] != [houseJSONItem objectForKey:@"zhoubian_items"]) {
+            id supportJSON = [houseJSONItem objectForKey:@"zhoubian_items"];
+            NSMutableArray *supports = [RMMapper mutableArrayOfClass:[Support class]
+                                               fromArrayOfDictionary:supportJSON];
+            house.zhoubian_items =supports;
+        }
+        [houses addObject:house];
+    }
+    return houses;
+}
+
++ (NSMutableArray *)readJsonStrToActivitiesArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSArray *acticitiesJsonArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    NSMutableArray *acticities = [[NSMutableArray alloc] init] ;
+    if ( [acticitiesJsonArray count] <= 0) {
+        return nil;
+    }
+    
+    NSDictionary *acticitiesDict = [[NSDictionary alloc] init];
+    NSString *_id = [[NSString alloc] init];
+    NSString *title = [[NSString alloc] init];
+    NSString *thumb = [[NSString alloc] init];
+    NSString *indexImg = [[NSString alloc] init];
+    NSString *summary = [[NSString alloc] init];
+    NSString *validityTime = [[NSString alloc] init];
+    NSString *condition = [[NSString alloc] init];
+    NSString *telephone = [[NSString alloc] init];
+    NSString *qq = [[NSString alloc] init];
+    NSString *counts = [[NSString alloc] init];
+    NSString *published = [[NSString alloc] init];
+    
+    for (int i = 0; i < [acticitiesJsonArray count] ; i++) {
+        acticitiesDict = [acticitiesJsonArray objectAtIndex:i];
+        _id = [acticitiesDict objectForKey:@"id"] ;
+        title = [acticitiesDict objectForKey:@"title"];
+        thumb = [acticitiesDict objectForKey:@"thumb"];
+        indexImg = [acticitiesDict objectForKey:@"index_img"];
+        summary = [acticitiesDict objectForKey:@"summary"];
+        validityTime=[acticitiesDict objectForKey:@"date"];
+        condition=[acticitiesDict objectForKey:@"condition"];
+        telephone=[acticitiesDict objectForKey:@"telephone"];
+        qq=[acticitiesDict objectForKey:@"qq"];
+        counts=[acticitiesDict objectForKey:@"counts"];
+        published=[acticitiesDict objectForKey:@"published"];
+        Activity *activity = [[Activity alloc]initWithParameters:_id andTitle:title andThumb:thumb andIndexImg:indexImg andSummary:summary andValidityTime:validityTime andCondition:condition andTelephone:telephone andQQ:qq andCounts:counts andPublished:published];
+        [acticities addObject:activity];
+    }
+    return acticities;
 }
 
 @end

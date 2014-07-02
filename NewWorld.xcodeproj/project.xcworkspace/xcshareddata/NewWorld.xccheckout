@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BFE17CF8-A208-4221-9A48-C5EAE62B7ED4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>NewWorld</string>
+	<key>IDESourceControlProjectPath</key>
+	<string>NewWorld.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/greenorangeCN/NewWorld.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>16C15E04-6E47-4AAD-B678-DBCD8B39734F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>16C15E04-6E47-4AAD-B678-DBCD8B39734F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>NewWorld</string>
+		</dict>
+	</array>
+</dict>
+</plist>

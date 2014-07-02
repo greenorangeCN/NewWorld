@@ -22,6 +22,7 @@
 #import "ASIHTTPRequestDelegate.h"
 #import "ASIHTTPRequestConfig.h"
 #import "Tool.h"
+#import "UserModel.h"
 #import "EGORefreshTableHeaderView.h"
 #import "DataSingleton.h"
 #import "ImgRecord.h"
@@ -34,9 +35,22 @@
 #import "AFHTTPRequestOperation.h"
 #import "AFXMLRequestOperation.h"
 
+#define api_base_url @"http://121.199.33.43:8999"
+#define api_recommend_activities @"/api/recommend_activities?limit=3"
+#define api_mapsNavigation @"/api/mapsNavigation"
+#define api_activities @"/api/activities"
+
+#define SettingTableIdentifier @"SettingTableIdentifier"
+#define ActivityCellIdentifier @"ActivityCellIdentifier"
+
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
 #define IS_IOS7 ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
+
+#define loadNext20Tip @"查看更多 . . ."
+#define loadingTip @"正在加载 . . ."
+#define networkError @"网络无连接"
+#define noNetworkTip @"网络无连接"
 
 #define AppVersion @"1.0"
 #define AppVersionCode @"1"

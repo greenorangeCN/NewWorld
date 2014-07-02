@@ -13,12 +13,15 @@
 @end
 
 @implementation HomePageView
+@synthesize housesNavi;
+@synthesize topImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.tabBarItem.image = [UIImage imageNamed:@"tab_home"];
+        self.tabBarItem.title = @"首页";
     }
     return self;
 }
@@ -26,13 +29,105 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self initTopImage];
+    
+    //楼盘导航事件注册
+    UITapGestureRecognizer *naviTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(naviClick)];
+	[self.housesNavi addGestureRecognizer:naviTap];
+}
+
+- (void)naviClick
+{
+    MapViewController *mapView = [[MapViewController alloc] init];
+    mapView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:mapView animated:YES];
+}
+
+- (void)initTopImage
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@", api_base_url, api_recommend_activities];
+    
+    if ([UserModel Instance].isNetworkRunning) {
+        
+        [[AFOSCClient sharedClient]getPath:url parameters:Nil
+                                   success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                                       @try {
+                                           activities = [Tool readJsonStrToActivitiesArray:operation.responseString];
+                                           int length = [activities count];
+                                           NSMutableArray *itemArray = [NSMutableArray arrayWithCapacity:length+2];
+                                           if (length > 1)
+                                           {
+                                               Activity *activity = [activities objectAtIndex:length-1];
+                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:activity.indexImg tag:-1];
+                                               [itemArray addObject:item];
+                                           }
+                                           for (int i = 0; i < length; i++)
+                                           {
+                                               Activity *activity = [activities objectAtIndex:i];
+                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:activity.indexImg tag:-1];
+                                               [itemArray addObject:item];
+                                               
+                                           }
+                                           //添加第一张图 用于循环
+                                           if (length >1)
+                                           {
+                                               Activity *activity = [activities objectAtIndex:0];
+                                               SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:activity.indexImg tag:-1];
+                                               [itemArray addObject:item];
+                                           }
+                                           SGFocusImageFrame *bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 148) delegate:self imageItems:itemArray isAuto:YES];
+                                           [bannerView scrollToIndex:0];
+                                           [self.topImage addSubview:bannerView];
+                                       }
+                                       @catch (NSException *exception) {
+                                           [NdUncaughtExceptionHandler TakeException:exception];
+                                       }
+                                       @finally {
+                                           
+                                       }
+                                   } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                                       NSLog(@"地图获取出错");
+                                       
+                                       if ([UserModel Instance].isNetworkRunning == NO) {
+                                           return;
+                                       }
+                                       
+                                       if ([UserModel Instance].isNetworkRunning) {
+                                           [Tool ToastNotification:@"错误 网络无连接" andView:self.view andLoading:NO andIsBottom:NO];
+                                       }
+                                   }];
+        
+    }
+    //如果没有网络连接
+    else
+    {
+        
+    }
+}
+
+//顶部图片滑动点击委托协议实现事件
+- (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item
+{
+//    NSLog(@"%s \n click===>%@",__FUNCTION__,item.title);
+}
+
+//顶部图片自动滑动委托协议实现事件
+- (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame currentItem:(int)index;
+{
+//    NSLog(@"%s \n scrollToIndex===>%d",__FUNCTION__,index);
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
 }
 
 @end

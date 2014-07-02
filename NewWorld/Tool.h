@@ -13,6 +13,10 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "MBProgressHUD.h"
 #import <CommonCrypto/CommonCryptor.h>
+#import "RMMapper.h"
+#import "Activity.h"
+#import "Houses.h"
+#import "Support.h"
 
 @interface Tool : NSObject
 
@@ -31,7 +35,8 @@
 
 + (void)toTableViewBottom:(UITableView *)tableView isBottom:(BOOL)isBottom;
 
-+ (void)roundTextView:(UITextView *)txtView;
++ (void)roundTextView:(UIView *)txtView;
++ (void)roundView:(UIView *)view andCornerRadius:(float)radius;
 
 + (void)noticeLogin:(UIView *)view andDelegate:(id)delegate andTitle:(NSString *)title;
 
@@ -88,10 +93,15 @@
 + (void)CancelRequest:(ASIFormDataRequest *)request;
 
 + (NSDate *)NSStringDateToNSDate:(NSString *)string;
+//时间戳转指定格式时间字符串
++ (NSString *)TimestampToDateStr:(NSString *)timestamp andFormatterStr:(NSString *)formatter;
 
 + (NSString *)GenerateTags:(NSMutableArray *)tags;
 
 + (void)saveCache:(NSString *)catalog andType:(int)type andID:(int)_id andString:(NSString *)str;
 + (NSString *)getCache:(NSString *)catalog andType:(int)type andID:(int)_id;
+
++ (NSMutableArray *)readJsonStrToHousesArray:(NSString *)str;
++ (NSMutableArray *)readJsonStrToActivitiesArray:(NSString *)str;
 
 @end

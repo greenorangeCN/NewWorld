@@ -8,33 +8,60 @@
 
 #import "AppDelegate.h"
 
+BMKMapManager* _mapManager;
+
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
 @synthesize homePage;
+@synthesize activityView;
+@synthesize businessView;
+@synthesize settingView;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    //检查网络是否存在 如果不存在 则弹出提示
+    [UserModel Instance].isNetworkRunning = [CheckNetwork isExistenceNetwork];
     //显示系统托盘
     [application setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
+    //首页
     self.homePage = [[HomePageView alloc] initWithNibName:@"HomePageView" bundle:nil];
     UINavigationController *homePageNav = [[UINavigationController alloc] initWithRootViewController:self.homePage];
-
+    //活动
+    self.activityView = [[ActivityTableView alloc] initWithNibName:@"ActivityTableView" bundle:nil];
+    UINavigationController *activityNav = [[UINavigationController alloc] initWithRootViewController:self.activityView];
+    //商家服务
+    self.businessView = [[BusinessTableView alloc] initWithNibName:@"BusinessTableView" bundle:nil];
+    UINavigationController *businessNav = [[UINavigationController alloc] initWithRootViewController:self.businessView];
+    //设置
+    self.settingView = [[SettingView alloc] initWithNibName:@"SettingView" bundle:nil];
+    UINavigationController *settingNav = [[UINavigationController alloc] initWithRootViewController:self.settingView];
     
+    self.tabBarController = [[UITabBarController alloc] init];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:
+                                             homePageNav,
+                                             activityNav,
+                                             businessNav,
+                                             settingNav,
+                                             nil];
+    // 要使用百度地图，请先启动BaiduMapManager
+	_mapManager = [[BMKMapManager alloc]init];
+	BOOL ret = [_mapManager start:@"HC0Bk3YCO9T3aoN5iGjbwu5D" generalDelegate:self];
+	if (!ret) {
+		NSLog(@"manager start failed!");
+	}
+    
+    [[self.tabBarController tabBar] setSelectedImageTintColor:[UIColor colorWithRed:197.0/255 green:36.0/255 blue:42.0/255 alpha:1.0]];
+    //设置UINavigationController背景
     if (IS_IOS7) {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"top_bg7"]  forBarMetrics:UIBarMetricsDefault];
     }else
     {
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"top_bg"]  forBarMetrics:UIBarMetricsDefault];
     }
-    self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:
-                                             homePageNav,
-                                             nil];
-    [[self.tabBarController tabBar] setSelectedImageTintColor:[UIColor redColor]];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:self.tabBarController ];
