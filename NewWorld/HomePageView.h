@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Activity.h"
 #import "MapViewController.h"
+#import "ProjectCollectionView.h"
 #import "SGFocusImageFrame.h"
 #import "SGFocusImageItem.h"
 
@@ -20,5 +21,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *topImage;
 
 @property (strong, nonatomic) IBOutlet UIImageView *housesNavi;
+@property (strong, nonatomic) IBOutlet UIImageView *projectShow;
 
 @end

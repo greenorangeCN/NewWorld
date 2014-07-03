@@ -39,6 +39,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [Tool showHUD:@"正在定位" andView:self.view andHUD:hud];
     //初始化定位次数（定位成功后才刷新列表数据）
     updateTime = 0;
     _locService = [[BMKLocationService alloc]init];
@@ -143,6 +145,7 @@
 {
     //如果有网络连接
     if ([UserModel Instance].isNetworkRunning) {
+        [Tool showHUD:@"正在加载" andView:self.view andHUD:hud];
         NSMutableString *urlTemp = [NSMutableString stringWithFormat:@"%@%@", api_base_url, api_stores];
         if (keyword != nil && [keyword length] > 0) {
             [urlTemp appendString:[NSString stringWithFormat:@"?name=%@", keyword]];
@@ -172,7 +175,9 @@
                                            [NdUncaughtExceptionHandler TakeException:exception];
                                        }
                                        @finally {
-                                           
+                                           if (hud != nil) {
+                                               [hud hide:YES];
+                                           }
                                        }
                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                                        if ([UserModel Instance].isNetworkRunning == NO) {
@@ -217,7 +222,11 @@
     }
     Bussiness *store = [stores objectAtIndex:[indexPath row]];
     cell.nameLb.text = store.name;
-    cell.summaryTv.text = store.summary;
+    NSString *summary = store.summary ;
+    if ([summary length] > 30) {
+        summary = [NSString stringWithFormat:@"%@...", [summary substringToIndex:30]];
+    }
+    cell.summaryTv.text = summary;
     
     if (store.distance > 1000) {
         float disf = ((float)store.distance)/1000;

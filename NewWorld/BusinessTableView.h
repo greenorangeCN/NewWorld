@@ -20,6 +20,7 @@
     TQImageCache * _iconCache;
     BMKLocationService* _locService;
     int updateTime;
+    MBProgressHUD *hud;
 }
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;

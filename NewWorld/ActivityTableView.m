@@ -39,6 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    hud = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view setBackgroundColor:[Tool getBackgroundColor]];
     [self.activityTable setBackgroundColor:[Tool getBackgroundColor]];
     self.searchBar.delegate = self;
@@ -159,6 +160,7 @@
         if (!noRefresh) {
             allCount = 0;
         }
+        [Tool showHUD:@"正在加载" andView:self.view andHUD:hud];
         int pageIndex = allCount/20 + 1;
         NSMutableString *urlTemp = [NSMutableString stringWithFormat:@"%@%@?p=%d", api_base_url, api_activities, pageIndex];
         if (keyword != nil && [keyword length] > 0) {
@@ -194,6 +196,9 @@
                                            [NdUncaughtExceptionHandler TakeException:exception];
                                        }
                                        @finally {
+                                           if (hud != nil) {
+                                               [hud hide:YES];
+                                           }
                                            [self doneLoadingTableViewData];
                                        }
                                    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

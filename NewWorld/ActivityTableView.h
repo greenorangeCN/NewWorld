@@ -25,6 +25,7 @@
     
     BOOL isInitialize;
     TQImageCache * _iconCache;
+    MBProgressHUD *hud;
 }
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;

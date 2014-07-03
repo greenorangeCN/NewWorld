@@ -15,6 +15,7 @@
 @implementation HomePageView
 @synthesize housesNavi;
 @synthesize topImage;
+@synthesize projectShow;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +35,10 @@
     //楼盘导航事件注册
     UITapGestureRecognizer *naviTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(naviClick)];
 	[self.housesNavi addGestureRecognizer:naviTap];
+    
+    //项目展示事件注册
+    UITapGestureRecognizer *showTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(projectShowClick)];
+	[self.projectShow addGestureRecognizer:showTap];
 }
 
 - (void)naviClick
@@ -41,6 +46,13 @@
     MapViewController *mapView = [[MapViewController alloc] init];
     mapView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:mapView animated:YES];
+}
+
+- (void)projectShowClick
+{
+    ProjectCollectionView *projectView = [[ProjectCollectionView alloc] init];
+    projectView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:projectView animated:YES];
 }
 
 - (void)initTopImage

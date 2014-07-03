@@ -95,6 +95,8 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 5.0; //switch interval time
     //    _pageControl = [[GPSimplePageView alloc] initWithFrame:CGRectMake(self.bounds.size.width *.5 - size.width *.5, self.bounds.size.height - size.height, size.width, size.height)];
     _pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.frame.size.height -16-10, 320, 10)];
     _pageControl.userInteractionEnabled = NO;
+    _pageControl.currentPageIndicatorTintColor = [UIColor redColor];
+    _pageControl.pageIndicatorTintColor = [UIColor grayColor];
     [self addSubview:_scrollView];
     [self addSubview:_pageControl];
     

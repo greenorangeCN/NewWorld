@@ -449,4 +449,17 @@
     return stores;
 }
 
++ (NSMutableArray *)readJsonStrToProjectArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSArray *projectArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( [projectArray count] <= 0) {
+        return nil;
+    }
+    NSMutableArray *projects = [RMMapper mutableArrayOfClass:[HousesProject class]
+                                     fromArrayOfDictionary:projectArray];
+    return projects;
+}
+
 @end

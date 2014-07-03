@@ -40,10 +40,12 @@
 #define api_mapsNavigation @"/api/mapsNavigation"
 #define api_activities @"/api/activities"
 #define api_stores @"/api/store_list"
+#define api_project @"/api/community"
 
 #define SettingTableIdentifier @"SettingTableIdentifier"
 #define ActivityCellIdentifier @"ActivityCellIdentifier"
 #define BusinessCellIdentifier @"BusinessCellIdentifier"
+#define ProjectCollectionCellIdentifier @"ProjectCollectionCellIdentifier"
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
