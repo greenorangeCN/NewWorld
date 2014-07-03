@@ -436,4 +436,17 @@
     return acticities;
 }
 
++ (NSMutableArray *)readJsonStrToStoreArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSArray *storeArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( [storeArray count] <= 0) {
+        return nil;
+    }
+    NSMutableArray *stores = [RMMapper mutableArrayOfClass:[Bussiness class]
+                                       fromArrayOfDictionary:storeArray];
+    return stores;
+}
+
 @end

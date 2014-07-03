@@ -17,6 +17,7 @@
     BOOL isLoadOver;
     BOOL isLoading;
     int allCount;
+    NSString *keyword;
     
     //下拉刷新
     EGORefreshTableHeaderView *_refreshHeaderView;

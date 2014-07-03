@@ -39,15 +39,17 @@
 #define api_recommend_activities @"/api/recommend_activities?limit=3"
 #define api_mapsNavigation @"/api/mapsNavigation"
 #define api_activities @"/api/activities"
+#define api_stores @"/api/store_list"
 
 #define SettingTableIdentifier @"SettingTableIdentifier"
 #define ActivityCellIdentifier @"ActivityCellIdentifier"
+#define BusinessCellIdentifier @"BusinessCellIdentifier"
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
 #define IS_IOS7 ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0)
 
-#define loadNext20Tip @"查看更多 . . ."
+#define loadNext20Tip @"点击加载更多 . . ."
 #define loadingTip @"正在加载 . . ."
 #define networkError @"网络无连接"
 #define noNetworkTip @"网络无连接"

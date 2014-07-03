@@ -7,9 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TQImageCache.h"
+#import "BusinessCell.h"
+#import "Bussiness.h"
+#import "BMapKit.h"
 
-@interface BusinessTableView : UIViewController<UISearchBarDelegate>
+@interface BusinessTableView : UIViewController<UITableViewDelegate,UITableViewDataSource,IconDownloaderDelegate,UISearchBarDelegate,BMKLocationServiceDelegate>
+{
+    NSString *keyword;
+    BMKMapPoint myPoint;
+    NSMutableArray *stores;
+    TQImageCache * _iconCache;
+    BMKLocationService* _locService;
+    int updateTime;
+}
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) IBOutlet UITableView *storeTable;
+
+//异步加载图片专用
+@property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
+- (void)startIconDownload:(ImgRecord *)imgRecord forIndexPath:(NSIndexPath *)indexPath;
 
 @end

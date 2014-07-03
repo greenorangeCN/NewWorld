@@ -92,6 +92,17 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+    //点击隐藏软键盘
+    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    tapGr.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGr];
+}
+
+-(void)viewTapped:(UITapGestureRecognizer*)tapGr{
+    [self.searchBar resignFirstResponder];
+    if ([keyword length] == 0) {
+        [self.searchBar setShowsCancelButton:NO animated:YES];
+    }
 }
 
 - (void)doneManualRefresh
@@ -149,7 +160,11 @@
             allCount = 0;
         }
         int pageIndex = allCount/20 + 1;
-        NSString *url = [NSString stringWithFormat:@"%@%@?p=%d", api_base_url, api_activities, pageIndex];
+        NSMutableString *urlTemp = [NSMutableString stringWithFormat:@"%@%@?p=%d", api_base_url, api_activities, pageIndex];
+        if (keyword != nil && [keyword length] > 0) {
+            [urlTemp appendString:[NSString stringWithFormat:@"&keywords=%@", keyword]];
+        }
+        NSString *url = [[NSString stringWithString:urlTemp] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         
         [[AFOSCClient sharedClient]getPath:url parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -227,7 +242,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 98;
+    if ([indexPath row] < [activities count]) {
+        return 98;
+    }
+    else
+    {
+        return 60;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -419,8 +440,6 @@
     }
 }
 
-
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -429,15 +448,14 @@
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     [self.searchBar setShowsCancelButton:YES animated:YES];
-    
 }
-    
 
 // 键盘中，搜索按钮被按下，执行的方法
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
-    NSLog(@"---%@",searchBar.text);
-//    [self.searchBar resignFirstResponder];// 放弃第一响应者
-    
+    [self.searchBar resignFirstResponder];// 放弃第一响应者
+    keyword = searchBar.text;
+    isLoadOver = NO;
+    [self reload:NO];
 }
 
 //编辑代理(完成编辑触发)
@@ -451,7 +469,11 @@
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     searchBar.text = @"";
+    [self.searchBar setShowsCancelButton:NO animated:YES];
     [self.searchBar resignFirstResponder];// 放弃第一响应者
+    keyword = @"";
+    isLoadOver = NO;
+    [self reload:NO];
 }
 
 @end

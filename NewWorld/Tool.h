@@ -17,6 +17,7 @@
 #import "Activity.h"
 #import "Houses.h"
 #import "Support.h"
+#import "Bussiness.h"
 
 @interface Tool : NSObject
 
@@ -103,5 +104,6 @@
 
 + (NSMutableArray *)readJsonStrToHousesArray:(NSString *)str;
 + (NSMutableArray *)readJsonStrToActivitiesArray:(NSString *)str;
++ (NSMutableArray *)readJsonStrToStoreArray:(NSString *)str;
 
 @end
