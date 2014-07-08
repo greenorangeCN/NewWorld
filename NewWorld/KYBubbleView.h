@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MapDetailView.h"
 
 @interface KYBubbleView : UIScrollView {   //UIView是气泡view的本质
     UILabel         *nameLabel;

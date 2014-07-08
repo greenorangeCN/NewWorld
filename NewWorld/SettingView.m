@@ -127,12 +127,41 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 43;
+    return 44;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [settings count];
 }
+//IOS7自带沾滞效果
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(10, 0, 300, 30)];//创建一个视图
+//    
+//    UIImageView *headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 300, 30)];
+//    
+//    UIImage *image = [UIImage imageNamed:@"top_bg.png"];
+//    
+//    [headerImageView setImage:image];
+//    
+//    [headerView addSubview:headerImageView];
+//    
+//    
+//    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(130, 5, 150, 20)];
+//    
+//    headerLabel.backgroundColor = [UIColor clearColor];
+//    
+//    headerLabel.font = [UIFont boldSystemFontOfSize:15.0];
+//    
+//    headerLabel.textColor = [UIColor blueColor];
+//    
+//    headerLabel.text = @"Section";
+//    
+//    [headerView addSubview:headerLabel];
+//  
+//    return headerView;
+//    
+//}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSString *key = [settings objectAtIndex:section];

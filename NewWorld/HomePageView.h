@@ -16,9 +16,10 @@
 @interface HomePageView : UIViewController<SGFocusImageFrameDelegate>
 {
     NSMutableArray *activities;
+    SGFocusImageFrame *bannerView;
 }
 
-@property (strong, nonatomic) IBOutlet UILabel *topImage;
+@property (strong, nonatomic) IBOutlet UIImageView *topImage;
 
 @property (strong, nonatomic) IBOutlet UIImageView *housesNavi;
 @property (strong, nonatomic) IBOutlet UIImageView *projectShow;

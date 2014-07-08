@@ -30,6 +30,8 @@
     
     BOOL isPinSelected;     //用于判断大头针是否被选中
     BMKLocationService* _locService;
+    
+    int updateLoTime;
 }
 
 - (void)showBubble:(BOOL)show;

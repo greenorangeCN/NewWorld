@@ -462,4 +462,55 @@
     return projects;
 }
 
++ (Support *)readJsonStrToSupport:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *supportDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( supportDic == nil) {
+        return nil;
+    }
+    Support *house = [RMMapper objectWithClass:[Support class] fromDictionary:supportDic];
+    return house;
+}
+
++ (NSMutableArray *)readJsonStrToSliderImageArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSMutableArray *imageArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ([imageArray count] <= 0) {
+        return nil;
+    }
+    else
+    {
+        return imageArray;
+    }
+}
+
++ (BusinessGoods *)readJsonStrBusinessGoods:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *businessGoodsDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    BusinessGoods *businessGoods = [[BusinessGoods alloc] init] ;
+    if ([NSNull null] == businessGoodsDic) {
+        return nil;
+    }
+    if([NSNull null] != [businessGoodsDic objectForKey:@"coupons"]) {
+        id couponsJSON = [businessGoodsDic objectForKey:@"coupons"];
+        NSMutableArray *coupons = [RMMapper mutableArrayOfClass:[Coupons class]
+                                           fromArrayOfDictionary:couponsJSON];
+        businessGoods.coupons = coupons;
+    }
+    if([NSNull null] != [businessGoodsDic objectForKey:@"goodlist"]) {
+        id goodsJSON = [businessGoodsDic objectForKey:@"goodlist"];
+        NSMutableArray *goods = [RMMapper mutableArrayOfClass:[Goods class]
+                                          fromArrayOfDictionary:goodsJSON];
+        businessGoods.goodlist = goods;
+    }
+
+    return businessGoods;
+}
+
 @end

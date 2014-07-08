@@ -11,6 +11,7 @@
 #import "BusinessCell.h"
 #import "Bussiness.h"
 #import "BMapKit.h"
+#import "BusinessGoodsView.h"
 
 @interface BusinessTableView : UIViewController<UITableViewDelegate,UITableViewDataSource,IconDownloaderDelegate,UISearchBarDelegate,BMKLocationServiceDelegate>
 {
@@ -19,7 +20,6 @@
     NSMutableArray *stores;
     TQImageCache * _iconCache;
     BMKLocationService* _locService;
-    int updateTime;
     MBProgressHUD *hud;
 }
 

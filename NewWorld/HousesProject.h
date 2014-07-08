@@ -15,6 +15,8 @@
 @property (nonatomic, retain) NSString* logo;
 @property (nonatomic, retain) NSString* longitude;
 @property (nonatomic, retain) NSString* latitude;
+@property (nonatomic, retain) NSString* telephone;
+@property (nonatomic, retain) NSString* summary;
 @property (retain,nonatomic) UIImage *imgData;
 
 @end

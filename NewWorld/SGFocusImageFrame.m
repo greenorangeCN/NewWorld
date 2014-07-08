@@ -122,11 +122,9 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 5.0; //switch interval time
     
     for (int i = 0; i < imageItems.count; i++) {
         SGFocusImageItem *item = [imageItems objectAtIndex:i];
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * _scrollView.frame.size.width+space, space, _scrollView.frame.size.width-space*2, _scrollView.frame.size.height-2*space-size.height)];
-        //加载图片
-        NSString *imagePicUrl = [NSString stringWithFormat:@"%@", item.image];
-        NSURL *imageUrl = [NSURL URLWithString:imagePicUrl];
-        imageView.image =[UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];;
+        EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic1.png"]];
+        imageView.imageURL = [NSURL URLWithString:item.image];
+        imageView.frame = CGRectMake(i * _scrollView.frame.size.width+space, space, _scrollView.frame.size.width-space*2, _scrollView.frame.size.height-2*space-size.height);
         [_scrollView addSubview:imageView];
         [imageView release];
     }
@@ -212,11 +210,13 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 5.0; //switch interval time
             page = _pageControl.numberOfPages -1;
         }
     }
-    if (page!= _pageControl.currentPage)
-    {
-        if ([self.delegate respondsToSelector:@selector(foucusImageFrame:currentItem:)])
+    if (self.delegate != nil) {
+        if (page!= _pageControl.currentPage)
         {
-            [self.delegate foucusImageFrame:self currentItem:page];
+            if ([self.delegate respondsToSelector:@selector(foucusImageFrame:currentItem:)])
+            {
+                [self.delegate foucusImageFrame:self currentItem:page];
+            }
         }
     }
     _pageControl.currentPage = page;

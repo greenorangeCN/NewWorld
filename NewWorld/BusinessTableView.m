@@ -41,8 +41,6 @@
     [super viewDidLoad];
     hud = [[MBProgressHUD alloc] initWithView:self.view];
     [Tool showHUD:@"正在定位" andView:self.view andHUD:hud];
-    //初始化定位次数（定位成功后才刷新列表数据）
-    updateTime = 0;
     _locService = [[BMKLocationService alloc]init];
     _locService.delegate = self;
     [self startLocation];
@@ -246,7 +244,7 @@
     else
     {
         if ([store.logo isEqualToString:@""]) {
-            store.imgData = [UIImage imageNamed:@"tg-nopic.jpg"];
+            store.imgData = [UIImage imageNamed:@"loadingpic2.png"];
         }
         else
         {
@@ -275,12 +273,13 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     int row = [indexPath row];
-    Bussiness *stroe = [stores objectAtIndex:row];
-    if (stroe)
+    Bussiness *store = [stores objectAtIndex:row];
+    if (store)
     {
-        //            CompanyView *companyView = [[CompanyView alloc] init];
-        //            companyView.shop = business;
-        //            [self.navigationController pushViewController:companyView animated:YES];
+        BusinessGoodsView *goodsView = [[BusinessGoodsView alloc] init];
+        goodsView.store = store;
+        goodsView.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:goodsView animated:YES];
     }
     
 }
@@ -362,12 +361,12 @@
 - (void)didUpdateUserLocation:(BMKUserLocation *)userLocation
 {
     CLLocationCoordinate2D mycoord = userLocation.location.coordinate;
-    myPoint = BMKMapPointForCoordinate(mycoord);
-    if(updateTime == 0)
-    {
+    myPoint = BMKMapPointForCoordinate(mycoord);    
+    //    如果经纬度大于0表单表示定位成功，停止定位
+    if (userLocation.location.coordinate.latitude > 0) {
         [self reload];
+        [_locService stopUserLocationService];
     }
-    updateTime ++;
 }
 
 /**

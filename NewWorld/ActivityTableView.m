@@ -294,7 +294,7 @@
             else
             {
                 if ([activity.thumb isEqualToString:@""]) {
-                    activity.imgData = [UIImage imageNamed:@"tg-nopic.jpg"];
+                    activity.imgData = [UIImage imageNamed:@"loadingpic2.png"];
                 }
                 else
                 {
@@ -342,10 +342,10 @@
         Activity *activity = [activities objectAtIndex:row];
         if (activity)
         {
-//            CCActivityDetailView *activityDetail = [[CCActivityDetailView alloc] init];
-//            activityDetail.activity = activity;
-//            activityDetail.hidesBottomBarWhenPushed = YES;
-//            [self.navigationController pushViewController:activityDetail animated:YES];
+            ActivityDetailView *activityDetail = [[ActivityDetailView alloc] init];
+            activityDetail.activity = activity;
+            activityDetail.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:activityDetail animated:YES];
         }
     }
 }

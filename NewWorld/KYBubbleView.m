@@ -131,9 +131,17 @@ static const float kMaxLabelWidth = 300.0f;
 - (void)popViewClick:(id)sender
 {
     self.hidden = YES;
-//    CompanyView *companyView = [[CompanyView alloc] init];
-//    companyView.shop = shop;
-//    companyView.hidesBottomBarWhenPushed = YES;
-//    [self.navigationController pushViewController:companyView animated:YES];
+    MapDetailView *mapdetailView = [[MapDetailView alloc] init];
+    mapdetailView.projectId = support.id;
+    mapdetailView.projectTitle = support.title;
+    //项目简介：0；周边配套简介：1
+    if ([support.type isEqualToString:@"0"]) {
+        mapdetailView.dataType = 0;
+    }
+    else
+    {
+        mapdetailView.dataType = 1;
+    }
+    [self.navigationController pushViewController:mapdetailView animated:YES];
 }
 @end

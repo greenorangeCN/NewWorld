@@ -17,5 +17,8 @@
 @property (nonatomic, retain) NSString* longitude;
 @property (nonatomic, retain) NSString* latitude;
 @property (nonatomic, retain) NSString* telephone;
+@property (nonatomic, retain) NSString* thumb;
+@property (nonatomic, retain) NSString* intro;
+@property (nonatomic, retain) NSString* bigpic;
 
 @end

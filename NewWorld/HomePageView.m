@@ -60,7 +60,6 @@
     NSString *url = [NSString stringWithFormat:@"%@%@", api_base_url, api_recommend_activities];
     
     if ([UserModel Instance].isNetworkRunning) {
-        
         [[AFOSCClient sharedClient]getPath:url parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        @try {
@@ -87,7 +86,7 @@
                                                SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:activity.indexImg tag:-1];
                                                [itemArray addObject:item];
                                            }
-                                           SGFocusImageFrame *bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 148) delegate:self imageItems:itemArray isAuto:YES];
+                                           bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 148) delegate:self imageItems:itemArray isAuto:YES];
                                            [bannerView scrollToIndex:0];
                                            [self.topImage addSubview:bannerView];
                                        }
@@ -120,13 +119,13 @@
 //顶部图片滑动点击委托协议实现事件
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item
 {
-//    NSLog(@"%s \n click===>%@",__FUNCTION__,item.title);
+    NSLog(@"%s \n click===>%@",__FUNCTION__,item.title);
 }
 
 //顶部图片自动滑动委托协议实现事件
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame currentItem:(int)index;
 {
-//    NSLog(@"%s \n scrollToIndex===>%d",__FUNCTION__,index);
+    NSLog(@"%s \n scrollToIndex===>%d",__FUNCTION__,index);
 }
 
 - (void)didReceiveMemoryWarning
@@ -140,6 +139,13 @@
     [super viewWillAppear:animated];
     self.navigationController.navigationBar.hidden = YES;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    bannerView.delegate = self;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    bannerView.delegate = nil;
 }
 
 @end

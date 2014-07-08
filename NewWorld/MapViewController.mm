@@ -41,6 +41,7 @@ static CGFloat kTransitionDuration = 0.45f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    updateLoTime = 0;
     isPinSelected = NO;   //new
     mapsAll = [[NSMutableArray alloc] init];
     mapsSchool = [[NSMutableArray alloc] init];
@@ -48,13 +49,6 @@ static CGFloat kTransitionDuration = 0.45f;
     mapsShop = [[NSMutableArray alloc] init];
     mapsService = [[NSMutableArray alloc] init];
     
-//    CGRect rect = _mapView.bounds;
-//    if (IS_IOS7) {
-//        rect.origin.y = self.navigationController.navigationBar.frame.size.height + 15;
-//        rect.size.height = rect.size.height - self.navigationController.navigationBar.frame.size.height - 15;
-//    }
-////    rect.size.height = rect.size.height-self.navigationController.navigationBar.frame.size.height;
-//    [_mapView setFrame:rect];
     _mapView.zoomLevel = 13;
     _locService = [[BMKLocationService alloc]init];
     bubbleView = [[KYBubbleView alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
@@ -71,7 +65,7 @@ static CGFloat kTransitionDuration = 0.45f;
     NSURL *dbURLPath = [NSURL fileURLWithPath:directory];
     [self addSkipBackupAttributeToItemAtURL:dbURLPath];
     [self addSkipBackupAttributeToPath:directory];
-    _mapView.showsUserLocation = YES;
+    [self startLocation];
     [self initMapsData];
 }
 
@@ -418,11 +412,10 @@ static CGFloat kTransitionDuration = 0.45f;
     [_mapView viewWillAppear];
     _mapView.delegate = self;
     _locService.delegate = self;
-    
-//    self.navigationController.navigationBar.hidden = NO;
+    self.navigationController.navigationBar.hidden = YES;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     selectedAV = nil;
-    [self startLocation];
+//    [self startLocation];
 }
 
 -(void)viewWillDisappear:(BOOL)animated {
@@ -465,11 +458,13 @@ static CGFloat kTransitionDuration = 0.45f;
  */
 - (void)didUpdateUserLocation:(BMKUserLocation *)userLocation
 {
-    //    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     [_mapView updateLocationData:userLocation];
-//    userLocation.title = @"我的位置";
-//    CLLocationCoordinate2D mycoord = userLocation.location.coordinate;
-//    BMKMapPoint myPoint = BMKMapPointForCoordinate(mycoord);
+//    如果经纬度大于0表单表示定位成功,并成功定位十次，停止定位（一次不能刷新地图，致使地图空白）
+    if (userLocation.location.coordinate.latitude > 0 && updateLoTime == 10) {
+        [_locService stopUserLocationService];
+    }
+    updateLoTime ++;
 }
 
 /**

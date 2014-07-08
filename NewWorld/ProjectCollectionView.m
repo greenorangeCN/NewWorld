@@ -49,6 +49,7 @@
     self.projectCollection.delegate = self;
     self.projectCollection.dataSource = self;
     [self.projectCollection registerClass:[ProjectCollectionCell class] forCellWithReuseIdentifier:ProjectCollectionCellIdentifier];
+    [self.projectCollection registerClass:[ProjectHeadReusable class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"head"];
     self.projectCollection.backgroundColor = [Tool getBackgroundColor];
     [self reload];
     //适配iOS7uinavigationbar遮挡tableView的问题
@@ -130,7 +131,7 @@
     else
     {
         if ([project.logo isEqualToString:@""]) {
-            project.imgData = [UIImage imageNamed:@"tg-nopic.jpg"];
+            project.imgData = [UIImage imageNamed:@"loadingpic2.png"];
         }
         else
         {
@@ -171,8 +172,10 @@
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
+    HousesProject *project = [projects objectAtIndex:[indexPath row]];
+    ProjectIntroView *projectIntro = [[ProjectIntroView alloc] init];
+    projectIntro.project = project;
+    [self.navigationController pushViewController:projectIntro animated:YES];
 }
 
 //返回这个UICollectionView是否可以被选择
@@ -195,6 +198,7 @@
         [iconDownloader startDownload];
     }
 }
+
 - (void)appImageDidLoad:(NSString *)index
 {
     IconDownloader *iconDownloader = [imageDownloadsInProgress objectForKey:index];
@@ -213,6 +217,16 @@
             [self.projectCollection reloadData];
         }
     }
+}
+
+// 返回headview或footview
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionReusableView *reusableview = nil;
+    if (kind == UICollectionElementKindSectionHeader){
+        ProjectHeadReusable *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"head" forIndexPath:indexPath];
+        reusableview = headerView;
+    }
+    return reusableview;
 }
 
 - (void)didReceiveMemoryWarning

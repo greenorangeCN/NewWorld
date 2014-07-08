@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TQImageCache.h"
 #import "ActivityCell.h"
+#import "ActivityDetailView.h"
 
 @interface ActivityTableView : UIViewController<UITableViewDelegate,UITableViewDataSource,IconDownloaderDelegate,EGORefreshTableHeaderDelegate,UISearchBarDelegate>
 {

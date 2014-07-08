@@ -9,7 +9,7 @@
             <connections>
                 <outlet property="housesNavi" destination="KA6-bu-lnt" id="UZ3-BC-CxB"/>
                 <outlet property="projectShow" destination="bVh-JD-rvh" id="gpG-Jr-bTS"/>
-                <outlet property="topImage" destination="7UE-MI-v6w" id="ASd-5A-MAe"/>
+                <outlet property="topImage" destination="fjv-0K-lJU" id="feJ-sS-MUl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,13 +22,6 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7UE-MI-v6w">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_btn_bg.png" id="Bls-xA-J1U">
                             <rect key="frame" x="0.0" y="148" width="320" height="35"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -119,6 +112,10 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
+                        <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadingpic1.png" id="fjv-0K-lJU">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="calibratedRGB"/>
                 </scrollView>
@@ -142,5 +139,6 @@
         <image name="home_seehouse.png" width="130" height="166"/>
         <image name="home_share_btn.png" width="107" height="32"/>
         <image name="home_show.png" width="284" height="190"/>
+        <image name="loadingpic1.png" width="320" height="143"/>
     </resources>
 </document>

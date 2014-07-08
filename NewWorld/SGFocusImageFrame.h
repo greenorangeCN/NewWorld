@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EGOImageView.h"
 @class SGFocusImageItem;
 @class SGFocusImageFrame;
 

@@ -10,6 +10,8 @@
 #import "ProjectCollectionCell.h"
 #import "HousesProject.h"
 #import "TQImageCache.h"
+#import "ProjectHeadReusable.h"
+#import "ProjectIntroView.h"
 
 @interface ProjectCollectionView : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, IconDownloaderDelegate>
 {

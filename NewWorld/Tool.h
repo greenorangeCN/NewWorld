@@ -19,6 +19,9 @@
 #import "Support.h"
 #import "Bussiness.h"
 #import "HousesProject.h"
+#import "BusinessGoods.h"
+#import "Coupons.h"
+#import "Goods.h"
 
 @interface Tool : NSObject
 
@@ -107,5 +110,8 @@
 + (NSMutableArray *)readJsonStrToActivitiesArray:(NSString *)str;
 + (NSMutableArray *)readJsonStrToStoreArray:(NSString *)str;
 + (NSMutableArray *)readJsonStrToProjectArray:(NSString *)str;
++ (Support *)readJsonStrToSupport:(NSString *)str;
++ (NSMutableArray *)readJsonStrToSliderImageArray:(NSString *)str;
++ (BusinessGoods *)readJsonStrBusinessGoods:(NSString *)str;
 
 @end
