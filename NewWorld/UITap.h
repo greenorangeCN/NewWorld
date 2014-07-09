@@ -11,6 +11,7 @@
 @interface UITap : UITapGestureRecognizer
 
 @property int tag;
-@property (nonatomic,copy) NSString * tagString; 
+@property (nonatomic,copy) NSString * tagString;
+@property id tagobject;
 
 @end

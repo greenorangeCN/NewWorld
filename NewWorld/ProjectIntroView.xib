@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProjectIntroView">
             <connections>
+                <outlet property="houseTypeLb" destination="ole-h1-iur" id="4Hq-EP-3ee"/>
                 <outlet property="logoIv" destination="e8f-2t-PbP" id="lxA-pI-nOx"/>
                 <outlet property="summaryLb" destination="CdT-XP-etY" id="Xcs-H7-SZw"/>
                 <outlet property="titleLb" destination="7Dv-o9-OpF" id="6UV-sb-Pcp"/>
@@ -71,7 +72,7 @@
                             <color key="textColor" red="0.77647058820000003" green="0.015686274510000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="户型涵盖了各种人群的实际需要，无论你来自何方，总有一款户型能热昂您满意。" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ole-h1-iur">
+                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="户型涵盖了各种人群的实际需要，无论你来自何方，总有一款户型能热昂您满意。" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ole-h1-iur">
                             <rect key="frame" x="108" y="270" width="193" height="51"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>

@@ -202,8 +202,7 @@
     cell.priceLb.text = [NSString stringWithFormat:@"￥%@", good.price];
     cell.buysLb.text = [NSString stringWithFormat:@"已售%@", good.buys];
     
-    CGRect frame = CGRectMake(207, 70, 63, 21);
-    StrikeThroughLabel *slabel = [[StrikeThroughLabel alloc] initWithFrame:frame];
+    StrikeThroughLabel *slabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(207, 70, 63, 21)];
     slabel.text = [NSString stringWithFormat:@"￥%@", good.market_price];
     slabel.font = [UIFont italicSystemFontOfSize:12.0f];
     slabel.strikeThroughEnabled = YES;
@@ -250,9 +249,9 @@
     Goods *good = [goods objectAtIndex:row];
     if (good)
     {
-//        BusinessGoodsView *goodsView = [[BusinessGoodsView alloc] init];
-//        goodsView.store = store;
-//        [self.navigationController pushViewController:goodsView animated:YES];
+        GoodsDetailView *goodsDetailView = [[GoodsDetailView alloc] init];
+        goodsDetailView.goodsId = good.id;
+        [self.navigationController pushViewController:goodsDetailView animated:YES];
     }
     
 }

@@ -1,32 +1,39 @@
 //
-//  MapDetailView.m
+//  GoodsDetailView.m
 //  NewWorld
 //
-//  Created by Seven on 14-7-4.
+//  Created by Seven on 14-7-8.
 //  Copyright (c) 2014年 Seven. All rights reserved.
 //
 
-#import "MapDetailView.h"
+#import "GoodsDetailView.h"
 
-@interface MapDetailView ()
+@interface GoodsDetailView ()
 
 @end
 
-@implementation MapDetailView
+@implementation GoodsDetailView
 
-@synthesize projectId;
-@synthesize projectTitle;
-@synthesize dataType;
+@synthesize goodsId;
 @synthesize scrollView;
-@synthesize topImageIv;
+@synthesize picIv;
+@synthesize priceLb;
+@synthesize marketPriceLb;
+@synthesize buysLb;
 @synthesize webView;
-@synthesize typeLb;
-@synthesize titleLb;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
+        titleLabel.font = [UIFont boldSystemFontOfSize:18];
+        titleLabel.text = @"商品详情";
+        titleLabel.backgroundColor = [UIColor clearColor];
+        titleLabel.textColor = [UIColor whiteColor];
+        titleLabel.textAlignment = UITextAlignmentCenter;
+        self.navigationItem.titleView = titleLabel;
+        
         UIButton *lBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
         [lBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
         [lBtn setImage:[UIImage imageNamed:@"cc_back"] forState:UIControlStateNormal];
@@ -44,7 +51,7 @@
 
 - (void)telAction
 {
-    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", supportDetail.telephone]];
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", detail.phone]];
     if (!phoneCallWebView) {
         phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
     }
@@ -65,25 +72,10 @@
         self.edgesForExtendedLayout = UIRectEdgeNone;
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
-    //数据加载时设置顶部导航标题
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
-    titleLabel.font = [UIFont boldSystemFontOfSize:18];
-    titleLabel.text = projectTitle;
-    titleLabel.backgroundColor = [UIColor clearColor];
-    titleLabel.textColor = [UIColor whiteColor];
-    titleLabel.textAlignment = UITextAlignmentCenter;
-    self.navigationItem.titleView = titleLabel;
     
     hud = [[MBProgressHUD alloc] initWithView:self.view];
     [Tool showHUD:@"正在加载" andView:self.view andHUD:hud];
-    NSString *detailUrl = @"";
-    if (dataType == 0) {
-        detailUrl = [NSString stringWithFormat:@"%@%@?id=%@", api_base_url, api_project_detail, projectId];
-    }
-    else
-    {
-        detailUrl = [NSString stringWithFormat:@"%@%@?id=%@", api_base_url, api_support_detail, projectId];
-    }
+    NSString *detailUrl = [NSString stringWithFormat:@"%@%@?id=%@", api_base_url, api_goods_detail, self.goodsId];
     NSURL *url = [ NSURL URLWithString : detailUrl];
     // 构造 ASIHTTPRequest 对象
     ASIHTTPRequest *request = [ ASIHTTPRequest requestWithURL :url];
@@ -91,60 +83,32 @@
     [request startSynchronous ];
     NSError *error = [request error ];
     assert (!error);
-    supportDetail = [Tool readJsonStrToSupport:[request responseString]];
+    detail = [Tool readJsonStrToGoodsDetail:[request responseString]];
+    
+    //图片加载
+    EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic1.png"]];
+    imageView.imageURL = [NSURL URLWithString:detail.thumb];
+    imageView.frame = CGRectMake(0.0f, 0.0f, 320.0f, 187.0f);
+    [self.picIv addSubview:imageView];
+    //带删除线价格加载
+    StrikeThroughLabel *slabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(0, 0, 72, 21)];
+    slabel.text = [NSString stringWithFormat:@"￥%@", detail.market_price];
+    slabel.font = [UIFont italicSystemFontOfSize:12.0f];
+    slabel.textColor = [UIColor whiteColor];
+    slabel.textAlignment = UITextAlignmentCenter;
+    slabel.strikeThroughEnabled = YES;
+    [self.marketPriceLb addSubview:slabel];
+    self.priceLb.text = [NSString stringWithFormat:@"￥%@", detail.price];
+    self.buysLb.text = [NSString stringWithFormat:@"已售%@", detail.buys];
     
     //WebView的背景颜色去除
     [Tool clearWebViewBackground:self.webView];
     //    [self.webView setScalesPageToFit:YES];
     [self.webView sizeToFit];
     self.webView.delegate = self;
-    
-    NSString *html = supportDetail.intro;
-    if (html == nil || [html length] == 0) {
-        html = @"暂无简介...";
-    }
+    NSString *html = [NSString stringWithFormat:@"<body>%@<div id='web_summary'>%@</div><div id='web_column'>%@</div><div id='web_body'>%@</div></body>", HTML_Style, detail.summary, @"商品详情", detail.content];
     NSString *result = [Tool getHTMLString:html];
     [self.webView loadHTMLString:result baseURL:nil];
-    
-    
-    NSString *typeInt = supportDetail.type;
-    NSString *typeStr = @"";
-    if (dataType == 0) {
-        typeStr = @"项目展示";
-    }
-    else
-    {
-        if ([typeInt isEqualToString:@"1"])
-        {
-            typeStr = @"教育配套";
-        }
-        else if ([typeInt  isEqualToString:@"2"])
-        {
-            typeStr = @"政府机关";
-        }
-        else if ([typeInt  isEqualToString:@"3"])
-        {
-            typeStr = @"购物消费";
-        }
-        else if ([typeInt  isEqualToString:@"4"])
-        {
-            typeStr = @"服务配套";
-        }
-    }
-    self.typeLb.text = typeStr;
-    
-    self.titleLb.text = supportDetail.title;
-    
-    EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic1.png"]];
-    if (dataType == 0) {
-        imageView.imageURL = [NSURL URLWithString:supportDetail.bigpic];
-    }
-    else
-    {
-        imageView.imageURL = [NSURL URLWithString:supportDetail.thumb];
-    }
-    imageView.frame = CGRectMake(0.0f, 0.0f, 320.0f, 172.0f);
-    [self.topImageIv addSubview:imageView];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webViewP
@@ -169,13 +133,6 @@
 {
     [super viewWillDisappear:animated];
     [self.webView stopLoading];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 @end

@@ -509,8 +509,32 @@
                                           fromArrayOfDictionary:goodsJSON];
         businessGoods.goodlist = goods;
     }
-
     return businessGoods;
+}
+
++ (GoodsDetail *)readJsonStrToGoodsDetail:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *detailDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( detailDic == nil) {
+        return nil;
+    }
+    GoodsDetail *detail = [RMMapper objectWithClass:[GoodsDetail class] fromDictionary:detailDic];
+    return detail;
+}
+
++ (NSMutableArray *)readJsonStrToHouseTypeArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSArray *houseTypeArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( [houseTypeArray count] <= 0) {
+        return nil;
+    }
+    NSMutableArray *houseTypes = [RMMapper mutableArrayOfClass:[HouseType class]
+                                       fromArrayOfDictionary:houseTypeArray];
+    return houseTypes;
 }
 
 @end

@@ -10,6 +10,7 @@
 #import "SGFocusImageFrame.h"
 #import "SGFocusImageItem.h"
 #import "MapDetailView.h"
+#import "HouseTypeCollectionView.h"
 
 @interface ProjectIntroView : UIViewController<SGFocusImageFrameDelegate>
 {
@@ -21,5 +22,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *summaryLb;
 @property (strong, nonatomic) IBOutlet UIImageView *topImage;
 @property (strong, nonatomic) HousesProject *project;
+@property (strong, nonatomic) IBOutlet UILabel *houseTypeLb;
 
 @end

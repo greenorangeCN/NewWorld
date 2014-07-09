@@ -22,6 +22,8 @@
 #import "BusinessGoods.h"
 #import "Coupons.h"
 #import "Goods.h"
+#import "GoodsDetail.h"
+#import "HouseType.h"
 
 @interface Tool : NSObject
 
@@ -68,16 +70,6 @@
 
 + (BOOL)isValidateEmail:(NSString *)email;
 
-/*
- 注意此方法 可以存储所有的 detail 以及 news列表于 post列表
- type:
- 1 -- news detail 
- 2 -- post detail 
- 3 -- software detail
- 4 -- blog detail
- 5 -- news 列表  其中 _id 表示 segementIndex
- 6 -- post 列表  其中 _id 表示 segementIndex 
- */
 + (void)saveCache:(int)type andID:(int)_id andString:(NSString *)str;
 + (NSString *)getCache:(int)type andID:(int)_id;
 
@@ -113,5 +105,7 @@
 + (Support *)readJsonStrToSupport:(NSString *)str;
 + (NSMutableArray *)readJsonStrToSliderImageArray:(NSString *)str;
 + (BusinessGoods *)readJsonStrBusinessGoods:(NSString *)str;
++ (GoodsDetail *)readJsonStrToGoodsDetail:(NSString *)str;
++ (NSMutableArray *)readJsonStrToHouseTypeArray:(NSString *)str;
 
 @end

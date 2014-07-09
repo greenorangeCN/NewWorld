@@ -14,6 +14,7 @@
 #import "Goods.h"
 #import "EGOImageView.h"
 #import "StrikeThroughLabel.h"
+#import "GoodsDetailView.h"
 
 @interface BusinessGoodsView : UIViewController<UITableViewDelegate,UITableViewDataSource,IconDownloaderDelegate>
 {

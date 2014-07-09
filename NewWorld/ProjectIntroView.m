@@ -19,6 +19,7 @@
 @synthesize logoIv;
 @synthesize titleLb;
 @synthesize summaryLb;
+@synthesize houseTypeLb;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -75,6 +76,10 @@
     //楼盘简介事件注册
     UITapGestureRecognizer *summaryTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(summaryClick)];
 	[self.summaryLb addGestureRecognizer:summaryTap];
+    
+    //户型展示事件注册
+    UITapGestureRecognizer *houseTypeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(houseTypeClick)];
+	[self.houseTypeLb addGestureRecognizer:houseTypeTap];
 }
 
 - (void)summaryClick
@@ -84,6 +89,13 @@
     mapdetailView.projectTitle = project.title;
     mapdetailView.dataType = 0;
     [self.navigationController pushViewController:mapdetailView animated:YES];
+}
+
+- (void)houseTypeClick
+{
+    HouseTypeCollectionView *houseTypeView = [[HouseTypeCollectionView alloc] init];
+    houseTypeView.projectId = project.id;
+    [self.navigationController pushViewController:houseTypeView animated:YES];
 }
 
 - (void)initTopImage

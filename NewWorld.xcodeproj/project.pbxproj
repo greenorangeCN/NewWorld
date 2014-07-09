@@ -41,6 +41,11 @@
 		14082ED5195A6FB900E09C47 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14082ED4195A6FB900E09C47 /* MapKit.framework */; };
 		14082ED7195A6FC200E09C47 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14082ED6195A6FC200E09C47 /* ImageIO.framework */; };
 		14082ED9195A6FC900E09C47 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14082ED8195A6FC900E09C47 /* AssetsLibrary.framework */; };
+		140A756B196C36420074AD56 /* HouseTypeCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 140A7569196C36420074AD56 /* HouseTypeCollectionView.m */; };
+		140A756C196C36420074AD56 /* HouseTypeCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140A756A196C36420074AD56 /* HouseTypeCollectionView.xib */; };
+		140A756F196C37B80074AD56 /* HouseTypeCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140A756E196C37B80074AD56 /* HouseTypeCollectionCell.m */; };
+		140A7571196C37DD0074AD56 /* HouseTypeCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140A7570196C37DD0074AD56 /* HouseTypeCollectionCell.xib */; };
+		140A7574196C3DED0074AD56 /* HouseType.m in Sources */ = {isa = PBXBuildFile; fileRef = 140A7573196C3DED0074AD56 /* HouseType.m */; };
 		142AFFFD196ADB6200CC7D46 /* StrikeThroughLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 142AFFFC196ADB6200CC7D46 /* StrikeThroughLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		142B91B3195A5BE700A0D2E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 142B91B2195A5BE700A0D2E8 /* Foundation.framework */; };
 		142B91B5195A5BE700A0D2E8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 142B91B4195A5BE700A0D2E8 /* CoreGraphics.framework */; };
@@ -150,10 +155,18 @@
 		14A0DDE5195F0D6500C12F7C /* map_gov@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A0DDE0195F0D6500C12F7C /* map_gov@2x.png */; };
 		14A0DDE6195F0D6500C12F7C /* map_school@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A0DDE1195F0D6500C12F7C /* map_school@2x.png */; };
 		14A0DDE7195F0D6500C12F7C /* map_all@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A0DDE2195F0D6500C12F7C /* map_all@2x.png */; };
+		14A10508196CDA2A007D5E33 /* discount.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 14A10507196CDA2A007D5E33 /* discount.jpg */; };
+		14A1050A196CE283007D5E33 /* order_btn.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 14A10509196CE283007D5E33 /* order_btn.jpg */; };
+		14A1050E196CE6BA007D5E33 /* praise_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A1050D196CE6BA007D5E33 /* praise_btn@2x.png */; };
+		14A10510196CF47B007D5E33 /* share_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A1050F196CF47B007D5E33 /* share_btn@2x.png */; };
 		14A1BB7D19659DFD00073A26 /* HousesProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A1BB7C19659DFD00073A26 /* HousesProject.m */; };
 		14A2C0401963A1A3004C12BD /* Bussiness.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A2C03F1963A1A3004C12BD /* Bussiness.m */; };
 		14A2C0441963A2F8004C12BD /* BusinessCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A2C0421963A2F8004C12BD /* BusinessCell.m */; };
 		14A2C0451963A2F8004C12BD /* BusinessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A2C0431963A2F8004C12BD /* BusinessCell.xib */; };
+		14A906AC196B81FE00BFAC2E /* GoodsDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A906AA196B81FE00BFAC2E /* GoodsDetailView.m */; };
+		14A906AD196B81FE00BFAC2E /* GoodsDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A906AB196B81FE00BFAC2E /* GoodsDetailView.xib */; };
+		14A906B0196B908E00BFAC2E /* GoodsDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A906AF196B908E00BFAC2E /* GoodsDetail.m */; };
+		14A906B2196BC9E400BFAC2E /* goods_deliver.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A906B1196BC9E400BFAC2E /* goods_deliver.png */; };
 		14AA1772195D021F00B6A46B /* setting_coupon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14AA176D195D021F00B6A46B /* setting_coupon@2x.png */; };
 		14AA1773195D021F00B6A46B /* setting_delivery@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14AA176E195D021F00B6A46B /* setting_delivery@2x.png */; };
 		14AA1774195D021F00B6A46B /* setting_info@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14AA176F195D021F00B6A46B /* setting_info@2x.png */; };
@@ -307,6 +320,14 @@
 		14082ED4195A6FB900E09C47 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		14082ED6195A6FC200E09C47 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		14082ED8195A6FC900E09C47 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		140A7568196C36420074AD56 /* HouseTypeCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseTypeCollectionView.h; sourceTree = "<group>"; };
+		140A7569196C36420074AD56 /* HouseTypeCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseTypeCollectionView.m; sourceTree = "<group>"; };
+		140A756A196C36420074AD56 /* HouseTypeCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseTypeCollectionView.xib; sourceTree = "<group>"; };
+		140A756D196C37B80074AD56 /* HouseTypeCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseTypeCollectionCell.h; sourceTree = "<group>"; };
+		140A756E196C37B80074AD56 /* HouseTypeCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseTypeCollectionCell.m; sourceTree = "<group>"; };
+		140A7570196C37DD0074AD56 /* HouseTypeCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseTypeCollectionCell.xib; sourceTree = "<group>"; };
+		140A7572196C3DED0074AD56 /* HouseType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseType.h; sourceTree = "<group>"; };
+		140A7573196C3DED0074AD56 /* HouseType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseType.m; sourceTree = "<group>"; };
 		142AFFFB196ADB6200CC7D46 /* StrikeThroughLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrikeThroughLabel.h; sourceTree = "<group>"; };
 		142AFFFC196ADB6200CC7D46 /* StrikeThroughLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrikeThroughLabel.m; sourceTree = "<group>"; };
 		142B91AF195A5BE700A0D2E8 /* NewWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -482,6 +503,10 @@
 		14A0DDE0195F0D6500C12F7C /* map_gov@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_gov@2x.png"; sourceTree = "<group>"; };
 		14A0DDE1195F0D6500C12F7C /* map_school@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_school@2x.png"; sourceTree = "<group>"; };
 		14A0DDE2195F0D6500C12F7C /* map_all@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map_all@2x.png"; sourceTree = "<group>"; };
+		14A10507196CDA2A007D5E33 /* discount.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = discount.jpg; sourceTree = "<group>"; };
+		14A10509196CE283007D5E33 /* order_btn.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = order_btn.jpg; sourceTree = "<group>"; };
+		14A1050D196CE6BA007D5E33 /* praise_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "praise_btn@2x.png"; sourceTree = "<group>"; };
+		14A1050F196CF47B007D5E33 /* share_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_btn@2x.png"; sourceTree = "<group>"; };
 		14A1BB7B19659DFD00073A26 /* HousesProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HousesProject.h; sourceTree = "<group>"; };
 		14A1BB7C19659DFD00073A26 /* HousesProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HousesProject.m; sourceTree = "<group>"; };
 		14A2C03E1963A1A3004C12BD /* Bussiness.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bussiness.h; sourceTree = "<group>"; };
@@ -489,6 +514,12 @@
 		14A2C0411963A2F8004C12BD /* BusinessCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessCell.h; sourceTree = "<group>"; };
 		14A2C0421963A2F8004C12BD /* BusinessCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessCell.m; sourceTree = "<group>"; };
 		14A2C0431963A2F8004C12BD /* BusinessCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BusinessCell.xib; sourceTree = "<group>"; };
+		14A906A9196B81FE00BFAC2E /* GoodsDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetailView.h; sourceTree = "<group>"; };
+		14A906AA196B81FE00BFAC2E /* GoodsDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetailView.m; sourceTree = "<group>"; };
+		14A906AB196B81FE00BFAC2E /* GoodsDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodsDetailView.xib; sourceTree = "<group>"; };
+		14A906AE196B908E00BFAC2E /* GoodsDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsDetail.h; sourceTree = "<group>"; };
+		14A906AF196B908E00BFAC2E /* GoodsDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsDetail.m; sourceTree = "<group>"; };
+		14A906B1196BC9E400BFAC2E /* goods_deliver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goods_deliver.png; sourceTree = "<group>"; };
 		14AA176D195D021F00B6A46B /* setting_coupon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_coupon@2x.png"; sourceTree = "<group>"; };
 		14AA176E195D021F00B6A46B /* setting_delivery@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_delivery@2x.png"; sourceTree = "<group>"; };
 		14AA176F195D021F00B6A46B /* setting_info@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting_info@2x.png"; sourceTree = "<group>"; };
@@ -627,6 +658,9 @@
 				14AE37A5196A80B900F2E75F /* BusinessGoodsCell.h */,
 				14AE37A6196A80B900F2E75F /* BusinessGoodsCell.m */,
 				14AE37A7196A80B900F2E75F /* BusinessGoodsCell.xib */,
+				14A906A9196B81FE00BFAC2E /* GoodsDetailView.h */,
+				14A906AA196B81FE00BFAC2E /* GoodsDetailView.m */,
+				14A906AB196B81FE00BFAC2E /* GoodsDetailView.xib */,
 			);
 			name = BusinessPage;
 			sourceTree = "<group>";
@@ -1031,6 +1065,11 @@
 		1454E7BF195A7DC4008C3C5F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				14A1050F196CF47B007D5E33 /* share_btn@2x.png */,
+				14A1050D196CE6BA007D5E33 /* praise_btn@2x.png */,
+				14A10509196CE283007D5E33 /* order_btn.jpg */,
+				14A10507196CDA2A007D5E33 /* discount.jpg */,
+				14A906B1196BC9E400BFAC2E /* goods_deliver.png */,
 				149E63841967F5C900048DF4 /* right_arrows.png */,
 				149E637C1967F4DA00048DF4 /* intro_sale.png */,
 				149E637D1967F4DA00048DF4 /* intro_panorama.png */,
@@ -1111,6 +1150,10 @@
 				14AE37A0196A7D5D00F2E75F /* Coupons.m */,
 				14AE37A2196A7D9F00F2E75F /* Goods.h */,
 				14AE37A3196A7D9F00F2E75F /* Goods.m */,
+				14A906AE196B908E00BFAC2E /* GoodsDetail.h */,
+				14A906AF196B908E00BFAC2E /* GoodsDetail.m */,
+				140A7572196C3DED0074AD56 /* HouseType.h */,
+				140A7573196C3DED0074AD56 /* HouseType.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1154,6 +1197,12 @@
 				149E63771967EAAE00048DF4 /* ProjectIntroView.h */,
 				149E63781967EAAE00048DF4 /* ProjectIntroView.m */,
 				149E63791967EAAE00048DF4 /* ProjectIntroView.xib */,
+				140A7568196C36420074AD56 /* HouseTypeCollectionView.h */,
+				140A7569196C36420074AD56 /* HouseTypeCollectionView.m */,
+				140A756A196C36420074AD56 /* HouseTypeCollectionView.xib */,
+				140A756D196C37B80074AD56 /* HouseTypeCollectionCell.h */,
+				140A756E196C37B80074AD56 /* HouseTypeCollectionCell.m */,
+				140A7570196C37DD0074AD56 /* HouseTypeCollectionCell.xib */,
 			);
 			name = MainPage;
 			sourceTree = "<group>";
@@ -1295,8 +1344,10 @@
 				149E63641967900E00048DF4 /* loadingpic1@2x.png in Resources */,
 				14B224CC1965439100C923DF /* ProjectCollectionCell.xib in Resources */,
 				142B91BD195A5BE700A0D2E8 /* InfoPlist.strings in Resources */,
+				14A1050E196CE6BA007D5E33 /* praise_btn@2x.png in Resources */,
 				14AE37A9196A80B900F2E75F /* BusinessGoodsCell.xib in Resources */,
 				14AC2C0519625EA400991C44 /* home_seehouse.png in Resources */,
+				14A906AD196B81FE00BFAC2E /* GoodsDetailView.xib in Resources */,
 				14AC2C0119625EA400991C44 /* home_my.png in Resources */,
 				1407E05B195C7CE900A3E6D2 /* SettingView.xib in Resources */,
 				14AA177A195D022E00B6A46B /* setting_logout@2x.png in Resources */,
@@ -1326,9 +1377,12 @@
 				14AC2C0419625EA400991C44 /* home_consult.png in Resources */,
 				14AA1772195D021F00B6A46B /* setting_coupon@2x.png in Resources */,
 				14AA1774195D021F00B6A46B /* setting_info@2x.png in Resources */,
+				140A7571196C37DD0074AD56 /* HouseTypeCollectionCell.xib in Resources */,
+				14A10510196CF47B007D5E33 /* share_btn@2x.png in Resources */,
 				1454E7C3195A7DE9008C3C5F /* top_bg7@2x.png in Resources */,
 				149E63851967F5C900048DF4 /* right_arrows.png in Resources */,
 				14AA177B195D022E00B6A46B /* setting_service@2x.png in Resources */,
+				140A756C196C36420074AD56 /* HouseTypeCollectionView.xib in Resources */,
 				149E63701967D7D100048DF4 /* activity_Bottom.png in Resources */,
 				14A0DDDD195F079800C12F7C /* top_back.png in Resources */,
 				14082275196192B700280FA2 /* map_newworld_p.png in Resources */,
@@ -1338,6 +1392,7 @@
 				1432C70A195BBB1C00D77AF8 /* home_detail_btn.png in Resources */,
 				14082276196192B700280FA2 /* map_school_p@2x.png in Resources */,
 				14A0DDAD195EC26000C12F7C /* MapViewController.xib in Resources */,
+				14A906B2196BC9E400BFAC2E /* goods_deliver.png in Resources */,
 				142C7256196653ED0075D99F /* newworldlogo.png in Resources */,
 				149E63801967F4DA00048DF4 /* intro_sale.png in Resources */,
 				14082277196192B700280FA2 /* map_service_p@2x.png in Resources */,
@@ -1355,7 +1410,9 @@
 				149E63711967D7D100048DF4 /* activity_join.png in Resources */,
 				14AE379B196A752A00F2E75F /* BusinessGoodsView.xib in Resources */,
 				142B9280195A689700A0D2E8 /* NotifyCheck@2x.png in Resources */,
+				14A10508196CDA2A007D5E33 /* discount.jpg in Resources */,
 				149E63681967A81A00048DF4 /* top_tel.png in Resources */,
+				14A1050A196CE283007D5E33 /* order_btn.jpg in Resources */,
 				14B8B7AD1961108E00752ED6 /* LoadingCell.xib in Resources */,
 				1432C70F195BBF0A00D77AF8 /* home_btn_line.png in Resources */,
 				14A0DDE4195F0D6500C12F7C /* map_shop@2x.png in Resources */,
@@ -1395,6 +1452,7 @@
 				142B923B195A66D200A0D2E8 /* ASIFormDataRequest.m in Sources */,
 				14B224D01965468700C923DF /* ProjectCollectionView.m in Sources */,
 				142B9213195A668800A0D2E8 /* AFJSONUtilities.m in Sources */,
+				140A756B196C36420074AD56 /* HouseTypeCollectionView.m in Sources */,
 				142B925D195A681C00A0D2E8 /* EGOImageButton.m in Sources */,
 				14B8B7BA196143FE00752ED6 /* RMMapper.m in Sources */,
 				142C725A1966837E0075D99F /* MapDetailView.m in Sources */,
@@ -1411,6 +1469,7 @@
 				142B927F195A689700A0D2E8 /* JSNotifier.m in Sources */,
 				14A0DDD7195ECB6900C12F7C /* KYPointAnnotation.m in Sources */,
 				14B8B7B8196143FE00752ED6 /* NSObject+RMCopyable.m in Sources */,
+				140A756F196C37B80074AD56 /* HouseTypeCollectionCell.m in Sources */,
 				142B924B195A678C00A0D2E8 /* ImgRecord.m in Sources */,
 				14AE37A4196A7D9F00F2E75F /* Goods.m in Sources */,
 				142B9210195A668800A0D2E8 /* AFHTTPRequestOperation.m in Sources */,
@@ -1438,6 +1497,7 @@
 				142C725119664B2B0075D99F /* ProjectHeadReusable.m in Sources */,
 				142B9218195A668800A0D2E8 /* AFXMLRequestOperation.m in Sources */,
 				1454E7D2195A7F15008C3C5F /* NSData+Base64.m in Sources */,
+				14A906AC196B81FE00BFAC2E /* GoodsDetailView.m in Sources */,
 				149E637A1967EAAE00048DF4 /* ProjectIntroView.m in Sources */,
 				14082EB5195A6D4D00E09C47 /* GCDiscreetNotificationView.m in Sources */,
 				14B8B7AC1961108E00752ED6 /* LoadingCell.m in Sources */,
@@ -1445,6 +1505,7 @@
 				142B923A195A66D200A0D2E8 /* ASIDownloadCache.m in Sources */,
 				142B9271195A687200A0D2E8 /* EGORefreshTableHeaderView.m in Sources */,
 				142B925F195A681C00A0D2E8 /* EGOImageLoader.m in Sources */,
+				140A7574196C3DED0074AD56 /* HouseType.m in Sources */,
 				14AE37A8196A80B900F2E75F /* BusinessGoodsCell.m in Sources */,
 				142B91C3195A5BE700A0D2E8 /* AppDelegate.m in Sources */,
 				1454E7D1195A7F15008C3C5F /* AESCrypt.m in Sources */,
@@ -1464,6 +1525,7 @@
 				14A0DDD6195ECB6900C12F7C /* KYBubbleView.m in Sources */,
 				142B91F3195A63BC00A0D2E8 /* AKTabBarController.m in Sources */,
 				142B923E195A66D200A0D2E8 /* ASINetworkQueue.m in Sources */,
+				14A906B0196B908E00BFAC2E /* GoodsDetail.m in Sources */,
 				142B9214195A668800A0D2E8 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				142B9237195A66D200A0D2E8 /* ASIAuthenticationDialog.m in Sources */,
 				142B925C195A681C00A0D2E8 /* EGOCache.m in Sources */,
