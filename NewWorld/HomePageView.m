@@ -51,6 +51,7 @@
 - (void)projectShowClick
 {
     ProjectCollectionView *projectView = [[ProjectCollectionView alloc] init];
+    projectView.showType = @"projectIntro";
     projectView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:projectView animated:YES];
 }
@@ -148,4 +149,16 @@
     bannerView.delegate = nil;
 }
 
+- (IBAction)seeHouseAction:(id)sender {
+    ProjectCollectionView *projectView = [[ProjectCollectionView alloc] init];
+    projectView.showType = @"seeHouse";
+    projectView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:projectView animated:YES];
+}
+
+- (IBAction)newsActivityAction:(id)sender {
+    ActivityCollectionView *activityView = [[ActivityCollectionView alloc] init];
+    activityView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:activityView animated:YES];
+}
 @end

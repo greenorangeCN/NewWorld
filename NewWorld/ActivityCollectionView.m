@@ -1,21 +1,20 @@
 //
-//  HouseTypeCollectionView.m
+//  ActivityCollectionView.m
 //  NewWorld
 //
-//  Created by Seven on 14-7-8.
+//  Created by Seven on 14-7-9.
 //  Copyright (c) 2014年 Seven. All rights reserved.
 //
 
-#import "HouseTypeCollectionView.h"
+#import "ActivityCollectionView.h"
 
-@interface HouseTypeCollectionView ()
+@interface ActivityCollectionView ()
 
 @end
 
-@implementation HouseTypeCollectionView
+@implementation ActivityCollectionView
 
-@synthesize projectId;
-@synthesize houseTypeCollection;
+@synthesize activityCollection;
 @synthesize pageControl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -24,7 +23,7 @@
     if (self) {
         UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
-        titleLabel.text = @"户型展示";
+        titleLabel.text = @"最新活动";
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.textColor = [UIColor whiteColor];
         titleLabel.textAlignment = UITextAlignmentCenter;
@@ -47,11 +46,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.houseTypeCollection.delegate = self;
-    self.houseTypeCollection.dataSource = self;
-    [self.houseTypeCollection registerClass:[HouseTypeCollectionCell class] forCellWithReuseIdentifier:HouseTypeCollectionCellIdentifier];
-
-    self.houseTypeCollection.backgroundColor = [Tool getBackgroundColor];
+    self.activityCollection.delegate = self;
+    self.activityCollection.dataSource = self;
+    [self.activityCollection registerClass:[ActivityCollectionCell class] forCellWithReuseIdentifier:ActivityCollectionCellIdentifier];
+    
+    self.activityCollection.backgroundColor = [Tool getBackgroundColor];
     [self reload];
     //适配iOS7uinavigationbar遮挡tableView的问题
     if(IS_IOS7)
@@ -66,15 +65,25 @@
 {
     //如果有网络连接
     if ([UserModel Instance].isNetworkRunning) {
-        NSString *url = [NSMutableString stringWithFormat:@"%@%@?c_id=%@", api_base_url, api_housetype_list, projectId];
+        NSString *url = [NSMutableString stringWithFormat:@"%@%@?p=%d", api_base_url, api_activities, 1];
         [[AFOSCClient sharedClient]getPath:url parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        @try {
-                                           houseTypes= [Tool readJsonStrToHouseTypeArray:operation.responseString];
-                                           if (houseTypes != nil && [houseTypes count] > 0) {
-                                               self.pageControl.numberOfPages = [houseTypes count];
+                                           NSMutableArray *activitiesPage = [Tool readJsonStrToActivitiesArray:operation.responseString];
+                                           if (activitiesPage != nil && [activitiesPage count] > 0) {
+//                                               activities = [activitiesPage ]
+                                               int endIndex = 0;
+                                               if ([activitiesPage count] >= 5) {
+                                                   endIndex = 5;
+                                               }
+                                               else
+                                               {
+                                                   endIndex = [activitiesPage count] -1;
+                                               }
+                                               activities = [activitiesPage objectsAtIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, endIndex)]];
+                                               self.pageControl.numberOfPages = [activities count];
                                            }
-                                           [self.houseTypeCollection reloadData];
+                                           [self.activityCollection reloadData];
                                        }
                                        @catch (NSException *exception) {
                                            [NdUncaughtExceptionHandler TakeException:exception];
@@ -96,7 +105,7 @@
 //定义展示的UICollectionViewCell的个数
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [houseTypes count];
+    return [activities count];
 }
 
 //定义展示的Section的个数
@@ -107,18 +116,18 @@
 //每个UICollectionView展示的内容
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    HouseTypeCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:HouseTypeCollectionCellIdentifier forIndexPath:indexPath];
+    ActivityCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ActivityCollectionCellIdentifier forIndexPath:indexPath];
     if (!cell) {
-        NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"HouseTypeCollectionCell" owner:self options:nil];
+        NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"ActivityCollectionCell" owner:self options:nil];
         for (NSObject *o in objects) {
-            if ([o isKindOfClass:[HouseTypeCollectionCell class]]) {
-                cell = (HouseTypeCollectionCell *)o;
+            if ([o isKindOfClass:[ActivityCollectionCell class]]) {
+                cell = (ActivityCollectionCell *)o;
                 break;
             }
         }
     }
     int indexRow = [indexPath row];
-    HouseType *house = [houseTypes objectAtIndex:indexRow];
+    Activity *activity = [activities objectAtIndex:indexRow];
     self.pageControl.currentPage = indexRow;
     
     [Tool roundView:cell.bg andCornerRadius:5.0f];
@@ -131,24 +140,18 @@
     UITap *shareTap = [[UITap alloc] initWithTarget:self action:@selector(shareAction:)];
     [cell.shareBtn addGestureRecognizer:shareTap];
     shareTap.tag = indexRow;
-
     
-    cell.titleLb.text = [NSString stringWithFormat:@"%@ %@", house.comm_name, house.title];
-    cell.webPriceLb.text = [NSString stringWithFormat:@"网售价：%@万元", house.web_price];
-    cell.marketPriceLb.text = [NSString stringWithFormat:@"市场价：%@万元", house.market_price];
-    cell.noteTv.text = house.note;
-    cell.discountLb.text = [NSString stringWithFormat:@"折扣：%@", house.discount];
-    cell.unitPriceLb.text = [NSString stringWithFormat:@"单价：%@元/m2", house.unit_price];
-    cell.areaLb.text = [NSString stringWithFormat:@"面积：%@m2", house.area];
-    cell.houseTypeLb.text = [NSString stringWithFormat:@"户型：%@", house.house_type];
-
-    cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", house.points];
+    cell.titleLb.text = activity.title;
+    cell.dateLb.text = [NSString stringWithFormat:@"活动时间：%@", activity.validityTime];
+    cell.conditionLb.text = [NSString stringWithFormat:@"活动资格：%@", activity.condition];
+    cell.telephoneLb.text = [NSString stringWithFormat:@"咨询电话：%@", activity.telephone];
+    cell.qqLb.text = [NSString stringWithFormat:@"咨询QQ：%@", activity.qq];
+    cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", activity.points];
     
     EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
-    imageView.imageURL = [NSURL URLWithString:house.thumb];
-    imageView.frame = CGRectMake(0.0f, 0.0f, 280.0f, 203.0f);
+    imageView.imageURL = [NSURL URLWithString:activity.thumb];
+    imageView.frame = CGRectMake(0.0f, 0.0f, 300.0f, 209.0f);
     [cell.imageIv addSubview:imageView];
-    
     return cell;
 }
 
@@ -156,8 +159,8 @@
 {
     UITap *tap = (UITap *)sender;
     if (tap) {
-        HouseType *house = [houseTypes objectAtIndex:tap.tag];
-        NSString *detailUrl = [NSString stringWithFormat:@"%@%@?model=HouseType&id=%@", api_base_url, api_praise, house.id];
+        Activity *activity = [activities objectAtIndex:tap.tag];
+        NSString *detailUrl = [NSString stringWithFormat:@"%@%@?model=Activities&id=%@", api_base_url, api_praise, activity._id];
         NSURL *url = [ NSURL URLWithString : detailUrl];
         // 构造 ASIHTTPRequest 对象
         ASIHTTPRequest *request = [ ASIHTTPRequest requestWithURL :url];
@@ -174,8 +177,8 @@
         if (json) {
             status = [json objectForKey:@"status"];
             if ([status isEqualToString:@"1"]) {
-                house.points = [NSString stringWithFormat:@"%d", [house.points intValue] + 1];
-                [self.houseTypeCollection reloadData];
+                activity.points = [NSString stringWithFormat:@"%d", [activity.points intValue] + 1];
+                [self.activityCollection reloadData];
             }
         }
     }
@@ -206,10 +209,14 @@
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    HousesProject *project = [projects objectAtIndex:[indexPath row]];
-//    ProjectIntroView *projectIntro = [[ProjectIntroView alloc] init];
-//    projectIntro.project = project;
-//    [self.navigationController pushViewController:projectIntro animated:YES];
+    Activity *activity = [activities objectAtIndex:[indexPath row]];
+    if (activity)
+    {
+        ActivityDetailView *activityDetail = [[ActivityDetailView alloc] init];
+        activityDetail.activity = activity;
+        activityDetail.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:activityDetail animated:YES];
+    }
 }
 
 //返回这个UICollectionView是否可以被选择
@@ -222,15 +229,22 @@
 {
     [super didReceiveMemoryWarning];
     //清空
-    for (HouseType *h in houseTypes) {
-        h.imgData = nil;
+    for (Activity *a in activities) {
+        a.imgData = nil;
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
+
 - (void)viewDidUnload {
-    [self setHouseTypeCollection:nil];
-    [houseTypes removeAllObjects];
-    houseTypes = nil;
+    [self setActivityCollection:nil];
+    [activities removeAllObjects];
+    activities = nil;
     [super viewDidUnload];
 }
 

@@ -15,6 +15,7 @@
 @implementation ProjectCollectionView
 @synthesize projectCollection;
 @synthesize imageDownloadsInProgress;
+@synthesize showType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -174,9 +175,16 @@
 {
     HousesProject *project = [projects objectAtIndex:[indexPath row]];
     if (project != nil) {
-        ProjectIntroView *projectIntro = [[ProjectIntroView alloc] init];
-        projectIntro.project = project;
-        [self.navigationController pushViewController:projectIntro animated:YES];
+        //projectIntro楼盘简介    seeHouse
+        if ([showType isEqualToString:@"projectIntro"]) {
+            ProjectIntroView *projectIntro = [[ProjectIntroView alloc] init];
+            projectIntro.project = project;
+            [self.navigationController pushViewController:projectIntro animated:YES];
+        }
+        else if([showType isEqualToString:@"seeHouse"])
+        {
+            
+        }
     }
 }
 

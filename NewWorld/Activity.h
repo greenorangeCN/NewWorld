@@ -22,6 +22,7 @@
 @property (nonatomic, copy) NSString *counts;
 @property (nonatomic, copy) NSString *published;
 @property (retain,nonatomic) UIImage *imgData;
+@property (nonatomic, copy) NSString *points;
 
 - (id)initWithParameters:(NSString *)aID
                 andTitle:(NSString *)aTitle
@@ -33,6 +34,7 @@
             andTelephone:(NSString *)aTelephone
                    andQQ:(NSString *)aQQ
                andCounts:(NSString *)aCounts
-            andPublished:(NSString *)aPublished;
+            andPublished:(NSString *)aPublished
+               andPoints:(NSString *)aPoints;
 
 @end

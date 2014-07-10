@@ -97,6 +97,9 @@
                             <state key="normal" image="home_seehouse.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="seeHouseAction:" destination="-1" eventType="touchUpInside" id="oHb-Vr-8XY"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gnj-ds-YSo">
                             <rect key="frame" x="125" y="299" width="65" height="83"/>
@@ -111,6 +114,9 @@
                             <state key="normal" image="home_activity.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="newsActivityAction:" destination="-1" eventType="touchUpInside" id="Gbb-yM-MyJ"/>
+                            </connections>
                         </button>
                         <imageView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loadingpic1.png" id="fjv-0K-lJU">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="148"/>

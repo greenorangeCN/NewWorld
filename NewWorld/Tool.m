@@ -416,6 +416,7 @@
     NSString *qq = [[NSString alloc] init];
     NSString *counts = [[NSString alloc] init];
     NSString *published = [[NSString alloc] init];
+    NSString *points = [[NSString alloc] init];
     
     for (int i = 0; i < [acticitiesJsonArray count] ; i++) {
         acticitiesDict = [acticitiesJsonArray objectAtIndex:i];
@@ -430,7 +431,8 @@
         qq=[acticitiesDict objectForKey:@"qq"];
         counts=[acticitiesDict objectForKey:@"counts"];
         published=[acticitiesDict objectForKey:@"published"];
-        Activity *activity = [[Activity alloc]initWithParameters:_id andTitle:title andThumb:thumb andIndexImg:indexImg andSummary:summary andValidityTime:validityTime andCondition:condition andTelephone:telephone andQQ:qq andCounts:counts andPublished:published];
+        points=[acticitiesDict objectForKey:@"points"];
+        Activity *activity = [[Activity alloc]initWithParameters:_id andTitle:title andThumb:thumb andIndexImg:indexImg andSummary:summary andValidityTime:validityTime andCondition:condition andTelephone:telephone andQQ:qq andCounts:counts andPublished:published andPoints:points];
         [acticities addObject:activity];
     }
     return acticities;

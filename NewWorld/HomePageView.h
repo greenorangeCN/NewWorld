@@ -12,6 +12,7 @@
 #import "ProjectCollectionView.h"
 #import "SGFocusImageFrame.h"
 #import "SGFocusImageItem.h"
+#import "ActivityCollectionView.h"
 
 @interface HomePageView : UIViewController<SGFocusImageFrameDelegate>
 {
@@ -23,5 +24,7 @@
 
 @property (strong, nonatomic) IBOutlet UIImageView *housesNavi;
 @property (strong, nonatomic) IBOutlet UIImageView *projectShow;
+- (IBAction)seeHouseAction:(id)sender;
+- (IBAction)newsActivityAction:(id)sender;
 
 @end

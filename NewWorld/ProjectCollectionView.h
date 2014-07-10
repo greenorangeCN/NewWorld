@@ -19,6 +19,7 @@
     TQImageCache * _iconCache;
 }
 
+@property (strong, nonatomic) NSString *showType;
 @property (strong, nonatomic) IBOutlet UICollectionView *projectCollection;
 
 //异步加载图片专用

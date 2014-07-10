@@ -22,8 +22,9 @@
 @synthesize counts;
 @synthesize published;
 @synthesize imgData;
+@synthesize points;
 
-- (id)initWithParameters:(NSString *)aID andTitle:(NSString *)aTitle andThumb:(NSString *)aThumb andIndexImg:(NSString *)aIndexImg andSummary:(NSString *)aSummary andValidityTime:(NSString *)aValidityTime andCondition:(NSString *)aCondition andTelephone:(NSString *)aTelephone andQQ:(NSString *)aQQ andCounts:(NSString *)aCounts andPublished:(NSString *)aPublished
+- (id)initWithParameters:(NSString *)aID andTitle:(NSString *)aTitle andThumb:(NSString *)aThumb andIndexImg:(NSString *)aIndexImg andSummary:(NSString *)aSummary andValidityTime:(NSString *)aValidityTime andCondition:(NSString *)aCondition andTelephone:(NSString *)aTelephone andQQ:(NSString *)aQQ andCounts:(NSString *)aCounts andPublished:(NSString *)aPublished andPoints:(NSString *)aPoints
 {
     Activity *a = [[Activity alloc] init];
     a._id = aID;
@@ -37,6 +38,7 @@
     a.qq = aQQ;
     a.counts = aCounts;
     a.published = aPublished;
+    a.points = aPoints;
     return a;
 }
 
