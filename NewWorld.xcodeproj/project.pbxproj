@@ -784,6 +784,7 @@
 				14082ED3195A6FB000E09C47 /* CoreTelephony.framework in Frameworks */,
 				14082ED1195A6F9C00E09C47 /* OpenGLES.framework in Frameworks */,
 				14082ECF195A6F9000E09C47 /* CoreLocation.framework in Frameworks */,
+				14A289A8196ED8C8001E9BB1 /* KeyboardManager.framework in Frameworks */,
 				14082ECD195A6F8200E09C47 /* MessageUI.framework in Frameworks */,
 				14082ECB195A6F7600E09C47 /* libicucore.dylib in Frameworks */,
 				14082EC9195A6F6700E09C47 /* libxml2.dylib in Frameworks */,
@@ -793,7 +794,6 @@
 				14082EC1195A6F2D00E09C47 /* CoreData.framework in Frameworks */,
 				14082EBF195A6F2400E09C47 /* CFNetwork.framework in Frameworks */,
 				14082EBD195A6F1900E09C47 /* MobileCoreServices.framework in Frameworks */,
-				14A289A8196ED8C8001E9BB1 /* KeyboardManager.framework in Frameworks */,
 				14082EBB195A6F0F00E09C47 /* libz.dylib in Frameworks */,
 				14082EB9195A6F0000E09C47 /* QuartzCore.framework in Frameworks */,
 				14082EB7195A6EED00E09C47 /* SystemConfiguration.framework in Frameworks */,
@@ -2121,6 +2121,8 @@
 					Framework,
 					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
 					Framework,
+					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
+					Framework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NewWorld/NewWorld-Prefix.pch";
@@ -2149,6 +2151,8 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
+					Framework,
 					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
 					Framework,
 					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
