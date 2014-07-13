@@ -130,6 +130,9 @@
 		1454E7D4195A7F15008C3C5F /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 1454E7D0195A7F15008C3C5F /* NSString+Base64.m */; };
 		1454E7D9195A80A5008C3C5F /* HomePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1454E7D7195A80A5008C3C5F /* HomePageView.m */; };
 		1454E7DA195A80A5008C3C5F /* HomePageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1454E7D8195A80A5008C3C5F /* HomePageView.xib */; };
+		145537561972B12E005D2122 /* UserInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 145537541972B12E005D2122 /* UserInfoView.m */; };
+		145537571972B12E005D2122 /* UserInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 145537551972B12E005D2122 /* UserInfoView.xib */; };
+		145537591972B6E2005D2122 /* saveinfo_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 145537581972B6E2005D2122 /* saveinfo_btn.png */; };
 		149E63641967900E00048DF4 /* loadingpic1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 149E63611967900E00048DF4 /* loadingpic1@2x.png */; };
 		149E63651967900E00048DF4 /* loadingpic2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 149E63621967900E00048DF4 /* loadingpic2@2x.png */; };
 		149E63661967900E00048DF4 /* loadingpic3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 149E63631967900E00048DF4 /* loadingpic3@2x.png */; };
@@ -538,6 +541,10 @@
 		1454E7D6195A80A5008C3C5F /* HomePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomePageView.h; sourceTree = "<group>"; };
 		1454E7D7195A80A5008C3C5F /* HomePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomePageView.m; sourceTree = "<group>"; };
 		1454E7D8195A80A5008C3C5F /* HomePageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomePageView.xib; sourceTree = "<group>"; };
+		145537531972B12E005D2122 /* UserInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoView.h; sourceTree = "<group>"; };
+		145537541972B12E005D2122 /* UserInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoView.m; sourceTree = "<group>"; };
+		145537551972B12E005D2122 /* UserInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoView.xib; sourceTree = "<group>"; };
+		145537581972B6E2005D2122 /* saveinfo_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = saveinfo_btn.png; sourceTree = "<group>"; };
 		149E63611967900E00048DF4 /* loadingpic1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadingpic1@2x.png"; sourceTree = "<group>"; };
 		149E63621967900E00048DF4 /* loadingpic2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadingpic2@2x.png"; sourceTree = "<group>"; };
 		149E63631967900E00048DF4 /* loadingpic3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadingpic3@2x.png"; sourceTree = "<group>"; };
@@ -866,6 +873,9 @@
 				14A289AB196F83D0001E9BB1 /* LoginView.h */,
 				14A289AC196F83D0001E9BB1 /* LoginView.m */,
 				14A289AD196F83D0001E9BB1 /* LoginView.xib */,
+				145537531972B12E005D2122 /* UserInfoView.h */,
+				145537541972B12E005D2122 /* UserInfoView.m */,
+				145537551972B12E005D2122 /* UserInfoView.xib */,
 			);
 			name = SettingPage;
 			sourceTree = "<group>";
@@ -1263,6 +1273,7 @@
 		1454E7BF195A7DC4008C3C5F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				145537581972B6E2005D2122 /* saveinfo_btn.png */,
 				14A289B4196FB940001E9BB1 /* login_btn.png */,
 				14A289A9196EF012001E9BB1 /* register_btn.png */,
 				14A28997196EC63C001E9BB1 /* 37x-Failure@2x.png */,
@@ -1715,6 +1726,7 @@
 				14B224D11965468700C923DF /* ProjectCollectionView.xib in Resources */,
 				149E63641967900E00048DF4 /* loadingpic1@2x.png in Resources */,
 				14B224CC1965439100C923DF /* ProjectCollectionCell.xib in Resources */,
+				145537591972B6E2005D2122 /* saveinfo_btn.png in Resources */,
 				142B91BD195A5BE700A0D2E8 /* InfoPlist.strings in Resources */,
 				14A289A7196ED8C8001E9BB1 /* IQKeyboardManager.bundle in Resources */,
 				14A1050E196CE6BA007D5E33 /* praise_btn@2x.png in Resources */,
@@ -1799,6 +1811,7 @@
 				142B9280195A689700A0D2E8 /* NotifyCheck@2x.png in Resources */,
 				14A10508196CDA2A007D5E33 /* discount.jpg in Resources */,
 				149E63681967A81A00048DF4 /* top_tel.png in Resources */,
+				145537571972B12E005D2122 /* UserInfoView.xib in Resources */,
 				14A1050A196CE283007D5E33 /* order_btn.jpg in Resources */,
 				14A28993196E915B001E9BB1 /* MWPhotoBrowser.bundle in Resources */,
 				14A2897A196E915B001E9BB1 /* LICENSE in Resources */,
@@ -1900,6 +1913,7 @@
 				142B9219195A668800A0D2E8 /* UIImageView+AFNetworking.m in Sources */,
 				142B925E195A681C00A0D2E8 /* EGOImageLoadConnection.m in Sources */,
 				1407E04E195C211D00A3E6D2 /* ActivityTableView.m in Sources */,
+				145537561972B12E005D2122 /* UserInfoView.m in Sources */,
 				142B9217195A668800A0D2E8 /* AFURLConnectionOperation.m in Sources */,
 				14A2896A196E915B001E9BB1 /* DACircularProgressView.m in Sources */,
 				14B8B7B7196143FE00752ED6 /* NSObject+RMArchivable.m in Sources */,

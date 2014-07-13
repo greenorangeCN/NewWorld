@@ -106,7 +106,9 @@
             break;
         case 3:
         {
-            
+            UserInfoView *infoView = [[UserInfoView alloc] init];
+            infoView.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:infoView animated:YES];
         }
             break;
         case 4:
