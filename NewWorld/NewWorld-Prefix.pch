@@ -49,6 +49,9 @@
 #define api_goods_detail @"/api/goods_detail"
 #define api_housetype_list @"/api/house_type_list"
 #define api_praise @"/api/points"
+#define api_rooms_list @"/api/get_rooms_list"
+#define api_register @"/api/register"
+#define api_login @"/api/login"
 
 #define SettingTableIdentifier @"SettingTableIdentifier"
 #define ActivityCellIdentifier @"ActivityCellIdentifier"
@@ -57,6 +60,7 @@
 #define ProjectCollectionCellIdentifier @"ProjectCollectionCellIdentifier"
 #define HouseTypeCollectionCellIdentifier @"HouseTypeCollectionCellIdentifier"
 #define ActivityCollectionCellIdentifier @"ActivityCollectionCellIdentifier"
+#define RoomsCollectionCellIdentifier @"RoomsCollectionCellIdentifier"
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 

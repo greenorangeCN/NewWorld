@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "SettingModel.h"
+#import "RegisterView.h"
+#import "LoginView.h"
+#import "UserModel.h"
 
 @interface SettingView : UIViewController<UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate>
 {

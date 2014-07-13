@@ -183,7 +183,10 @@
         }
         else if([showType isEqualToString:@"seeHouse"])
         {
-            
+            RoomsCollectionView *roomsView = [[RoomsCollectionView alloc] init];
+            roomsView.projectId = project.id;
+            roomsView.projectName = project.title;
+            [self.navigationController pushViewController:roomsView animated:YES];
         }
     }
 }

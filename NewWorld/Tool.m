@@ -276,6 +276,17 @@
     [hud show:YES];
 }
 
++ (void)showCustomHUD:(NSString *)text andView:(UIView *)view andImage:(NSString *)image andAfterDelay:(int)second
+{
+    MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:view];
+    [view addSubview:HUD];
+    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:image]] ;
+    HUD.mode = MBProgressHUDModeCustomView;
+    HUD.labelText = text;
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:second];
+}
+
 + (UIImage *)scale:(UIImage *)sourceImg toSize:(CGSize)size
 {
     UIGraphicsBeginImageContext(size);
@@ -537,6 +548,31 @@
     NSMutableArray *houseTypes = [RMMapper mutableArrayOfClass:[HouseType class]
                                        fromArrayOfDictionary:houseTypeArray];
     return houseTypes;
+}
+
++ (NSMutableArray *)readJsonStrToRoomsArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSArray *roomsArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( [roomsArray count] <= 0) {
+        return nil;
+    }
+    NSMutableArray *rooms = [RMMapper mutableArrayOfClass:[Rooms class]
+                                         fromArrayOfDictionary:roomsArray];
+    return rooms;
+}
+
++ (User *)readJsonStrToUser:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *detailDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( detailDic == nil) {
+        return nil;
+    }
+    User *user = [RMMapper objectWithClass:[User class] fromDictionary:detailDic];
+    return user;
 }
 
 @end

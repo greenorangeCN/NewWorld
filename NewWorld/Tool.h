@@ -24,6 +24,8 @@
 #import "Goods.h"
 #import "GoodsDetail.h"
 #import "HouseType.h"
+#import "Rooms.h"
+#import "User.h"
 
 @interface Tool : NSObject
 
@@ -78,6 +80,7 @@
 + (NSString *)getHTMLString:(NSString *)html;
 
 + (void)showHUD:(NSString *)text andView:(UIView *)view andHUD:(MBProgressHUD *)hud;
++ (void)showCustomHUD:(NSString *)text andView:(UIView *)view andImage:(NSString *)image andAfterDelay:(int)second;
 
 + (UIImage *) scale:(UIImage *)sourceImg toSize:(CGSize)size;
 
@@ -107,5 +110,7 @@
 + (BusinessGoods *)readJsonStrBusinessGoods:(NSString *)str;
 + (GoodsDetail *)readJsonStrToGoodsDetail:(NSString *)str;
 + (NSMutableArray *)readJsonStrToHouseTypeArray:(NSString *)str;
++ (NSMutableArray *)readJsonStrToRoomsArray:(NSString *)str;
++ (User *)readJsonStrToUser:(NSString *)str;
 
 @end

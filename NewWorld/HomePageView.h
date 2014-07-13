@@ -18,6 +18,7 @@
 {
     NSMutableArray *activities;
     SGFocusImageFrame *bannerView;
+    int activityIndex;
 }
 
 @property (strong, nonatomic) IBOutlet UIImageView *topImage;
@@ -26,5 +27,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *projectShow;
 - (IBAction)seeHouseAction:(id)sender;
 - (IBAction)newsActivityAction:(id)sender;
+- (IBAction)praiseAction:(id)sender;
+- (IBAction)showDetailAction:(id)sender;
 
 @end

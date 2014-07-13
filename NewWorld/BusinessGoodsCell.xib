@@ -45,12 +45,20 @@
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="d7P-Jw-Mnr">
+                        <rect key="frame" x="207" y="70" width="63" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="bg" destination="6IU-bM-QMG" id="uTB-Hc-AMn"/>
                 <outlet property="buysLb" destination="8bO-Ez-3NI" id="DvA-Uf-TEA"/>
+                <outlet property="marketPriceLb" destination="d7P-Jw-Mnr" id="wCq-ye-BXM"/>
                 <outlet property="picIv" destination="Acd-OJ-QF2" id="Qaz-FU-Xrd"/>
                 <outlet property="priceLb" destination="yc1-US-9d0" id="0MB-l1-2Uo"/>
                 <outlet property="titleLb" destination="UPM-GH-edd" id="VtN-13-ngJ"/>

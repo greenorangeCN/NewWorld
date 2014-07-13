@@ -32,6 +32,9 @@
                             <state key="normal" image="home_praise_btn.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="praiseAction:" destination="-1" eventType="touchUpInside" id="0xR-dC-ivC"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="IWA-ng-jtJ">
                             <rect key="frame" x="129" y="156" width="63" height="19"/>
@@ -39,6 +42,9 @@
                             <state key="normal" image="home_detail_btn.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="showDetailAction:" destination="-1" eventType="touchUpInside" id="gcF-mW-RQy"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Jub-BC-3j0">
                             <rect key="frame" x="237" y="156" width="63" height="19"/>

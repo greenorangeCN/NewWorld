@@ -83,12 +83,25 @@
     switch (action.tag) {
         case 1:
         {
-            
+            RegisterView *regView = [[RegisterView alloc] init];
+            regView.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:regView animated:YES];
         }
             break;
         case 2:
         {
-            
+            if ([[UserModel Instance] isLogin]) {
+                UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"温馨提示"
+                                                             message:@"您已登陆"
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"确定"
+                                                   otherButtonTitles:nil];
+                [av show];
+                return;
+            }
+            LoginView *loginView = [[LoginView alloc] init];
+            loginView.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:loginView animated:YES];
         }
             break;
         case 3:
@@ -118,7 +131,17 @@
             break;
         case 8:
         {
-            
+            if ([[UserModel Instance] isLogin])
+            {
+                [ASIHTTPRequest setSessionCookies:nil];
+                [ASIHTTPRequest clearSession];
+                [[UserModel Instance] saveIsLogin:NO];
+                [Tool showCustomHUD:@"注销成功" andView:self.view andImage:@"37x-Checkmark.png" andAfterDelay:1];
+            }
+            else
+            {
+                [Tool showCustomHUD:@"请先登录" andView:self.view andImage:@"37x-Failure.png" andAfterDelay:1];
+            }
         }
             break;
         default:

@@ -15,5 +15,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *titleLb;
 @property (strong, nonatomic) IBOutlet UILabel *priceLb;
 @property (strong, nonatomic) IBOutlet UILabel *buysLb;
+@property (strong, nonatomic) IBOutlet UILabel *marketPriceLb;
 
 @end

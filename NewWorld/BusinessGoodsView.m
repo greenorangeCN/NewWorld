@@ -202,11 +202,17 @@
     cell.priceLb.text = [NSString stringWithFormat:@"￥%@", good.price];
     cell.buysLb.text = [NSString stringWithFormat:@"已售%@", good.buys];
     
-    StrikeThroughLabel *slabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(207, 70, 63, 21)];
+    //去除所以子视图
+    for(UIView *view in [cell.marketPriceLb subviews])
+    {
+        [view removeFromSuperview];
+    }
+    
+    StrikeThroughLabel *slabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(0, 0, 63, 21)];
     slabel.text = [NSString stringWithFormat:@"￥%@", good.market_price];
     slabel.font = [UIFont italicSystemFontOfSize:12.0f];
     slabel.strikeThroughEnabled = YES;
-    [cell addSubview:slabel];
+    [cell.marketPriceLb addSubview:slabel];
     
     [Tool roundView:cell.bg andCornerRadius:5.0f];
     

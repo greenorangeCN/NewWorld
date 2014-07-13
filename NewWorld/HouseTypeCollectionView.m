@@ -49,6 +49,7 @@
     [super viewDidLoad];
     self.houseTypeCollection.delegate = self;
     self.houseTypeCollection.dataSource = self;
+    //注册CELL类
     [self.houseTypeCollection registerClass:[HouseTypeCollectionCell class] forCellWithReuseIdentifier:HouseTypeCollectionCellIdentifier];
 
     self.houseTypeCollection.backgroundColor = [Tool getBackgroundColor];
@@ -131,15 +132,25 @@
     UITap *shareTap = [[UITap alloc] initWithTarget:self action:@selector(shareAction:)];
     [cell.shareBtn addGestureRecognizer:shareTap];
     shareTap.tag = indexRow;
+    
+    //去除所以子视图
+    for(UIView *view in [cell.marketPriceLb subviews])
+    {
+        [view removeFromSuperview];
+    }
 
+    StrikeThroughLabel *slabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(0, 0, 123, 21)];
+    slabel.text = [NSString stringWithFormat:@"市场价：%@万元", house.market_price];
+    slabel.font = [UIFont italicSystemFontOfSize:12.0f];
+    slabel.strikeThroughEnabled = YES;
+    [cell.marketPriceLb addSubview:slabel];
     
     cell.titleLb.text = [NSString stringWithFormat:@"%@ %@", house.comm_name, house.title];
     cell.webPriceLb.text = [NSString stringWithFormat:@"网售价：%@万元", house.web_price];
-    cell.marketPriceLb.text = [NSString stringWithFormat:@"市场价：%@万元", house.market_price];
     cell.noteTv.text = house.note;
     cell.discountLb.text = [NSString stringWithFormat:@"折扣：%@", house.discount];
-    cell.unitPriceLb.text = [NSString stringWithFormat:@"单价：%@元/m2", house.unit_price];
-    cell.areaLb.text = [NSString stringWithFormat:@"面积：%@m2", house.area];
+    cell.unitPriceLb.text = [NSString stringWithFormat:@"单价：%@元/m²", house.unit_price];
+    cell.areaLb.text = [NSString stringWithFormat:@"面积：%@m²", house.area];
     cell.houseTypeLb.text = [NSString stringWithFormat:@"户型：%@", house.house_type];
 
     cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", house.points];

@@ -30,6 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    activityIndex = 0;
     [self initTopImage];
     
     //楼盘导航事件注册
@@ -126,7 +127,8 @@
 //顶部图片自动滑动委托协议实现事件
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame currentItem:(int)index;
 {
-    NSLog(@"%s \n scrollToIndex===>%d",__FUNCTION__,index);
+//    NSLog(@"%s \n scrollToIndex===>%d",__FUNCTION__,index);
+    activityIndex = index;
 }
 
 - (void)didReceiveMemoryWarning
@@ -161,4 +163,42 @@
     activityView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:activityView animated:YES];
 }
+
+- (IBAction)praiseAction:(id)sender
+{
+    Activity *activity = [activities objectAtIndex:activityIndex];
+    NSString *detailUrl = [NSString stringWithFormat:@"%@%@?model=Activities&id=%@", api_base_url, api_praise, activity._id];
+    NSURL *url = [ NSURL URLWithString : detailUrl];
+    // 构造 ASIHTTPRequest 对象
+    ASIHTTPRequest *request = [ ASIHTTPRequest requestWithURL :url];
+    // 开始同步请求
+    [request startSynchronous ];
+    NSError *error = [request error ];
+    assert (!error);
+    // 如果请求成功，返回 Response
+    NSString *response = [request responseString ];
+    NSData *data = [response dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *err;
+    NSString *status = @"0";
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
+    if (json) {
+        status = [json objectForKey:@"status"];
+        if ([status isEqualToString:@"1"]) {
+            [Tool showCustomHUD:@"点赞成功" andView:self.view andImage:@"37x-Checkmark.png" andAfterDelay:1];
+        }
+        else
+        {
+            [Tool showCustomHUD:@"点赞失败" andView:self.view andImage:@"37x-Failure.png" andAfterDelay:1];
+        }
+    }
+}
+
+- (IBAction)showDetailAction:(id)sender {
+    Activity *activity = [activities objectAtIndex:activityIndex];
+    ActivityDetailView *activityDetail = [[ActivityDetailView alloc] init];
+    activityDetail.activity = activity;
+    activityDetail.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:activityDetail animated:YES];
+}
+
 @end

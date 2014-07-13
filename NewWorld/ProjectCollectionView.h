@@ -12,6 +12,7 @@
 #import "TQImageCache.h"
 #import "ProjectHeadReusable.h"
 #import "ProjectIntroView.h"
+#import "RoomsCollectionView.h"
 
 @interface ProjectCollectionView : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, IconDownloaderDelegate>
 {
