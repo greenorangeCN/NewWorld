@@ -793,13 +793,13 @@
 				14082EC1195A6F2D00E09C47 /* CoreData.framework in Frameworks */,
 				14082EBF195A6F2400E09C47 /* CFNetwork.framework in Frameworks */,
 				14082EBD195A6F1900E09C47 /* MobileCoreServices.framework in Frameworks */,
+				14A289A8196ED8C8001E9BB1 /* KeyboardManager.framework in Frameworks */,
 				14082EBB195A6F0F00E09C47 /* libz.dylib in Frameworks */,
 				14082EB9195A6F0000E09C47 /* QuartzCore.framework in Frameworks */,
 				14082EB7195A6EED00E09C47 /* SystemConfiguration.framework in Frameworks */,
 				142B91B5195A5BE700A0D2E8 /* CoreGraphics.framework in Frameworks */,
 				1408227E1961B61A00280FA2 /* libbaidumapapi.a in Frameworks */,
 				142B91B7195A5BE700A0D2E8 /* UIKit.framework in Frameworks */,
-				14A289A8196ED8C8001E9BB1 /* KeyboardManager.framework in Frameworks */,
 				142B91B3195A5BE700A0D2E8 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2119,6 +2119,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
 					Framework,
+					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
+					Framework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NewWorld/NewWorld-Prefix.pch";
@@ -2147,6 +2149,8 @@
 				CLANG_CXX_LIBRARY = "compiler-default";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
+					Framework,
 					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
 					Framework,
 				);
