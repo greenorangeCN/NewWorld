@@ -271,6 +271,7 @@
 		14B3D42A197625B200C1B5FE /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 14B3D429197625B200C1B5FE /* libz.1.2.5.dylib */; };
 		14B3D42C197625BF00C1B5FE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14B3D42B197625BF00C1B5FE /* Security.framework */; };
 		14B3D42D1976273F00C1B5FE /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1408227D1961B61A00280FA2 /* libbaidumapapi.a */; };
+		14B3D6A31976435000C1B5FE /* cc_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 14B3D6A21976435000C1B5FE /* cc_back.png */; };
 		14B8B7A41960FCD000752ED6 /* SGFocusImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B8B7A11960FCD000752ED6 /* SGFocusImageFrame.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		14B8B7A51960FCD000752ED6 /* SGFocusImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B8B7A31960FCD000752ED6 /* SGFocusImageItem.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		14B8B7A81960FD7F00752ED6 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B8B7A71960FD7F00752ED6 /* Activity.m */; };
@@ -769,6 +770,7 @@
 		14B224CF1965468700C923DF /* ProjectCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectCollectionView.xib; sourceTree = "<group>"; };
 		14B3D429197625B200C1B5FE /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		14B3D42B197625BF00C1B5FE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		14B3D6A21976435000C1B5FE /* cc_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cc_back.png; sourceTree = "<group>"; };
 		14B8B7A01960FCD000752ED6 /* SGFocusImageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFocusImageFrame.h; sourceTree = "<group>"; };
 		14B8B7A11960FCD000752ED6 /* SGFocusImageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFocusImageFrame.m; sourceTree = "<group>"; };
 		14B8B7A21960FCD000752ED6 /* SGFocusImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFocusImageItem.h; sourceTree = "<group>"; };
@@ -815,8 +817,8 @@
 				14082ED7195A6FC200E09C47 /* ImageIO.framework in Frameworks */,
 				14082ED5195A6FB900E09C47 /* MapKit.framework in Frameworks */,
 				14082ED1195A6F9C00E09C47 /* OpenGLES.framework in Frameworks */,
-				14082ECF195A6F9000E09C47 /* CoreLocation.framework in Frameworks */,
 				14A289A8196ED8C8001E9BB1 /* KeyboardManager.framework in Frameworks */,
+				14082ECF195A6F9000E09C47 /* CoreLocation.framework in Frameworks */,
 				14082ECD195A6F8200E09C47 /* MessageUI.framework in Frameworks */,
 				14082EC9195A6F6700E09C47 /* libxml2.dylib in Frameworks */,
 				14082EC7195A6F5A00E09C47 /* CoreText.framework in Frameworks */,
@@ -1330,6 +1332,7 @@
 				14A28999196EC63C001E9BB1 /* 37x-Checkmark.png */,
 				14A2899A196EC63C001E9BB1 /* 37x-Checkmark@2x.png */,
 				14EE0371196D8F18002C2F3A /* loadingpic4@2x.png */,
+				14B3D6A21976435000C1B5FE /* cc_back.png */,
 				14EE036F196D8248002C2F3A /* checkdetail_btn.png */,
 				14A1050F196CF47B007D5E33 /* share_btn@2x.png */,
 				14A1050D196CE6BA007D5E33 /* praise_btn@2x.png */,
@@ -1821,6 +1824,7 @@
 				14A2899B196EC63C001E9BB1 /* 37x-Failure@2x.png in Resources */,
 				1454E7C2195A7DE9008C3C5F /* top_bg@2x.png in Resources */,
 				14A0DDE7195F0D6500C12F7C /* map_all@2x.png in Resources */,
+				14B3D6A31976435000C1B5FE /* cc_back.png in Resources */,
 				143599421973BBDF001749BF /* get_btn.png in Resources */,
 				149E63761967DB7800048DF4 /* ActivityDetailView.xib in Resources */,
 				1408227A1961A39600280FA2 /* map_top_rigth.png in Resources */,
@@ -2201,6 +2205,8 @@
 					"$(PROJECT_DIR)/NewWorld/ShareSDK/UI",
 					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
 					Framework,
+					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
+					Framework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NewWorld/NewWorld-Prefix.pch";
@@ -2245,6 +2251,8 @@
 					"$(PROJECT_DIR)/NewWorld/ShareSDK/Extend/RenRenSDK",
 					"$(PROJECT_DIR)/NewWorld/ShareSDK",
 					"$(PROJECT_DIR)/NewWorld/ShareSDK/UI",
+					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
+					Framework,
 					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
 					Framework,
 				);
