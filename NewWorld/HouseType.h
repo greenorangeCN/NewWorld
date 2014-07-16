@@ -27,6 +27,8 @@
 @property (nonatomic, retain) NSString* property_industry_fee;
 @property (nonatomic, retain) NSString* points;
 @property (nonatomic, retain) NSString* comm_name;
+@property (nonatomic, retain) NSString* summary;
+@property (nonatomic, retain) NSMutableArray *images;
 @property (retain,nonatomic) UIImage *imgData;
 
 @end

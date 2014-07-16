@@ -13,5 +13,11 @@
 @property (nonatomic, retain) NSString* id;
 @property (nonatomic, retain) NSString* title;
 @property (nonatomic, retain) NSString* thumb;
+@property (nonatomic, retain) NSString* store_name;
+@property (nonatomic, retain) NSString* phone;
+@property (nonatomic, retain) NSString* summary;
+@property (nonatomic, retain) NSString* content;
+@property (nonatomic, retain) NSString* business_id;
+@property (nonatomic, retain) NSString* published;
 
 @end

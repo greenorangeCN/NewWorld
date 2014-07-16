@@ -1,21 +1,23 @@
 //
-//  ActivityDetailView.m
+//  CouponDetailView.m
 //  NewWorld
 //
-//  Created by Seven on 14-7-5.
+//  Created by Seven on 14-7-14.
 //  Copyright (c) 2014年 Seven. All rights reserved.
 //
 
-#import "ActivityDetailView.h"
+#import "CouponDetailView.h"
 
-@interface ActivityDetailView ()
+@interface CouponDetailView ()
 
 @end
 
-@implementation ActivityDetailView
-@synthesize activity;
+@implementation CouponDetailView
+
+@synthesize scrollView;
+@synthesize picIv;
 @synthesize webView;
-@synthesize joinBtn;
+@synthesize getBtn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,7 +25,7 @@
     if (self) {
         UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
-        titleLabel.text = @"活动详情";
+        titleLabel.text = @"优惠券";
         titleLabel.backgroundColor = [UIColor clearColor];
         titleLabel.textColor = [UIColor whiteColor];
         titleLabel.textAlignment = UITextAlignmentCenter;
@@ -34,8 +36,23 @@
         [lBtn setImage:[UIImage imageNamed:@"cc_back"] forState:UIControlStateNormal];
         UIBarButtonItem *btnBack = [[UIBarButtonItem alloc]initWithCustomView:lBtn];
         self.navigationItem.leftBarButtonItem = btnBack;
+        
+        UIButton *rBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 25)];
+        [rBtn addTarget:self action:@selector(telAction) forControlEvents:UIControlEventTouchUpInside];
+        [rBtn setImage:[UIImage imageNamed:@"top_tel"] forState:UIControlStateNormal];
+        UIBarButtonItem *btnTel = [[UIBarButtonItem alloc]initWithCustomView:rBtn];
+        self.navigationItem.rightBarButtonItem = btnTel;
     }
     return self;
+}
+
+- (void)telAction
+{
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", couponDetail.phone]];
+    if (!phoneCallWebView) {
+        phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    }
+    [phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
 }
 
 - (void)backAction
@@ -46,7 +63,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSString *detailUrl = [NSString stringWithFormat:@"%@%@?id=%@", api_base_url, api_activity_detail, activity._id];
+    //适配iOS7  scrollView计算uinavigationbar高度的问题
+    if(IS_IOS7)
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
+    hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [Tool showHUD:@"正在加载" andView:self.view andHUD:hud];
+    NSString *detailUrl = [NSString stringWithFormat:@"%@%@?id=%@", api_base_url, api_coupon_detail, self.couponsId];
     NSURL *url = [ NSURL URLWithString : detailUrl];
     // 构造 ASIHTTPRequest 对象
     ASIHTTPRequest *request = [ ASIHTTPRequest requestWithURL :url];
@@ -54,61 +79,63 @@
     [request startSynchronous ];
     NSError *error = [request error ];
     assert (!error);
-    // 如果请求成功，返回 Response
-    NSString *response = [request responseString ];
-    NSData *data = [response dataUsingEncoding:NSUTF8StringEncoding];
-    NSError *err;
-    NSString *content;
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&err];
-    if (json) {
-        content = [json objectForKey:@"content"];
-    }
+    couponDetail = [Tool readJsonStrToCouponDetail:[request responseString]];
+    //图片加载
+    EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic1.png"]];
+    imageView.imageURL = [NSURL URLWithString:couponDetail.thumb];
+    imageView.frame = CGRectMake(0.0f, 0.0f, 320.0f, 187.0f);
+    [self.picIv addSubview:imageView];
+    
     //WebView的背景颜色去除
     [Tool clearWebViewBackground:self.webView];
     //    [self.webView setScalesPageToFit:YES];
     [self.webView sizeToFit];
-    
-    NSString *html = [NSString stringWithFormat:@"<body>%@<div id='web_title'>%@</div>%@<div id='web_body'>%@</div></body>", HTML_Style, activity.title, HTML_Splitline, content];
+    self.webView.delegate = self;
+    NSString *html = [NSString stringWithFormat:@"<body>%@<div id='web_summaryred'>%@</div><div id='web_body'>%@</div></body>", HTML_Style, couponDetail.summary, couponDetail.content];
     NSString *result = [Tool getHTMLString:html];
     [self.webView loadHTMLString:result baseURL:nil];
-    
-    self.view.backgroundColor = [Tool getBackgroundColor];
-    //适配iOS7uinavigationbar遮挡的问题
-    if(IS_IOS7)
-    {
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.automaticallyAdjustsScrollViewInsets = NO;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webViewP
+{
+    if (hud != nil) {
+        [hud hide:YES];
     }
+    NSArray *arr = [webViewP subviews];
+    UIScrollView *webViewScroll = [arr objectAtIndex:0];
+    
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, webViewP.frame.origin.y + [webViewScroll contentSize].height);
+    [webViewP setFrame:CGRectMake(webViewP.frame.origin.x, webViewP.frame.origin.y, webViewP.frame.size.width, [webViewScroll contentSize].height)];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self.webView stopLoading];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewWillDisappear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    self.navigationController.navigationBar.hidden = NO;
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [self checkIsJoin];
+    [super viewWillDisappear:animated];
+    [self.webView stopLoading];
 }
 
-- (IBAction)jionAction:(id)sender
-{
+- (IBAction)getAction:(id)sender {
     if ([UserModel Instance].isLogin == NO) {
         [Tool noticeLogin:self.view andDelegate:self andTitle:@""];
         return;
     }
-    NSString *getUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_join_activities];
+    NSString *getUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_get_coupon];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:getUrl]];
     [request setUseCookiePersistence:NO];
-    [request setPostValue:activity._id forKey:@"activities_id"];
+    [request setPostValue:couponDetail.id forKey:@"coupons_id"];
+    [request setPostValue:couponDetail.title forKey:@"coupons_title"];
+    [request setPostValue:couponDetail.business_id forKey:@"business_id"];
     [request setPostValue:[[UserModel Instance] getUserValueForKey:@"username"] forKey:@"username"];
+    [request setPostValue:[[UserModel Instance] getUserValueForKey:@"mobile"] forKey:@"mobile"];
     [request setDelegate:self];
     [request setDidFailSelector:@selector(requestFailed:)];
-    [request setDidFinishSelector:@selector(requestJoin:)];
+    [request setDidFinishSelector:@selector(requestGet:)];
     [request startAsynchronous];
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
     [Tool showHUD:@"正在提交" andView:self.view andHUD:request.hud];
@@ -121,7 +148,7 @@
     }
 }
 
-- (void)requestJoin:(ASIHTTPRequest *)request
+- (void)requestGet:(ASIHTTPRequest *)request
 {
     if (request.hud) {
         [request.hud hide:YES];
@@ -133,7 +160,7 @@
     switch (errorCode) {
         case 1:
         {
-            self.joinBtn.enabled = NO;
+            self.getBtn.enabled = NO;
             [Tool showCustomHUD:user.info andView:self.view  andImage:@"37x-Checkmark.png" andAfterDelay:1];
         }
             break;
@@ -145,10 +172,10 @@
     }
 }
 
-- (void)checkIsJoin
+- (void)checkIsGot
 {
     if ([[UserModel Instance] isLogin]) {
-        NSString *detailUrl = [NSString stringWithFormat:@"%@%@?activities_id=%@&username=%@", api_base_url, api_is_join, activity._id, [[UserModel Instance] getUserValueForKey:@"username"]];
+        NSString *detailUrl = [NSString stringWithFormat:@"%@%@?coupons_id=%@&username=%@", api_base_url, api_coupon_isgot, self.couponsId, [[UserModel Instance] getUserValueForKey:@"username"]];
         NSURL *url = [ NSURL URLWithString : detailUrl];
         ASIHTTPRequest *request = [ ASIHTTPRequest requestWithURL :url];
         // 开始同步请求
@@ -157,7 +184,7 @@
         assert (!error);
         NSString *value = (NSString *)[request responseString];
         if ([value isEqualToString:@"1"]) {
-            self.joinBtn.enabled = NO;
+            self.getBtn.enabled = NO;
         }
     }
 }
@@ -165,6 +192,12 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [Tool processLoginNotice:actionSheet andButtonIndex:buttonIndex andNav:self.navigationController andParent:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self checkIsGot];
 }
 
 @end

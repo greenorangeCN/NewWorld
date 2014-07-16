@@ -12,6 +12,7 @@
 #import "UITap.h"
 #import "EGOImageView.h"
 #import "StrikeThroughLabel.h"
+#import "RoomsDetailView.h"
 
 @interface HouseTypeCollectionView : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {

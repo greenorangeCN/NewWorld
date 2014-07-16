@@ -77,20 +77,6 @@
     view.clipsToBounds = YES;
 }
 
-+ (void)noticeLogin:(UIView *)view andDelegate:(id)delegate andTitle:(NSString *)title
-{
-    UIActionSheet * loginSheet = [[UIActionSheet alloc] initWithTitle:title delegate:delegate cancelButtonTitle:@"返回" destructiveButtonTitle:nil otherButtonTitles:@"登录", nil];
-    [loginSheet showInView:[UIApplication sharedApplication].keyWindow];
-}
-
-+ (void)processLoginNotice:(UIActionSheet *)actionSheet andButtonIndex:(NSInteger)buttonIndex andNav:(UINavigationController *)nav andParent:(UIViewController *)parent
-{
-    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
-    if ([buttonTitle isEqualToString:@"登录"]) {
-
-    }
-}
-
 + (void)playAudio:(BOOL)isAlert
 {
     NSString * path = [NSString stringWithFormat:@"%@%@",[[NSBundle mainBundle] resourcePath], isAlert ? @"/alertsound.wav" : @"/soundeffect.wav"];
@@ -150,6 +136,25 @@
     [webView stopLoading];
     [webView setDelegate:nil];
     webView = nil;
+}
+
++ (void)noticeLogin:(UIView *)view andDelegate:(id)delegate andTitle:(NSString *)title
+{
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"请先登录或注册" delegate:delegate cancelButtonTitle:@"返回" destructiveButtonTitle:nil otherButtonTitles:@"登录", @"注册", nil];
+    [sheet showInView:[UIApplication sharedApplication].keyWindow];
+}
++ (void)processLoginNotice:(UIActionSheet *)actionSheet andButtonIndex:(NSInteger)buttonIndex andNav:(UINavigationController *)nav andParent:(UIViewController *)parent
+{
+    NSString *buttonTitle = [actionSheet buttonTitleAtIndex:buttonIndex];
+    if ([buttonTitle isEqualToString:@"登录"]) {
+        LoginView *loginView = [[LoginView alloc] init];
+        [nav pushViewController:loginView animated:YES];
+    }
+    else if([buttonTitle isEqualToString:@"注册"])
+    {
+        RegisterView *regView = [[RegisterView alloc] init];
+        [nav pushViewController:regView animated:YES];
+    }
 }
 
 + (NSString *)intervalSinceNow: (NSString *) theDate
@@ -537,6 +542,18 @@
     return detail;
 }
 
++ (Coupons *)readJsonStrToCouponDetail:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *detailDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( detailDic == nil) {
+        return nil;
+    }
+    Coupons *detail = [RMMapper objectWithClass:[Coupons class] fromDictionary:detailDic];
+    return detail;
+}
+
 + (NSMutableArray *)readJsonStrToHouseTypeArray:(NSString *)str
 {
     NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
@@ -548,6 +565,18 @@
     NSMutableArray *houseTypes = [RMMapper mutableArrayOfClass:[HouseType class]
                                        fromArrayOfDictionary:houseTypeArray];
     return houseTypes;
+}
+
++ (HouseType *)readJsonStrToHouseTypeDetail:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSArray *detailDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( detailDic == nil) {
+        return nil;
+    }
+    HouseType *detail = [RMMapper objectWithClass:[HouseType class] fromDictionary:detailDic];
+    return detail;
 }
 
 + (NSMutableArray *)readJsonStrToRoomsArray:(NSString *)str

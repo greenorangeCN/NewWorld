@@ -140,6 +140,9 @@
                                                    imageView.frame = CGRectMake(0.0f, 0.0f, 310.0f, 103.0f);
                                                    [self.couponIv addSubview:imageView];
                                                    [Tool roundView:self.couponIv andCornerRadius:5.0f];
+                                                   //楼盘导航事件注册
+                                                   UITapGestureRecognizer *couponTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(couponClick)];
+                                                   [self.couponIv addGestureRecognizer:couponTap];
                                                }
                                            }
                                            
@@ -165,6 +168,13 @@
                                        }
                                    }];
     }
+}
+
+- (void)couponClick
+{
+    CouponDetailView *couponDetailView = [[CouponDetailView alloc] init];
+    couponDetailView.couponsId = coupon.id;
+    [self.navigationController pushViewController:couponDetailView animated:YES];
 }
 
 #pragma TableView的处理

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EGOImageView.h"
 #import "StrikeThroughLabel.h"
+#import "OrderView.h"
 
 @interface GoodsDetailView : UIViewController<UIWebViewDelegate>
 {
@@ -24,5 +25,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *marketPriceLb;
 @property (strong, nonatomic) IBOutlet UILabel *buysLb;
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet UIButton *deliveryBtn;
+- (IBAction)deliveryAction:(id)sender;
 
 @end

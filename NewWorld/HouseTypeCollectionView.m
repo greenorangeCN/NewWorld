@@ -74,8 +74,19 @@
                                            houseTypes= [Tool readJsonStrToHouseTypeArray:operation.responseString];
                                            if (houseTypes != nil && [houseTypes count] > 0) {
                                                self.pageControl.numberOfPages = [houseTypes count];
+                                               [self.houseTypeCollection reloadData];
                                            }
-                                           [self.houseTypeCollection reloadData];
+                                           else
+                                           {
+                                               self.pageControl.numberOfPages = 0;
+                                               UILabel *noDataLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height/2-100, 320, 44)];
+                                               noDataLabel.font = [UIFont boldSystemFontOfSize:18];
+                                               noDataLabel.text = @"暂无数据";
+                                               noDataLabel.textColor = [UIColor blackColor];
+                                               noDataLabel.backgroundColor = [UIColor clearColor];
+                                               noDataLabel.textAlignment = UITextAlignmentCenter;
+                                               [self.view addSubview:noDataLabel];
+                                           }
                                        }
                                        @catch (NSException *exception) {
                                            [NdUncaughtExceptionHandler TakeException:exception];
@@ -217,10 +228,12 @@
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    HousesProject *project = [projects objectAtIndex:[indexPath row]];
-//    ProjectIntroView *projectIntro = [[ProjectIntroView alloc] init];
-//    projectIntro.project = project;
-//    [self.navigationController pushViewController:projectIntro animated:YES];
+    HouseType *house = [houseTypes objectAtIndex:[indexPath row]];
+    if (house) {
+        RoomsDetailView *roomsDetail = [[RoomsDetailView alloc] init];
+        roomsDetail.houseType = house;
+        [self.navigationController pushViewController:roomsDetail animated:YES];
+    }
 }
 
 //返回这个UICollectionView是否可以被选择

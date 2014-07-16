@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ActivityDetailView : UIViewController
+@interface ActivityDetailView : UIViewController<UIActionSheetDelegate>
 {
     MBProgressHUD *hud;
 }
 
 @property (strong, nonatomic) Activity *activity;
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet UIButton *joinBtn;
 - (IBAction)jionAction:(id)sender;
 
 @end

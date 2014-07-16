@@ -14,7 +14,6 @@
 #import "SettingView.h"
 #import "BMapKit.h"
 
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate, BMKGeneralDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

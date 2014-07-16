@@ -21,6 +21,7 @@
 @synthesize marketPriceLb;
 @synthesize buysLb;
 @synthesize webView;
+@synthesize deliveryBtn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -135,4 +136,9 @@
     [self.webView stopLoading];
 }
 
+- (IBAction)deliveryAction:(id)sender {
+    OrderView *orderView = [[OrderView alloc] init];
+    orderView.goodsDetail = detail;
+    [self.navigationController pushViewController:orderView animated:YES];
+}
 @end

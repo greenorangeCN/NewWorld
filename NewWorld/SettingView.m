@@ -62,7 +62,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    [self.tableSettings reloadData];
+//    [self.tableSettings reloadData];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 - (void)viewDidUnload
@@ -92,7 +92,7 @@
         {
             if ([[UserModel Instance] isLogin]) {
                 UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"温馨提示"
-                                                             message:@"您已登陆"
+                                                             message:@"您已登录"
                                                             delegate:nil
                                                    cancelButtonTitle:@"确定"
                                                    otherButtonTitles:nil];
@@ -106,9 +106,20 @@
             break;
         case 3:
         {
-            UserInfoView *infoView = [[UserInfoView alloc] init];
-            infoView.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:infoView animated:YES];
+            if ([[UserModel Instance] isLogin]) {
+                UserInfoView *infoView = [[UserInfoView alloc] init];
+                infoView.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:infoView animated:YES];
+            }
+            else
+            {
+                UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"温馨提示"
+                                                             message:@"请先登录"
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"确定"
+                                                   otherButtonTitles:nil];
+                [av show];
+            }
         }
             break;
         case 4:

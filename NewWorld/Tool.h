@@ -26,6 +26,8 @@
 #import "HouseType.h"
 #import "Rooms.h"
 #import "User.h"
+#import "LoginView.h"
+#import "RegisterView.h"
 
 @interface Tool : NSObject
 
@@ -109,7 +111,9 @@
 + (NSMutableArray *)readJsonStrToSliderImageArray:(NSString *)str;
 + (BusinessGoods *)readJsonStrBusinessGoods:(NSString *)str;
 + (GoodsDetail *)readJsonStrToGoodsDetail:(NSString *)str;
++ (Coupons *)readJsonStrToCouponDetail:(NSString *)str;
 + (NSMutableArray *)readJsonStrToHouseTypeArray:(NSString *)str;
++ (HouseType *)readJsonStrToHouseTypeDetail:(NSString *)str;
 + (NSMutableArray *)readJsonStrToRoomsArray:(NSString *)str;
 + (User *)readJsonStrToUser:(NSString *)str;
 
