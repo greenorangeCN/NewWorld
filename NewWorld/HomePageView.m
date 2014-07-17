@@ -88,7 +88,7 @@
                                                SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:@"" image:activity.indexImg tag:-1];
                                                [itemArray addObject:item];
                                            }
-                                           bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 148) delegate:self imageItems:itemArray isAuto:YES];
+                                           bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, 0, 320, 148) delegate:self imageItems:itemArray isAuto:NO];
                                            [bannerView scrollToIndex:0];
                                            [self.topImage addSubview:bannerView];
                                        }
@@ -199,6 +199,16 @@
     activityDetail.activity = activity;
     activityDetail.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:activityDetail animated:YES];
+}
+
+- (IBAction)shareAction:(id)sender {
+    Activity *activity = [activities objectAtIndex:activityIndex];
+    NSDictionary *contentDic = [NSDictionary dictionaryWithObjectsAndKeys:
+                                activity.title , @"title",
+                                activity.summary, @"summary",
+                                activity.thumb, @"thumb",
+                                nil];
+    [Tool shareAction:sender andShowView:self.view andContent:contentDic];
 }
 
 @end

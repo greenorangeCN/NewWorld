@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "Tool.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "MBProgressHUD.h"
@@ -28,6 +27,7 @@
 #import "User.h"
 #import "LoginView.h"
 #import "RegisterView.h"
+#import <ShareSDK/ShareSDK.h>
 
 @interface Tool : NSObject
 
@@ -102,6 +102,7 @@
 
 + (void)saveCache:(NSString *)catalog andType:(int)type andID:(int)_id andString:(NSString *)str;
 + (NSString *)getCache:(NSString *)catalog andType:(int)type andID:(int)_id;
++ (void)shareAction:(UIButton *)sender andShowView:(UIView *)view andContent:(NSDictionary *)shareContent;
 
 + (NSMutableArray *)readJsonStrToHousesArray:(NSString *)str;
 + (NSMutableArray *)readJsonStrToActivitiesArray:(NSString *)str;

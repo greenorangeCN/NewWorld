@@ -140,9 +140,8 @@
     [cell.praiseBtn addGestureRecognizer:praiseTap];
     praiseTap.tag = indexRow;
     
-    UITap *shareTap = [[UITap alloc] initWithTarget:self action:@selector(shareAction:)];
-    [cell.shareBtn addGestureRecognizer:shareTap];
-    shareTap.tag = indexRow;
+    [cell.shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+    cell.shareBtn.tag = indexRow;
     
     //去除所以子视图
     for(UIView *view in [cell.marketPriceLb subviews])
@@ -205,9 +204,15 @@
 
 - (void)shareAction:(id)sender
 {
-    UITap *tap = (UITap *)sender;
+    UIButton *tap = (UIButton *)sender;
     if (tap) {
-        
+        HouseType *house = [houseTypes objectAtIndex:tap.tag];
+        NSDictionary *contentDic = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [NSString stringWithFormat:@"%@ %@", house.comm_name, house.title], @"title",
+                                    house.discount, @"summary",
+                                    house.thumb, @"thumb",
+                                    nil];
+        [Tool shareAction:sender andShowView:self.view andContent:contentDic];
     }
 }
 

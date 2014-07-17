@@ -29,5 +29,6 @@
 - (IBAction)newsActivityAction:(id)sender;
 - (IBAction)praiseAction:(id)sender;
 - (IBAction)showDetailAction:(id)sender;
+- (IBAction)shareAction:(id)sender;
 
 @end

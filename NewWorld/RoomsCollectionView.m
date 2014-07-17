@@ -124,7 +124,7 @@
     Rooms *room = [rooms objectAtIndex:indexRow];
     self.pageControl.currentPage = indexRow;
     
-    NSLog([room.images objectAtIndex:0]);
+//    NSLog([room.images objectAtIndex:0]);
     [Tool roundView:cell.bg andCornerRadius:5.0f];
     
     //注册Cell按钮点击事件
@@ -132,9 +132,8 @@
     [cell.praiseBtn addGestureRecognizer:praiseTap];
     praiseTap.tag = indexRow;
     
-    UITap *shareTap = [[UITap alloc] initWithTarget:self action:@selector(shareAction:)];
-    [cell.shareBtn addGestureRecognizer:shareTap];
-    shareTap.tag = indexRow;
+    [cell.shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+    cell.shareBtn.tag = indexRow;
     
     cell.titleLb.text = [NSString stringWithFormat:@"%@：%@", projectName, room.title];
     cell.introTv.text = room.intro;
@@ -180,9 +179,15 @@
 
 - (void)shareAction:(id)sender
 {
-    UITap *tap = (UITap *)sender;
+    UIButton *tap = (UIButton *)sender;
     if (tap) {
-        
+        Rooms *room = [rooms objectAtIndex:tap.tag];
+        NSDictionary *contentDic = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    [NSString stringWithFormat:@"%@：%@", projectName, room.title], @"title",
+                                    room.intro, @"summary",
+                                    room.thumb, @"thumb",
+                                    nil];
+        [Tool shareAction:sender andShowView:self.view andContent:contentDic];
     }
 }
 

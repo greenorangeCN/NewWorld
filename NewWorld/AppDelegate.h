@@ -13,8 +13,11 @@
 #import "BusinessTableView.h"
 #import "SettingView.h"
 #import "BMapKit.h"
+#import <ShareSDK/ShareSDK.h>
+#import "WXApi.h"
+#import "WeiboApi.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, BMKGeneralDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, BMKGeneralDelegate, WXApiDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UITabBarController *tabBarController;

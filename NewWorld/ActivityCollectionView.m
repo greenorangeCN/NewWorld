@@ -137,9 +137,8 @@
     [cell.praiseBtn addGestureRecognizer:praiseTap];
     praiseTap.tag = indexRow;
     
-    UITap *shareTap = [[UITap alloc] initWithTarget:self action:@selector(shareAction:)];
-    [cell.shareBtn addGestureRecognizer:shareTap];
-    shareTap.tag = indexRow;
+    [cell.shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+    cell.shareBtn.tag = indexRow;
     
     cell.titleLb.text = activity.title;
     cell.dateLb.text = [NSString stringWithFormat:@"活动时间：%@", activity.validityTime];
@@ -186,9 +185,15 @@
 
 - (void)shareAction:(id)sender
 {
-    UITap *tap = (UITap *)sender;
+    UIButton *tap = (UIButton *)sender;
     if (tap) {
-        
+        Activity *activity = [activities objectAtIndex:tap.tag];
+        NSDictionary *contentDic = [NSDictionary dictionaryWithObjectsAndKeys:
+                                    activity.title , @"title",
+                                    activity.summary, @"summary",
+                                    activity.thumb, @"thumb",
+                                    nil];
+        [Tool shareAction:sender andShowView:self.view andContent:contentDic];
     }
 }
 
