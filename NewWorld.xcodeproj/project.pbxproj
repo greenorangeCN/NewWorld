@@ -45,6 +45,21 @@
 		140A756F196C37B80074AD56 /* HouseTypeCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140A756E196C37B80074AD56 /* HouseTypeCollectionCell.m */; };
 		140A7571196C37DD0074AD56 /* HouseTypeCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140A7570196C37DD0074AD56 /* HouseTypeCollectionCell.xib */; };
 		140A7574196C3DED0074AD56 /* HouseType.m in Sources */ = {isa = PBXBuildFile; fileRef = 140A7573196C3DED0074AD56 /* HouseType.m */; };
+		140BB4B8197AA5680037E565 /* Rooms_35CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140BB4B7197AA5680037E565 /* Rooms_35CollectionCell.m */; };
+		140BB4BA197AA5A70037E565 /* Rooms_35CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140BB4B9197AA5A70037E565 /* Rooms_35CollectionCell.xib */; };
+		140BB4BD197AAD110037E565 /* HouseType_35CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140BB4BC197AAD110037E565 /* HouseType_35CollectionCell.m */; };
+		140BB4BF197AADBD0037E565 /* HouseType_35CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140BB4BE197AADBD0037E565 /* HouseType_35CollectionCell.xib */; };
+		140BB4C2197AB53B0037E565 /* Activity_35CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 140BB4C1197AB53B0037E565 /* Activity_35CollectionCell.m */; };
+		140BB4C4197AB55E0037E565 /* Activity_35CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 140BB4C3197AB55E0037E565 /* Activity_35CollectionCell.xib */; };
+		141BAFAC1977766E00BA620A /* ClubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 141BAFAA1977766E00BA620A /* ClubView.m */; };
+		141BAFAD1977766E00BA620A /* ClubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141BAFAB1977766E00BA620A /* ClubView.xib */; };
+		141BAFB61977A6C000BA620A /* club_bg2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 141BAFB41977A6C000BA620A /* club_bg2@2x.png */; };
+		141BAFB71977A6C000BA620A /* club_bg1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 141BAFB51977A6C000BA620A /* club_bg1@2x.png */; };
+		141BAFBD1977ABD800BA620A /* ClubItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 141BAFBC1977ABD800BA620A /* ClubItem.m */; };
+		141BAFC01977ABF800BA620A /* ClubInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 141BAFBF1977ABF800BA620A /* ClubInfo.m */; };
+		141BAFC31977AC4E00BA620A /* Club.m in Sources */ = {isa = PBXBuildFile; fileRef = 141BAFC21977AC4E00BA620A /* Club.m */; };
+		141BAFC71977AEF400BA620A /* ClubCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 141BAFC51977AEF400BA620A /* ClubCell.m */; };
+		141BAFC81977AEF400BA620A /* ClubCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 141BAFC61977AEF400BA620A /* ClubCell.xib */; };
 		142AFFFD196ADB6200CC7D46 /* StrikeThroughLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 142AFFFC196ADB6200CC7D46 /* StrikeThroughLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		142B91B3195A5BE700A0D2E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 142B91B2195A5BE700A0D2E8 /* Foundation.framework */; };
 		142B91B5195A5BE700A0D2E8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 142B91B4195A5BE700A0D2E8 /* CoreGraphics.framework */; };
@@ -171,6 +186,8 @@
 		14A1050E196CE6BA007D5E33 /* praise_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A1050D196CE6BA007D5E33 /* praise_btn@2x.png */; };
 		14A10510196CF47B007D5E33 /* share_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14A1050F196CF47B007D5E33 /* share_btn@2x.png */; };
 		14A1BB7D19659DFD00073A26 /* HousesProject.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A1BB7C19659DFD00073A26 /* HousesProject.m */; };
+		14A2798C19780F450095A17E /* ClubDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A2798A19780F450095A17E /* ClubDetailView.m */; };
+		14A2798D19780F450095A17E /* ClubDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A2798B19780F450095A17E /* ClubDetailView.xib */; };
 		14A288FD196E7A8C001E9BB1 /* RoomsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A288FB196E7A8C001E9BB1 /* RoomsCollectionView.m */; };
 		14A288FE196E7A8C001E9BB1 /* RoomsCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14A288FC196E7A8C001E9BB1 /* RoomsCollectionView.xib */; };
 		14A28901196E7B73001E9BB1 /* Rooms.m in Sources */ = {isa = PBXBuildFile; fileRef = 14A28900196E7B73001E9BB1 /* Rooms.m */; };
@@ -311,6 +328,8 @@
 		14EE036E196D7E7A002C2F3A /* ActivityCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14EE036D196D7E7A002C2F3A /* ActivityCollectionCell.xib */; };
 		14EE0370196D8248002C2F3A /* checkdetail_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 14EE036F196D8248002C2F3A /* checkdetail_btn.png */; };
 		14EE0372196D8F18002C2F3A /* loadingpic4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14EE0371196D8F18002C2F3A /* loadingpic4@2x.png */; };
+		14F6C36B1978CF4F0083379E /* tabbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F6C36A1978CF4F0083379E /* tabbar_bg@2x.png */; };
+		14F6C36D197902B10083379E /* cc_back2.png in Resources */ = {isa = PBXBuildFile; fileRef = 14F6C36C197902B10083379E /* cc_back2.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -430,6 +449,29 @@
 		140A7570196C37DD0074AD56 /* HouseTypeCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseTypeCollectionCell.xib; sourceTree = "<group>"; };
 		140A7572196C3DED0074AD56 /* HouseType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseType.h; sourceTree = "<group>"; };
 		140A7573196C3DED0074AD56 /* HouseType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseType.m; sourceTree = "<group>"; };
+		140BB4B6197AA5680037E565 /* Rooms_35CollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Rooms_35CollectionCell.h; sourceTree = "<group>"; };
+		140BB4B7197AA5680037E565 /* Rooms_35CollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Rooms_35CollectionCell.m; sourceTree = "<group>"; };
+		140BB4B9197AA5A70037E565 /* Rooms_35CollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Rooms_35CollectionCell.xib; sourceTree = "<group>"; };
+		140BB4BB197AAD110037E565 /* HouseType_35CollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseType_35CollectionCell.h; sourceTree = "<group>"; };
+		140BB4BC197AAD110037E565 /* HouseType_35CollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseType_35CollectionCell.m; sourceTree = "<group>"; };
+		140BB4BE197AADBD0037E565 /* HouseType_35CollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HouseType_35CollectionCell.xib; sourceTree = "<group>"; };
+		140BB4C0197AB53B0037E565 /* Activity_35CollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity_35CollectionCell.h; sourceTree = "<group>"; };
+		140BB4C1197AB53B0037E565 /* Activity_35CollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activity_35CollectionCell.m; sourceTree = "<group>"; };
+		140BB4C3197AB55E0037E565 /* Activity_35CollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Activity_35CollectionCell.xib; sourceTree = "<group>"; };
+		141BAFA91977766E00BA620A /* ClubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClubView.h; sourceTree = "<group>"; };
+		141BAFAA1977766E00BA620A /* ClubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClubView.m; sourceTree = "<group>"; };
+		141BAFAB1977766E00BA620A /* ClubView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClubView.xib; sourceTree = "<group>"; };
+		141BAFB41977A6C000BA620A /* club_bg2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "club_bg2@2x.png"; sourceTree = "<group>"; };
+		141BAFB51977A6C000BA620A /* club_bg1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "club_bg1@2x.png"; sourceTree = "<group>"; };
+		141BAFBB1977ABD800BA620A /* ClubItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClubItem.h; sourceTree = "<group>"; };
+		141BAFBC1977ABD800BA620A /* ClubItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClubItem.m; sourceTree = "<group>"; };
+		141BAFBE1977ABF800BA620A /* ClubInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClubInfo.h; sourceTree = "<group>"; };
+		141BAFBF1977ABF800BA620A /* ClubInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClubInfo.m; sourceTree = "<group>"; };
+		141BAFC11977AC4E00BA620A /* Club.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Club.h; sourceTree = "<group>"; };
+		141BAFC21977AC4E00BA620A /* Club.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Club.m; sourceTree = "<group>"; };
+		141BAFC41977AEF400BA620A /* ClubCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClubCell.h; sourceTree = "<group>"; };
+		141BAFC51977AEF400BA620A /* ClubCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClubCell.m; sourceTree = "<group>"; };
+		141BAFC61977AEF400BA620A /* ClubCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClubCell.xib; sourceTree = "<group>"; };
 		142AFFFB196ADB6200CC7D46 /* StrikeThroughLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StrikeThroughLabel.h; sourceTree = "<group>"; };
 		142AFFFC196ADB6200CC7D46 /* StrikeThroughLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StrikeThroughLabel.m; sourceTree = "<group>"; };
 		142B91AF195A5BE700A0D2E8 /* NewWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -629,6 +671,9 @@
 		14A1050F196CF47B007D5E33 /* share_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_btn@2x.png"; sourceTree = "<group>"; };
 		14A1BB7B19659DFD00073A26 /* HousesProject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HousesProject.h; sourceTree = "<group>"; };
 		14A1BB7C19659DFD00073A26 /* HousesProject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HousesProject.m; sourceTree = "<group>"; };
+		14A2798919780F450095A17E /* ClubDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClubDetailView.h; sourceTree = "<group>"; };
+		14A2798A19780F450095A17E /* ClubDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClubDetailView.m; sourceTree = "<group>"; };
+		14A2798B19780F450095A17E /* ClubDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClubDetailView.xib; sourceTree = "<group>"; };
 		14A288FA196E7A8C001E9BB1 /* RoomsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RoomsCollectionView.h; sourceTree = "<group>"; };
 		14A288FB196E7A8C001E9BB1 /* RoomsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RoomsCollectionView.m; sourceTree = "<group>"; };
 		14A288FC196E7A8C001E9BB1 /* RoomsCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RoomsCollectionView.xib; sourceTree = "<group>"; };
@@ -849,6 +894,8 @@
 		14EE036D196D7E7A002C2F3A /* ActivityCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityCollectionCell.xib; sourceTree = "<group>"; };
 		14EE036F196D8248002C2F3A /* checkdetail_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkdetail_btn.png; sourceTree = "<group>"; };
 		14EE0371196D8F18002C2F3A /* loadingpic4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loadingpic4@2x.png"; sourceTree = "<group>"; };
+		14F6C36A1978CF4F0083379E /* tabbar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_bg@2x.png"; sourceTree = "<group>"; };
+		14F6C36C197902B10083379E /* cc_back2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cc_back2.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -874,11 +921,11 @@
 				14B3D6D7197661B400C1B5FE /* ShareSDKFlatShareViewUI.framework in Frameworks */,
 				14B3D6C7197661B400C1B5FE /* QZoneConnection.framework in Frameworks */,
 				14082ED7195A6FC200E09C47 /* ImageIO.framework in Frameworks */,
-				14A289A8196ED8C8001E9BB1 /* KeyboardManager.framework in Frameworks */,
 				14082ED5195A6FB900E09C47 /* MapKit.framework in Frameworks */,
 				14082ED1195A6F9C00E09C47 /* OpenGLES.framework in Frameworks */,
 				14082ECF195A6F9000E09C47 /* CoreLocation.framework in Frameworks */,
 				14B3D6D5197661B400C1B5FE /* ShareSDK.framework in Frameworks */,
+				14A289A8196ED8C8001E9BB1 /* KeyboardManager.framework in Frameworks */,
 				14082ECD195A6F8200E09C47 /* MessageUI.framework in Frameworks */,
 				14082EC9195A6F6700E09C47 /* libxml2.dylib in Frameworks */,
 				14082EC7195A6F5A00E09C47 /* CoreText.framework in Frameworks */,
@@ -930,6 +977,9 @@
 				14EE036A196D7E6B002C2F3A /* ActivityCollectionCell.h */,
 				14EE036B196D7E6B002C2F3A /* ActivityCollectionCell.m */,
 				14EE036D196D7E7A002C2F3A /* ActivityCollectionCell.xib */,
+				140BB4C0197AB53B0037E565 /* Activity_35CollectionCell.h */,
+				140BB4C1197AB53B0037E565 /* Activity_35CollectionCell.m */,
+				140BB4C3197AB55E0037E565 /* Activity_35CollectionCell.xib */,
 			);
 			name = ActivityPage;
 			sourceTree = "<group>";
@@ -1391,6 +1441,10 @@
 		1454E7BF195A7DC4008C3C5F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				14F6C36C197902B10083379E /* cc_back2.png */,
+				14F6C36A1978CF4F0083379E /* tabbar_bg@2x.png */,
+				141BAFB41977A6C000BA620A /* club_bg2@2x.png */,
+				141BAFB51977A6C000BA620A /* club_bg1@2x.png */,
 				143599411973BBDF001749BF /* get_btn.png */,
 				145537581972B6E2005D2122 /* saveinfo_btn.png */,
 				14A289B4196FB940001E9BB1 /* login_btn.png */,
@@ -1495,6 +1549,12 @@
 				14A28900196E7B73001E9BB1 /* Rooms.m */,
 				14A289B6196FBCD8001E9BB1 /* User.h */,
 				14A289B7196FBCD8001E9BB1 /* User.m */,
+				141BAFC11977AC4E00BA620A /* Club.h */,
+				141BAFC21977AC4E00BA620A /* Club.m */,
+				141BAFBE1977ABF800BA620A /* ClubInfo.h */,
+				141BAFBF1977ABF800BA620A /* ClubInfo.m */,
+				141BAFBB1977ABD800BA620A /* ClubItem.h */,
+				141BAFBC1977ABD800BA620A /* ClubItem.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1544,15 +1604,30 @@
 				140A756D196C37B80074AD56 /* HouseTypeCollectionCell.h */,
 				140A756E196C37B80074AD56 /* HouseTypeCollectionCell.m */,
 				140A7570196C37DD0074AD56 /* HouseTypeCollectionCell.xib */,
+				140BB4BB197AAD110037E565 /* HouseType_35CollectionCell.h */,
+				140BB4BC197AAD110037E565 /* HouseType_35CollectionCell.m */,
+				140BB4BE197AADBD0037E565 /* HouseType_35CollectionCell.xib */,
 				14A288FA196E7A8C001E9BB1 /* RoomsCollectionView.h */,
 				14A288FB196E7A8C001E9BB1 /* RoomsCollectionView.m */,
 				14A288FC196E7A8C001E9BB1 /* RoomsCollectionView.xib */,
 				14A28902196E7DBB001E9BB1 /* RoomsCollectionCell.h */,
 				14A28903196E7DBB001E9BB1 /* RoomsCollectionCell.m */,
 				14A28905196E7EAA001E9BB1 /* RoomsCollectionCell.xib */,
+				140BB4B6197AA5680037E565 /* Rooms_35CollectionCell.h */,
+				140BB4B7197AA5680037E565 /* Rooms_35CollectionCell.m */,
+				140BB4B9197AA5A70037E565 /* Rooms_35CollectionCell.xib */,
 				148DB8CE197510DC00F140A5 /* RoomsDetailView.h */,
 				148DB8CF197510DC00F140A5 /* RoomsDetailView.m */,
 				148DB8D0197510DC00F140A5 /* RoomsDetailView.xib */,
+				141BAFA91977766E00BA620A /* ClubView.h */,
+				141BAFAA1977766E00BA620A /* ClubView.m */,
+				141BAFAB1977766E00BA620A /* ClubView.xib */,
+				141BAFC41977AEF400BA620A /* ClubCell.h */,
+				141BAFC51977AEF400BA620A /* ClubCell.m */,
+				141BAFC61977AEF400BA620A /* ClubCell.xib */,
+				14A2798919780F450095A17E /* ClubDetailView.h */,
+				14A2798A19780F450095A17E /* ClubDetailView.m */,
+				14A2798B19780F450095A17E /* ClubDetailView.xib */,
 			);
 			name = MainPage;
 			sourceTree = "<group>";
@@ -1954,6 +2029,7 @@
 				149E63641967900E00048DF4 /* loadingpic1@2x.png in Resources */,
 				14B224CC1965439100C923DF /* ProjectCollectionCell.xib in Resources */,
 				145537591972B6E2005D2122 /* saveinfo_btn.png in Resources */,
+				140BB4BA197AA5A70037E565 /* Rooms_35CollectionCell.xib in Resources */,
 				142B91BD195A5BE700A0D2E8 /* InfoPlist.strings in Resources */,
 				14A1050E196CE6BA007D5E33 /* praise_btn@2x.png in Resources */,
 				14AE37A9196A80B900F2E75F /* BusinessGoodsCell.xib in Resources */,
@@ -1981,6 +2057,7 @@
 				14B3D6DE19766D2D00C1B5FE /* Icon7.png in Resources */,
 				149E63821967F4DA00048DF4 /* intro_logo.png in Resources */,
 				14A288FE196E7A8C001E9BB1 /* RoomsCollectionView.xib in Resources */,
+				140BB4BF197AADBD0037E565 /* HouseType_35CollectionCell.xib in Resources */,
 				14A289AA196EF012001E9BB1 /* register_btn.png in Resources */,
 				149E63811967F4DA00048DF4 /* intro_panorama.png in Resources */,
 				1454E7DA195A80A5008C3C5F /* HomePageView.xib in Resources */,
@@ -2000,6 +2077,7 @@
 				14AC2C0419625EA400991C44 /* home_consult.png in Resources */,
 				14AA1772195D021F00B6A46B /* setting_coupon@2x.png in Resources */,
 				14AA1774195D021F00B6A46B /* setting_info@2x.png in Resources */,
+				141BAFAD1977766E00BA620A /* ClubView.xib in Resources */,
 				14EE0370196D8248002C2F3A /* checkdetail_btn.png in Resources */,
 				14A2899E196EC63C001E9BB1 /* 37x-Checkmark@2x.png in Resources */,
 				140A7571196C37DD0074AD56 /* HouseTypeCollectionCell.xib in Resources */,
@@ -2012,8 +2090,10 @@
 				14A28906196E7EAA001E9BB1 /* RoomsCollectionCell.xib in Resources */,
 				149E63701967D7D100048DF4 /* activity_Bottom.png in Resources */,
 				14A0DDDD195F079800C12F7C /* top_back.png in Resources */,
+				14A2798D19780F450095A17E /* ClubDetailView.xib in Resources */,
 				14082275196192B700280FA2 /* map_newworld_p.png in Resources */,
 				14A2C0451963A2F8004C12BD /* BusinessCell.xib in Resources */,
+				14F6C36B1978CF4F0083379E /* tabbar_bg@2x.png in Resources */,
 				142C725B1966837E0075D99F /* MapDetailView.xib in Resources */,
 				1407E04F195C211D00A3E6D2 /* ActivityTableView.xib in Resources */,
 				14A2897B196E915B001E9BB1 /* README.md in Resources */,
@@ -2021,6 +2101,7 @@
 				14082276196192B700280FA2 /* map_school_p@2x.png in Resources */,
 				14A0DDAD195EC26000C12F7C /* MapViewController.xib in Resources */,
 				143599401973B05C001749BF /* CouponDetailView.xib in Resources */,
+				141BAFB71977A6C000BA620A /* club_bg1@2x.png in Resources */,
 				14A906B2196BC9E400BFAC2E /* goods_deliver.png in Resources */,
 				14A289A3196ED3D3001E9BB1 /* RegisterView.xib in Resources */,
 				14EE036E196D7E7A002C2F3A /* ActivityCollectionCell.xib in Resources */,
@@ -2039,14 +2120,17 @@
 				14AA1776195D021F00B6A46B /* setting_register@2x.png in Resources */,
 				14A2899C196EC63C001E9BB1 /* 37x-Failure.png in Resources */,
 				14A0DDE5195F0D6500C12F7C /* map_gov@2x.png in Resources */,
+				140BB4C4197AB55E0037E565 /* Activity_35CollectionCell.xib in Resources */,
 				14082278196192B700280FA2 /* map_shop_p@2x.png in Resources */,
 				142C725F196688340075D99F /* mapdetail_red.png in Resources */,
 				14AA1775195D021F00B6A46B /* setting_login@2x.png in Resources */,
 				149E63711967D7D100048DF4 /* activity_join.png in Resources */,
 				14B3D6CD197661B400C1B5FE /* Resource.bundle in Resources */,
 				14AE379B196A752A00F2E75F /* BusinessGoodsView.xib in Resources */,
+				141BAFB61977A6C000BA620A /* club_bg2@2x.png in Resources */,
 				142B9280195A689700A0D2E8 /* NotifyCheck@2x.png in Resources */,
 				14A10508196CDA2A007D5E33 /* discount.jpg in Resources */,
+				141BAFC81977AEF400BA620A /* ClubCell.xib in Resources */,
 				149E63681967A81A00048DF4 /* top_tel.png in Resources */,
 				14B3D6D2197661B400C1B5FE /* WeiboSDK.bundle in Resources */,
 				145537571972B12E005D2122 /* UserInfoView.xib in Resources */,
@@ -2063,6 +2147,7 @@
 				142C725419664B5F0075D99F /* ProjectHeadReusable.xib in Resources */,
 				14AA1773195D021F00B6A46B /* setting_delivery@2x.png in Resources */,
 				142B91F2195A63BC00A0D2E8 /* AKTabBarController.bundle in Resources */,
+				14F6C36D197902B10083379E /* cc_back2.png in Resources */,
 				14AC2C0719625EA400991C44 /* home_navi.png in Resources */,
 				142C725E196688340075D99F /* mapdetail_gray.png in Resources */,
 			);
@@ -2100,18 +2185,22 @@
 				14A28982196E915B001E9BB1 /* SDWebImageDownloader.m in Sources */,
 				142B923B195A66D200A0D2E8 /* ASIFormDataRequest.m in Sources */,
 				14A2896E196E915B001E9BB1 /* PSTCollectionView.m in Sources */,
+				141BAFAC1977766E00BA620A /* ClubView.m in Sources */,
 				14A28975196E915B001E9BB1 /* PSTCollectionViewUpdateItem.m in Sources */,
 				14A2896F196E915B001E9BB1 /* PSTCollectionViewCell.m in Sources */,
 				14A28981196E915B001E9BB1 /* SDWebImageDecoder.m in Sources */,
 				14B224D01965468700C923DF /* ProjectCollectionView.m in Sources */,
 				142B9213195A668800A0D2E8 /* AFJSONUtilities.m in Sources */,
 				140A756B196C36420074AD56 /* HouseTypeCollectionView.m in Sources */,
+				140BB4C2197AB53B0037E565 /* Activity_35CollectionCell.m in Sources */,
+				141BAFC01977ABF800BA620A /* ClubInfo.m in Sources */,
 				142B925D195A681C00A0D2E8 /* EGOImageButton.m in Sources */,
 				14A28988196E915B001E9BB1 /* UIImage+MultiFormat.m in Sources */,
 				14B8B7BA196143FE00752ED6 /* RMMapper.m in Sources */,
 				142C725A1966837E0075D99F /* MapDetailView.m in Sources */,
 				1407E05A195C7CE900A3E6D2 /* SettingView.m in Sources */,
 				142B924A195A678C00A0D2E8 /* IconDownloader.m in Sources */,
+				141BAFC31977AC4E00BA620A /* Club.m in Sources */,
 				142B91F4195A63BC00A0D2E8 /* AKTabBarView.m in Sources */,
 				14A28901196E7B73001E9BB1 /* Rooms.m in Sources */,
 				14B8B7C01961507600752ED6 /* Support.m in Sources */,
@@ -2119,6 +2208,7 @@
 				1407E05E195C7DCB00A3E6D2 /* SettingModel.m in Sources */,
 				14AE37A1196A7D5D00F2E75F /* Coupons.m in Sources */,
 				142B91F0195A63BC00A0D2E8 /* AKTab.m in Sources */,
+				141BAFC71977AEF400BA620A /* ClubCell.m in Sources */,
 				142B9215195A668800A0D2E8 /* AFOSCClient.m in Sources */,
 				142B9212195A668800A0D2E8 /* AFJSONRequestOperation.m in Sources */,
 				14A2898D196E915B001E9BB1 /* MWGridViewController.m in Sources */,
@@ -2143,6 +2233,7 @@
 				14B8B7A51960FCD000752ED6 /* SGFocusImageItem.m in Sources */,
 				142B920F195A668800A0D2E8 /* AFHTTPClient.m in Sources */,
 				14A28971196E915B001E9BB1 /* PSTCollectionViewData.m in Sources */,
+				140BB4BD197AAD110037E565 /* HouseType_35CollectionCell.m in Sources */,
 				14B8B7B9196143FE00752ED6 /* NSUserDefaults+RMSaveCustomObject.m in Sources */,
 				14A289AE196F83D0001E9BB1 /* LoginView.m in Sources */,
 				14A2898A196E915B001E9BB1 /* UIImageView+WebCache.m in Sources */,
@@ -2178,6 +2269,7 @@
 				14EE0368196D7DF5002C2F3A /* ActivityCollectionView.m in Sources */,
 				1454E7D2195A7F15008C3C5F /* NSData+Base64.m in Sources */,
 				14A906AC196B81FE00BFAC2E /* GoodsDetailView.m in Sources */,
+				14A2798C19780F450095A17E /* ClubDetailView.m in Sources */,
 				149E637A1967EAAE00048DF4 /* ProjectIntroView.m in Sources */,
 				14082EB5195A6D4D00E09C47 /* GCDiscreetNotificationView.m in Sources */,
 				14B8B7AC1961108E00752ED6 /* LoadingCell.m in Sources */,
@@ -2211,6 +2303,7 @@
 				14A28987196E915B001E9BB1 /* UIImage+GIF.m in Sources */,
 				149E63751967DB7800048DF4 /* ActivityDetailView.m in Sources */,
 				14A28989196E915B001E9BB1 /* UIImage+WebP.m in Sources */,
+				141BAFBD1977ABD800BA620A /* ClubItem.m in Sources */,
 				142B91F5195A63BC00A0D2E8 /* UINavigationController+AKTabBarController.m in Sources */,
 				142B9239195A66D200A0D2E8 /* ASIDataDecompressor.m in Sources */,
 				14A0DDD6195ECB6900C12F7C /* KYBubbleView.m in Sources */,
@@ -2226,6 +2319,7 @@
 				142B91BF195A5BE700A0D2E8 /* main.m in Sources */,
 				14A288FD196E7A8C001E9BB1 /* RoomsCollectionView.m in Sources */,
 				14A2C0441963A2F8004C12BD /* BusinessCell.m in Sources */,
+				140BB4B8197AA5680037E565 /* Rooms_35CollectionCell.m in Sources */,
 				14A28985196E915B001E9BB1 /* SDWebImagePrefetcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2388,6 +2482,14 @@
 					Framework,
 					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
 					Framework,
+					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
+					Framework,
+					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
+					Framework,
+					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
+					Framework,
+					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
+					Framework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NewWorld/NewWorld-Prefix.pch";
@@ -2431,6 +2533,14 @@
 					"$(PROJECT_DIR)/NewWorld/ShareSDK/Extend/QQConnectSDK",
 					"$(PROJECT_DIR)/NewWorld/ShareSDK",
 					"$(PROJECT_DIR)/NewWorld/ShareSDK/UI",
+					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
+					Framework,
+					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
+					Framework,
+					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
+					Framework,
+					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
+					Framework,
 					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
 					Framework,
 					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",

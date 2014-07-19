@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Rooms.h"
 #import "RoomsCollectionCell.h"
+#import "Rooms_35CollectionCell.h"
 #import "UITap.h"
 #import "EGOImageView.h"
 #import "MWPhotoBrowser.h"

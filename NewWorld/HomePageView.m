@@ -32,6 +32,9 @@
     [super viewDidLoad];
     activityIndex = 0;
     [self initTopImage];
+    if (!IS_IPHONE_5) {
+        [self.scrollView setContentSize:CGSizeMake(self.scrollView.bounds.size.width, 500)];
+    }
     
     //楼盘导航事件注册
     UITapGestureRecognizer *naviTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(naviClick)];
@@ -209,6 +212,13 @@
                                 activity.thumb, @"thumb",
                                 nil];
     [Tool shareAction:sender andShowView:self.view andContent:contentDic];
+}
+
+- (IBAction)clubAction:(id)sender {
+    ProjectCollectionView *projectView = [[ProjectCollectionView alloc] init];
+    projectView.showType = @"club";
+    projectView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:projectView animated:YES];
 }
 
 @end

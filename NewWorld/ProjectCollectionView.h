@@ -13,6 +13,7 @@
 #import "ProjectHeadReusable.h"
 #import "ProjectIntroView.h"
 #import "RoomsCollectionView.h"
+#import "ClubView.h"
 
 @interface ProjectCollectionView : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, IconDownloaderDelegate>
 {

@@ -188,6 +188,12 @@
             roomsView.projectName = project.title;
             [self.navigationController pushViewController:roomsView animated:YES];
         }
+        else if([showType isEqualToString:@"club"])
+        {
+            ClubView *clubView = [[ClubView alloc] init];
+            clubView.communityId = project.id;
+            [self.navigationController pushViewController:clubView animated:YES];
+        }
     }
 }
 

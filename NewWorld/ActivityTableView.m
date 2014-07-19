@@ -68,6 +68,9 @@
             [cancelButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         }
     }
+    if (!IS_IOS7) {
+        [self.searchBar setTintColor:[Tool getBackgroundColor]];
+    }
     
     allCount = 0;
     //添加的代码

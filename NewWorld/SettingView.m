@@ -37,6 +37,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (!IS_IOS7) {
+        [self.tableSettings setBackgroundColor:[Tool getBackgroundColor]];
+    }
 
     self.settingsInSection = [[NSMutableDictionary alloc] initWithCapacity:3];
     NSArray *first = [[NSArray alloc] initWithObjects:

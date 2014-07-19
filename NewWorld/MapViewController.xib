@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5053" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1552" identifier="iOS"/>
+        <deployment defaultVersion="1536" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController">
             <connections>
                 <outlet property="_mapView" destination="Oia-h5-h47" id="XO1-dm-HAX"/>
+                <outlet property="naviView" destination="3NX-Wm-pvs" id="MV3-6o-WWe"/>
                 <outlet property="tabBar" destination="IA7-Ar-Zbg" id="o5S-5l-VAL"/>
                 <outlet property="view" destination="1" id="3"/>
             </connections>
@@ -19,16 +20,16 @@
             <subviews>
                 <view contentMode="scaleToFill" id="3NX-Wm-pvs">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="top_bg.png" id="8Da-se-koa">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="UeI-Z6-P58">
-                            <rect key="frame" x="10" y="29" width="25" height="25"/>
+                            <rect key="frame" x="10" y="29" width="31" height="25"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            <state key="normal" image="top_back.png">
+                            <state key="normal" image="cc_back2.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -82,12 +83,12 @@
         </view>
     </objects>
     <resources>
+        <image name="cc_back2.png" width="50" height="40"/>
         <image name="map_all.png" width="30" height="30"/>
         <image name="map_gov.png" width="30" height="30"/>
         <image name="map_school.png" width="30" height="30"/>
         <image name="map_service.png" width="30" height="30"/>
         <image name="map_shop.png" width="30" height="30"/>
-        <image name="top_back.png" width="40" height="40"/>
         <image name="top_bg.png" width="1" height="44"/>
     </resources>
 </document>

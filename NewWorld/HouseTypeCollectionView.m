@@ -50,7 +50,13 @@
     self.houseTypeCollection.delegate = self;
     self.houseTypeCollection.dataSource = self;
     //注册CELL类
-    [self.houseTypeCollection registerClass:[HouseTypeCollectionCell class] forCellWithReuseIdentifier:HouseTypeCollectionCellIdentifier];
+    if (IS_IPHONE_5) {
+        [self.houseTypeCollection registerClass:[HouseTypeCollectionCell class] forCellWithReuseIdentifier:HouseTypeCollectionCellIdentifier];
+    }
+    else
+    {
+        [self.houseTypeCollection registerClass:[HouseType_35CollectionCell class] forCellWithReuseIdentifier:HouseType_35CollectionCellIdentifier];
+    }
 
     self.houseTypeCollection.backgroundColor = [Tool getBackgroundColor];
     [self reload];
@@ -119,58 +125,116 @@
 //每个UICollectionView展示的内容
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    HouseTypeCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:HouseTypeCollectionCellIdentifier forIndexPath:indexPath];
-    if (!cell) {
-        NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"HouseTypeCollectionCell" owner:self options:nil];
-        for (NSObject *o in objects) {
-            if ([o isKindOfClass:[HouseTypeCollectionCell class]]) {
-                cell = (HouseTypeCollectionCell *)o;
-                break;
+    if (IS_IPHONE_5) {
+        HouseTypeCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:HouseTypeCollectionCellIdentifier forIndexPath:indexPath];
+        if (!cell) {
+            NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"HouseTypeCollectionCell" owner:self options:nil];
+            for (NSObject *o in objects) {
+                if ([o isKindOfClass:[HouseTypeCollectionCell class]]) {
+                    cell = (HouseTypeCollectionCell *)o;
+                    break;
+                }
             }
         }
+        int indexRow = [indexPath row];
+        HouseType *house = [houseTypes objectAtIndex:indexRow];
+        self.pageControl.currentPage = indexRow;
+        
+        [Tool roundView:cell.bg andCornerRadius:5.0f];
+        
+        //注册Cell按钮点击事件
+        UITap *praiseTap = [[UITap alloc] initWithTarget:self action:@selector(praiseAction:)];
+        [cell.praiseBtn addGestureRecognizer:praiseTap];
+        praiseTap.tag = indexRow;
+        
+        [cell.shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.shareBtn.tag = indexRow;
+        
+        //去除所以子视图
+        for(UIView *view in [cell.marketPriceLb subviews])
+        {
+            [view removeFromSuperview];
+        }
+        
+        StrikeThroughLabel *slabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(0, 0, 123, 21)];
+        slabel.text = [NSString stringWithFormat:@"市场价：%@万元", house.market_price];
+        slabel.font = [UIFont italicSystemFontOfSize:12.0f];
+        slabel.strikeThroughEnabled = YES;
+        [cell.marketPriceLb addSubview:slabel];
+        
+        cell.titleLb.text = [NSString stringWithFormat:@"%@ %@", house.comm_name, house.title];
+        cell.webPriceLb.text = [NSString stringWithFormat:@"网售价：%@万元", house.web_price];
+        cell.noteTv.text = house.note;
+        cell.discountLb.text = [NSString stringWithFormat:@"折扣：%@", house.discount];
+        cell.unitPriceLb.text = [NSString stringWithFormat:@"单价：%@元/m²", house.unit_price];
+        cell.areaLb.text = [NSString stringWithFormat:@"面积：%@m²", house.area];
+        cell.houseTypeLb.text = [NSString stringWithFormat:@"户型：%@", house.house_type];
+        
+        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", house.points];
+        
+        EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
+        imageView.imageURL = [NSURL URLWithString:house.thumb];
+        imageView.frame = CGRectMake(0.0f, 0.0f, 280.0f, 203.0f);
+        [cell.imageIv addSubview:imageView];
+        
+        return cell;
     }
-    int indexRow = [indexPath row];
-    HouseType *house = [houseTypes objectAtIndex:indexRow];
-    self.pageControl.currentPage = indexRow;
-    
-    [Tool roundView:cell.bg andCornerRadius:5.0f];
-    
-    //注册Cell按钮点击事件
-    UITap *praiseTap = [[UITap alloc] initWithTarget:self action:@selector(praiseAction:)];
-    [cell.praiseBtn addGestureRecognizer:praiseTap];
-    praiseTap.tag = indexRow;
-    
-    [cell.shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
-    cell.shareBtn.tag = indexRow;
-    
-    //去除所以子视图
-    for(UIView *view in [cell.marketPriceLb subviews])
+    else
     {
-        [view removeFromSuperview];
+        HouseType_35CollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:HouseType_35CollectionCellIdentifier forIndexPath:indexPath];
+        if (!cell) {
+            NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"HouseType_35CollectionCell" owner:self options:nil];
+            for (NSObject *o in objects) {
+                if ([o isKindOfClass:[HouseType_35CollectionCell class]]) {
+                    cell = (HouseType_35CollectionCell *)o;
+                    break;
+                }
+            }
+        }
+        int indexRow = [indexPath row];
+        HouseType *house = [houseTypes objectAtIndex:indexRow];
+        self.pageControl.currentPage = indexRow;
+        
+        [Tool roundView:cell.bg andCornerRadius:5.0f];
+        
+        //注册Cell按钮点击事件
+        UITap *praiseTap = [[UITap alloc] initWithTarget:self action:@selector(praiseAction:)];
+        [cell.praiseBtn addGestureRecognizer:praiseTap];
+        praiseTap.tag = indexRow;
+        
+        [cell.shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.shareBtn.tag = indexRow;
+        
+        //去除所以子视图
+        for(UIView *view in [cell.marketPriceLb subviews])
+        {
+            [view removeFromSuperview];
+        }
+        
+        StrikeThroughLabel *slabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(0, 0, 123, 21)];
+        slabel.text = [NSString stringWithFormat:@"市场价：%@万元", house.market_price];
+        slabel.font = [UIFont italicSystemFontOfSize:12.0f];
+        slabel.strikeThroughEnabled = YES;
+        [cell.marketPriceLb addSubview:slabel];
+        
+        cell.titleLb.text = [NSString stringWithFormat:@"%@ %@", house.comm_name, house.title];
+        cell.webPriceLb.text = [NSString stringWithFormat:@"网售价：%@万元", house.web_price];
+        cell.noteTv.text = house.note;
+        cell.discountLb.text = [NSString stringWithFormat:@"折扣：%@", house.discount];
+        cell.unitPriceLb.text = [NSString stringWithFormat:@"单价：%@元/m²", house.unit_price];
+        cell.areaLb.text = [NSString stringWithFormat:@"面积：%@m²", house.area];
+        cell.houseTypeLb.text = [NSString stringWithFormat:@"户型：%@", house.house_type];
+        
+        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", house.points];
+        
+        EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
+        imageView.imageURL = [NSURL URLWithString:house.thumb];
+        imageView.frame = CGRectMake(0.0f, 0.0f, 260.0f, 186.0f);
+        [cell.imageIv addSubview:imageView];
+        
+        return cell;
     }
-
-    StrikeThroughLabel *slabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(0, 0, 123, 21)];
-    slabel.text = [NSString stringWithFormat:@"市场价：%@万元", house.market_price];
-    slabel.font = [UIFont italicSystemFontOfSize:12.0f];
-    slabel.strikeThroughEnabled = YES;
-    [cell.marketPriceLb addSubview:slabel];
     
-    cell.titleLb.text = [NSString stringWithFormat:@"%@ %@", house.comm_name, house.title];
-    cell.webPriceLb.text = [NSString stringWithFormat:@"网售价：%@万元", house.web_price];
-    cell.noteTv.text = house.note;
-    cell.discountLb.text = [NSString stringWithFormat:@"折扣：%@", house.discount];
-    cell.unitPriceLb.text = [NSString stringWithFormat:@"单价：%@元/m²", house.unit_price];
-    cell.areaLb.text = [NSString stringWithFormat:@"面积：%@m²", house.area];
-    cell.houseTypeLb.text = [NSString stringWithFormat:@"户型：%@", house.house_type];
-
-    cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", house.points];
-    
-    EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
-    imageView.imageURL = [NSURL URLWithString:house.thumb];
-    imageView.frame = CGRectMake(0.0f, 0.0f, 280.0f, 203.0f);
-    [cell.imageIv addSubview:imageView];
-    
-    return cell;
 }
 
 - (void)praiseAction:(id)sender
@@ -220,7 +284,13 @@
 //定义每个UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(320, 504);
+    if (IS_IPHONE_5) {
+        return CGSizeMake(320, 504);
+    }
+    else
+    {
+        return CGSizeMake(320, 416);
+    }
 }
 
 //定义每个UICollectionView 的 margin

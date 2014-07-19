@@ -728,4 +728,37 @@
     return user;
 }
 
++ (Club *)readJsonStrToClub:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *clubDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( clubDic == nil) {
+        return nil;
+    }
+    Club *club = [[Club alloc] init];
+    
+    NSDictionary *club_info = [clubDic objectForKey:@"club_info"];
+    ClubInfo *clubinfo = [RMMapper objectWithClass:[ClubInfo class] fromDictionary:club_info];
+    club.club_info = clubinfo;
+    
+    NSArray *club_items = [clubDic objectForKey:@"club_items"];
+    NSMutableArray *clubitems = [RMMapper mutableArrayOfClass:[ClubItem class]
+                                        fromArrayOfDictionary:club_items];
+    club.club_items = clubitems;
+    return club;
+}
+
++ (ClubItem *)readJsonStrToClubDetail:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSDictionary *detailDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( detailDic == nil) {
+        return nil;
+    }
+    ClubItem *detail = [RMMapper objectWithClass:[ClubItem class] fromDictionary:detailDic];
+    return detail;
+}
+
 @end

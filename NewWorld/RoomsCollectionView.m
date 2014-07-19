@@ -52,7 +52,14 @@
     self.roomsCollection.delegate = self;
     self.roomsCollection.dataSource = self;
     //注册CELL类
-    [self.roomsCollection registerClass:[RoomsCollectionCell class] forCellWithReuseIdentifier:RoomsCollectionCellIdentifier];
+    if (IS_IPHONE_5) {
+        [self.roomsCollection registerClass:[RoomsCollectionCell class] forCellWithReuseIdentifier:RoomsCollectionCellIdentifier];
+    }
+    else
+    {
+        [self.roomsCollection registerClass:[Rooms_35CollectionCell class] forCellWithReuseIdentifier:Rooms_35CollectionCellIdentifier];
+    }
+    
     
     self.roomsCollection.backgroundColor = [Tool getBackgroundColor];
     [self reload];
@@ -76,8 +83,19 @@
                                            rooms = [Tool readJsonStrToRoomsArray:operation.responseString];
                                            if (rooms != nil && [rooms count] > 0) {
                                                self.pageControl.numberOfPages = [rooms count];
+                                               [self.roomsCollection reloadData];
+                                           }    
+                                           else
+                                           {
+                                               self.pageControl.numberOfPages = 0;
+                                               UILabel *noDataLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height/2-100, 320, 44)];
+                                               noDataLabel.font = [UIFont boldSystemFontOfSize:18];
+                                               noDataLabel.text = @"暂无数据";
+                                               noDataLabel.textColor = [UIColor blackColor];
+                                               noDataLabel.backgroundColor = [UIColor clearColor];
+                                               noDataLabel.textAlignment = UITextAlignmentCenter;
+                                               [self.view addSubview:noDataLabel];
                                            }
-                                           [self.roomsCollection reloadData];
                                        }
                                        @catch (NSException *exception) {
                                            [NdUncaughtExceptionHandler TakeException:exception];
@@ -110,42 +128,76 @@
 //每个UICollectionView展示的内容
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    RoomsCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:RoomsCollectionCellIdentifier forIndexPath:indexPath];
-    if (!cell) {
-        NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"RoomsCollectionCell" owner:self options:nil];
-        for (NSObject *o in objects) {
-            if ([o isKindOfClass:[RoomsCollectionCell class]]) {
-                cell = (RoomsCollectionCell *)o;
-                break;
-            }
-        }
-    }
     int indexRow = [indexPath row];
     Rooms *room = [rooms objectAtIndex:indexRow];
     self.pageControl.currentPage = indexRow;
-    
-//    NSLog([room.images objectAtIndex:0]);
-    [Tool roundView:cell.bg andCornerRadius:5.0f];
-    
-    //注册Cell按钮点击事件
-    UITap *praiseTap = [[UITap alloc] initWithTarget:self action:@selector(praiseAction:)];
-    [cell.praiseBtn addGestureRecognizer:praiseTap];
-    praiseTap.tag = indexRow;
-    
-    [cell.shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
-    cell.shareBtn.tag = indexRow;
-    
-    cell.titleLb.text = [NSString stringWithFormat:@"%@：%@", projectName, room.title];
-    cell.introTv.text = room.intro;
-    
-    cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", room.points];
-    
-    EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
-    imageView.imageURL = [NSURL URLWithString:room.thumb];
-    imageView.frame = CGRectMake(0.0f, 0.0f, 300.0f, 304.0f);
-    [cell.imageIv addSubview:imageView];
-    
-    return cell;
+    if (IS_IPHONE_5) {
+        RoomsCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:RoomsCollectionCellIdentifier forIndexPath:indexPath];
+        if (!cell) {
+            NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"RoomsCollectionCell" owner:self options:nil];
+            for (NSObject *o in objects) {
+                if ([o isKindOfClass:[RoomsCollectionCell class]]) {
+                    cell = (RoomsCollectionCell *)o;
+                    break;
+                }
+            }
+        }
+        [Tool roundView:cell.bg andCornerRadius:5.0f];
+        
+        //注册Cell按钮点击事件
+        UITap *praiseTap = [[UITap alloc] initWithTarget:self action:@selector(praiseAction:)];
+        [cell.praiseBtn addGestureRecognizer:praiseTap];
+        praiseTap.tag = indexRow;
+        
+        [cell.shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.shareBtn.tag = indexRow;
+        
+        cell.titleLb.text = [NSString stringWithFormat:@"%@：%@", projectName, room.title];
+        cell.introTv.text = room.intro;
+        
+        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", room.points];
+        
+        EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
+        imageView.imageURL = [NSURL URLWithString:room.thumb];
+        imageView.frame = CGRectMake(0.0f, 0.0f, 300.0f, 304.0f);
+        [cell.imageIv addSubview:imageView];
+        
+        return cell;
+    }
+    else
+    {
+        Rooms_35CollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:Rooms_35CollectionCellIdentifier forIndexPath:indexPath];
+        if (!cell) {
+            NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"Rooms_35CollectionCell" owner:self options:nil];
+            for (NSObject *o in objects) {
+                if ([o isKindOfClass:[Rooms_35CollectionCell class]]) {
+                    cell = (Rooms_35CollectionCell *)o;
+                    break;
+                }
+            }
+        }
+        [Tool roundView:cell.bg andCornerRadius:5.0f];
+        
+        //注册Cell按钮点击事件
+        UITap *praiseTap = [[UITap alloc] initWithTarget:self action:@selector(praiseAction:)];
+        [cell.praiseBtn addGestureRecognizer:praiseTap];
+        praiseTap.tag = indexRow;
+        
+        [cell.shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.shareBtn.tag = indexRow;
+        
+        cell.titleLb.text = [NSString stringWithFormat:@"%@：%@", projectName, room.title];
+        cell.introTv.text = room.intro;
+        
+        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", room.points];
+        
+        EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
+        imageView.imageURL = [NSURL URLWithString:room.thumb];
+        imageView.frame = CGRectMake(0.0f, 0.0f, 241.0f, 229);
+        [cell.imageIv addSubview:imageView];
+        
+        return cell;
+    }
 }
 
 - (void)praiseAction:(id)sender
@@ -195,7 +247,13 @@
 //定义每个UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(320, 504);
+    if (IS_IPHONE_5) {
+        return CGSizeMake(320, 504);
+    }
+    else
+    {
+        return CGSizeMake(320, 416);
+    }
 }
 
 //定义每个UICollectionView 的 margin

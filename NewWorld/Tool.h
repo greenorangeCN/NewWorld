@@ -27,6 +27,7 @@
 #import "User.h"
 #import "LoginView.h"
 #import "RegisterView.h"
+#import "Club.h"
 #import <ShareSDK/ShareSDK.h>
 
 @interface Tool : NSObject
@@ -117,5 +118,7 @@
 + (HouseType *)readJsonStrToHouseTypeDetail:(NSString *)str;
 + (NSMutableArray *)readJsonStrToRoomsArray:(NSString *)str;
 + (User *)readJsonStrToUser:(NSString *)str;
++ (Club *)readJsonStrToClub:(NSString *)str;
++ (ClubItem *)readJsonStrToClubDetail:(NSString *)str;
 
 @end

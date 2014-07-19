@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Activity.h"
 #import "ActivityCollectionCell.h"
+#import "Activity_35CollectionCell.h"
 #import "ActivityDetailView.h"
 #import "UITap.h"
 #import "EGOImageView.h"

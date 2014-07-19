@@ -10,6 +10,7 @@
 
 @implementation MapViewController
 @synthesize tabBar;
+@synthesize naviView;
 
 static CGFloat kTransitionDuration = 0.45f;
 
@@ -54,7 +55,12 @@ static CGFloat kTransitionDuration = 0.45f;
     bubbleView = [[KYBubbleView alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
     bubbleView.hidden = NO;
     
-    self.tabBar.selectedImageTintColor = [UIColor colorWithRed:197.0/255 green:36.0/255 blue:42.0/255 alpha:1.0];
+    [self.tabBar setSelectedImageTintColor:[UIColor colorWithRed:197.0/255 green:36.0/255 blue:42.0/255 alpha:1.0]];
+    if (!IS_IOS7) {
+        [self.tabBar setBackgroundImage:[UIImage imageNamed:@"tabbar_bg"]];
+        self.naviView.frame = CGRectMake(0, 0, self.naviView.frame.size.width, self.naviView.frame.size.height - 20);
+        _mapView.frame = CGRectMake(0, self.naviView.frame.size.height, _mapView.frame.size.width, _mapView.frame.size.height + 20);
+    }
     //初始化选中第一个
     self.tabBar.selectedItem = [self.tabBar.items objectAtIndex:0];
     self.tabBar.delegate = self;
@@ -65,6 +71,7 @@ static CGFloat kTransitionDuration = 0.45f;
     NSURL *dbURLPath = [NSURL fileURLWithPath:directory];
     [self addSkipBackupAttributeToItemAtURL:dbURLPath];
     [self addSkipBackupAttributeToPath:directory];
+    
     [self startLocation];
     [self initMapsData];
 }

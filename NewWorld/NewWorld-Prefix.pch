@@ -61,7 +61,8 @@
 #define api_join_activities @"/api/join_activities"
 #define api_is_join @"/api/is_join"
 #define api_housetype_detail @"/api/get_house_type_detail"
-
+#define api_community_club @"/api/get_community_club"
+#define api_clubitem_detail @"/api/club_item_detail"
 
 #define SettingTableIdentifier @"SettingTableIdentifier"
 #define ActivityCellIdentifier @"ActivityCellIdentifier"
@@ -69,8 +70,12 @@
 #define BusinessGoodsCellIdentifier @"BusinessGoodsCellIdentifier"
 #define ProjectCollectionCellIdentifier @"ProjectCollectionCellIdentifier"
 #define HouseTypeCollectionCellIdentifier @"HouseTypeCollectionCellIdentifier"
+#define HouseType_35CollectionCellIdentifier @"HouseType_35CollectionCellIdentifier"
 #define ActivityCollectionCellIdentifier @"ActivityCollectionCellIdentifier"
+#define Activity_35CollectionCellIdentifier @"Activity_35CollectionCellIdentifier"
 #define RoomsCollectionCellIdentifier @"RoomsCollectionCellIdentifier"
+#define Rooms_35CollectionCellIdentifier @"Rooms_35CollectionCellIdentifier"
+#define ClubCellIdentifier @"ClubCellIdentifier"
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 

@@ -48,7 +48,13 @@
     [super viewDidLoad];
     self.activityCollection.delegate = self;
     self.activityCollection.dataSource = self;
-    [self.activityCollection registerClass:[ActivityCollectionCell class] forCellWithReuseIdentifier:ActivityCollectionCellIdentifier];
+    if (IS_IPHONE_5) {
+        [self.activityCollection registerClass:[ActivityCollectionCell class] forCellWithReuseIdentifier:ActivityCollectionCellIdentifier];
+    }
+    else
+    {
+        [self.activityCollection registerClass:[Activity_35CollectionCell class] forCellWithReuseIdentifier:Activity_35CollectionCellIdentifier];
+    }
     
     self.activityCollection.backgroundColor = [Tool getBackgroundColor];
     [self reload];
@@ -116,42 +122,83 @@
 //每个UICollectionView展示的内容
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ActivityCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ActivityCollectionCellIdentifier forIndexPath:indexPath];
-    if (!cell) {
-        NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"ActivityCollectionCell" owner:self options:nil];
-        for (NSObject *o in objects) {
-            if ([o isKindOfClass:[ActivityCollectionCell class]]) {
-                cell = (ActivityCollectionCell *)o;
-                break;
+    if (IS_IPHONE_5) {
+        ActivityCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ActivityCollectionCellIdentifier forIndexPath:indexPath];
+        if (!cell) {
+            NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"ActivityCollectionCell" owner:self options:nil];
+            for (NSObject *o in objects) {
+                if ([o isKindOfClass:[ActivityCollectionCell class]]) {
+                    cell = (ActivityCollectionCell *)o;
+                    break;
+                }
             }
         }
+        int indexRow = [indexPath row];
+        Activity *activity = [activities objectAtIndex:indexRow];
+        self.pageControl.currentPage = indexRow;
+        
+        [Tool roundView:cell.bg andCornerRadius:5.0f];
+        
+        //注册Cell按钮点击事件
+        UITap *praiseTap = [[UITap alloc] initWithTarget:self action:@selector(praiseAction:)];
+        [cell.praiseBtn addGestureRecognizer:praiseTap];
+        praiseTap.tag = indexRow;
+        
+        [cell.shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.shareBtn.tag = indexRow;
+        
+        cell.titleLb.text = activity.title;
+        cell.dateLb.text = [NSString stringWithFormat:@"活动时间：%@", activity.validityTime];
+        cell.conditionLb.text = [NSString stringWithFormat:@"活动资格：%@", activity.condition];
+        cell.telephoneLb.text = [NSString stringWithFormat:@"咨询电话：%@", activity.telephone];
+        cell.qqLb.text = [NSString stringWithFormat:@"咨询QQ：%@", activity.qq];
+        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", activity.points];
+        
+        EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
+        imageView.imageURL = [NSURL URLWithString:activity.thumb];
+        imageView.frame = CGRectMake(0.0f, 0.0f, 300.0f, 209.0f);
+        [cell.imageIv addSubview:imageView];
+        return cell;
     }
-    int indexRow = [indexPath row];
-    Activity *activity = [activities objectAtIndex:indexRow];
-    self.pageControl.currentPage = indexRow;
-    
-    [Tool roundView:cell.bg andCornerRadius:5.0f];
-    
-    //注册Cell按钮点击事件
-    UITap *praiseTap = [[UITap alloc] initWithTarget:self action:@selector(praiseAction:)];
-    [cell.praiseBtn addGestureRecognizer:praiseTap];
-    praiseTap.tag = indexRow;
-    
-    [cell.shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
-    cell.shareBtn.tag = indexRow;
-    
-    cell.titleLb.text = activity.title;
-    cell.dateLb.text = [NSString stringWithFormat:@"活动时间：%@", activity.validityTime];
-    cell.conditionLb.text = [NSString stringWithFormat:@"活动资格：%@", activity.condition];
-    cell.telephoneLb.text = [NSString stringWithFormat:@"咨询电话：%@", activity.telephone];
-    cell.qqLb.text = [NSString stringWithFormat:@"咨询QQ：%@", activity.qq];
-    cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", activity.points];
-    
-    EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
-    imageView.imageURL = [NSURL URLWithString:activity.thumb];
-    imageView.frame = CGRectMake(0.0f, 0.0f, 300.0f, 209.0f);
-    [cell.imageIv addSubview:imageView];
-    return cell;
+    else
+    {
+        Activity_35CollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:Activity_35CollectionCellIdentifier forIndexPath:indexPath];
+        if (!cell) {
+            NSArray *objects = [[NSBundle mainBundle] loadNibNamed:@"Activity_35CollectionCell" owner:self options:nil];
+            for (NSObject *o in objects) {
+                if ([o isKindOfClass:[Activity_35CollectionCell class]]) {
+                    cell = (Activity_35CollectionCell *)o;
+                    break;
+                }
+            }
+        }
+        int indexRow = [indexPath row];
+        Activity *activity = [activities objectAtIndex:indexRow];
+        self.pageControl.currentPage = indexRow;
+        
+        [Tool roundView:cell.bg andCornerRadius:5.0f];
+        
+        //注册Cell按钮点击事件
+        UITap *praiseTap = [[UITap alloc] initWithTarget:self action:@selector(praiseAction:)];
+        [cell.praiseBtn addGestureRecognizer:praiseTap];
+        praiseTap.tag = indexRow;
+        
+        [cell.shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
+        cell.shareBtn.tag = indexRow;
+        
+        cell.titleLb.text = activity.title;
+        cell.dateLb.text = [NSString stringWithFormat:@"活动时间：%@", activity.validityTime];
+        cell.conditionLb.text = [NSString stringWithFormat:@"活动资格：%@", activity.condition];
+        cell.telephoneLb.text = [NSString stringWithFormat:@"咨询电话：%@", activity.telephone];
+        cell.qqLb.text = [NSString stringWithFormat:@"咨询QQ：%@", activity.qq];
+        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", activity.points];
+        
+        EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
+        imageView.imageURL = [NSURL URLWithString:activity.thumb];
+        imageView.frame = CGRectMake(0.0f, 0.0f, 300.0f, 209.0f);
+        [cell.imageIv addSubview:imageView];
+        return cell;
+    }
 }
 
 - (void)praiseAction:(id)sender
@@ -201,7 +248,13 @@
 //定义每个UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return CGSizeMake(320, 504);
+    if (IS_IPHONE_5) {
+        return CGSizeMake(320, 504);
+    }
+    else
+    {
+        return CGSizeMake(320, 416);
+    }
 }
 
 //定义每个UICollectionView 的 margin

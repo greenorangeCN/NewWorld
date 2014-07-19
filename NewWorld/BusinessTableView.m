@@ -70,6 +70,9 @@
             [cancelButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         }
     }
+    if (!IS_IOS7) {
+        [self.searchBar setTintColor:[Tool getBackgroundColor]];
+    }
     
     self.storeTable.delegate = self;
     self.storeTable.dataSource = self;

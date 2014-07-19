@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HouseType.h"
 #import "HouseTypeCollectionCell.h"
+#import "HouseType_35CollectionCell.h"
 #import "UITap.h"
 #import "EGOImageView.h"
 #import "StrikeThroughLabel.h"

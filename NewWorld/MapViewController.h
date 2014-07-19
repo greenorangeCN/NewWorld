@@ -35,7 +35,7 @@
 }
 
 - (void)showBubble:(BOOL)show;
--(void)cleanMap;
+@property (strong, nonatomic) IBOutlet UIView *naviView;
 - (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL;
 @property (strong, nonatomic) IBOutlet UITabBar *tabBar;
 - (IBAction)backAction:(id)sender;
