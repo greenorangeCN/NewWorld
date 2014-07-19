@@ -198,17 +198,18 @@
     [self.actionSheet setActionSheetStyle:UIActionSheetStyleBlackTranslucent];
     // Add the picker
     self.projectPicker = [[UIPickerView alloc] init];
+    [self.projectPicker setFrame:CGRectMake(0, 40, 320, 420)];
     self.projectPicker.delegate = self;
     //    显示选中框
     self.projectPicker.showsSelectionIndicator=YES;
     [self.actionSheet addSubview:self.projectPicker];
     [self.actionSheet showInView:self.view];
-    [self.actionSheet setBounds:CGRectMake(0,0,320, 450)];
+    [self.actionSheet setBounds:CGRectMake(0,0,320, 460)];
     
-    CGRect pickerRect;
-    pickerRect = self.projectPicker.bounds;
-    pickerRect.origin.y = -30;
-    self.projectPicker.bounds = pickerRect;
+//    CGRect pickerRect;
+//    pickerRect = self.projectPicker.bounds;
+////    pickerRect.origin.y = -30;
+//    self.projectPicker.bounds = pickerRect;
     
     UIButton *cancelButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     cancelButton.frame = CGRectMake(10.0f, 7.0f, 65.0f, 32.0f);
@@ -225,7 +226,7 @@
     [self.actionSheet addSubview:confirmButton];
     
     [self.actionSheet showInView:self.view];
-    [self.actionSheet setBounds:CGRectMake(0,0, 320, 450)];
+    [self.actionSheet setBounds:CGRectMake(0,0, 320, 460)];
     
 }
 
@@ -259,13 +260,15 @@
 //返回当前行的内容,此处是将数组中数值添加到滚动的那个显示栏上
 -(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
+    self.projectNameTf.text = [pickerData objectAtIndex:row];
+    projectId = ((HousesProject *)[projects objectAtIndex:row]).id;
     return [pickerData objectAtIndex:row];
 }
 
 -(void) pickerView: (UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent: (NSInteger)component
 {
-    self.projectNameTf.text = [pickerData objectAtIndex:row];
-    projectId = ((HousesProject *)[projects objectAtIndex:row]).id;
+//    self.projectNameTf.text = [pickerData objectAtIndex:row];
+//    projectId = ((HousesProject *)[projects objectAtIndex:row]).id;
 }
 
 @end
