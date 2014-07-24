@@ -77,10 +77,11 @@
     picView.frame = CGRectMake(0.0f, 0.0f, 118.0f, 92.0f);
     [self.picIv addSubview:picView];
     
+    //调整行间距
     NSString *summaryStr = roomsDetail.summary;
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:summaryStr];
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setLineSpacing:7];//调整行间距
+    [paragraphStyle setLineSpacing:5];//调整行间距
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [summaryStr length])];
     self.summaryLb.attributedText = attributedString;
 

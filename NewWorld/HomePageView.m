@@ -154,13 +154,6 @@
     bannerView.delegate = nil;
 }
 
-- (IBAction)seeHouseAction:(id)sender {
-    ProjectCollectionView *projectView = [[ProjectCollectionView alloc] init];
-    projectView.showType = @"seeHouse";
-    projectView.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:projectView animated:YES];
-}
-
 - (IBAction)newsActivityAction:(id)sender {
     ActivityCollectionView *activityView = [[ActivityCollectionView alloc] init];
     activityView.hidesBottomBarWhenPushed = YES;
@@ -225,6 +218,12 @@
     OnlineChatView *chatView = [[OnlineChatView alloc] init];
     chatView.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:chatView animated:YES];
+}
+
+- (IBAction)introduceAction:(id)sender {
+    GroupIntroduceView *introduceView = [[GroupIntroduceView alloc] init];
+    introduceView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:introduceView animated:YES];
 }
 
 @end

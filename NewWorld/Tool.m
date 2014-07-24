@@ -744,8 +744,9 @@
     
     NSArray *club_items = [clubDic objectForKey:@"club_items"];
     NSMutableArray *clubitems = [RMMapper mutableArrayOfClass:[ClubItem class]
-                                        fromArrayOfDictionary:club_items];
+                                            fromArrayOfDictionary:club_items];
     club.club_items = clubitems;
+    
     return club;
 }
 

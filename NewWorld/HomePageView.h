@@ -14,6 +14,7 @@
 #import "SGFocusImageItem.h"
 #import "ActivityCollectionView.h"
 #import "OnlineChatView.h"
+#import "GroupIntroduceView.h"
 
 @interface HomePageView : UIViewController<SGFocusImageFrameDelegate>
 {
@@ -27,12 +28,13 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIImageView *housesNavi;
 @property (strong, nonatomic) IBOutlet UIImageView *projectShow;
-- (IBAction)seeHouseAction:(id)sender;
+
 - (IBAction)newsActivityAction:(id)sender;
 - (IBAction)praiseAction:(id)sender;
 - (IBAction)showDetailAction:(id)sender;
 - (IBAction)shareAction:(id)sender;
 - (IBAction)clubAction:(id)sender;
 - (IBAction)onlineChatAction:(id)sender;
+- (IBAction)introduceAction:(id)sender;
 
 @end

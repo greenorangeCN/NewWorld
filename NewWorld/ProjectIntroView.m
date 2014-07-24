@@ -66,36 +66,14 @@
     titleLabel.textAlignment = UITextAlignmentCenter;
     self.navigationItem.titleView = titleLabel;
     
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, self.view.frame.size.height);
+    
     [Tool roundView:self.logoIv andCornerRadius:5.0f];
     self.logoIv.image = project.imgData;
     self.titleLb.text = project.title;
     self.summaryLb.text = project.summary;
     
     [self initTopImage];
-    
-    //楼盘简介事件注册
-    UITapGestureRecognizer *summaryTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(summaryClick)];
-	[self.summaryLb addGestureRecognizer:summaryTap];
-    
-    //户型展示事件注册
-    UITapGestureRecognizer *houseTypeTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(houseTypeClick)];
-	[self.houseTypeLb addGestureRecognizer:houseTypeTap];
-}
-
-- (void)summaryClick
-{
-    MapDetailView *mapdetailView = [[MapDetailView alloc] init];
-    mapdetailView.projectId = project.id;
-    mapdetailView.projectTitle = project.title;
-    mapdetailView.dataType = 0;
-    [self.navigationController pushViewController:mapdetailView animated:YES];
-}
-
-- (void)houseTypeClick
-{
-    HouseTypeCollectionView *houseTypeView = [[HouseTypeCollectionView alloc] init];
-    houseTypeView.projectId = project.id;
-    [self.navigationController pushViewController:houseTypeView animated:YES];
 }
 
 - (void)initTopImage
@@ -182,4 +160,33 @@
     bannerView.delegate = nil;
 }
 
+- (IBAction)summaryAction:(id)sender {
+    MapDetailView *mapdetailView = [[MapDetailView alloc] init];
+    mapdetailView.projectId = project.id;
+    mapdetailView.projectTitle = project.title;
+    mapdetailView.dataType = 0;
+    [self.navigationController pushViewController:mapdetailView animated:YES];
+}
+
+- (IBAction)houseTypeAction:(id)sender {
+    HouseTypeCollectionView *houseTypeView = [[HouseTypeCollectionView alloc] init];
+    houseTypeView.projectId = project.id;
+    [self.navigationController pushViewController:houseTypeView animated:YES];
+}
+
+- (IBAction)seeHouseAction:(id)sender {
+    RoomsCollectionView *roomsView = [[RoomsCollectionView alloc] init];
+    roomsView.projectId = project.id;
+    roomsView.projectName = project.title;
+    [self.navigationController pushViewController:roomsView animated:YES];
+}
+
+- (IBAction)panoramaAction:(id)sender {
+}
+
+- (IBAction)saleAction:(id)sender {
+    OnlineChatView *chatView = [[OnlineChatView alloc] init];
+    chatView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:chatView animated:YES];
+}
 @end

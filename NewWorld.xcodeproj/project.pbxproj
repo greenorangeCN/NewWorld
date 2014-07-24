@@ -328,6 +328,9 @@
 		14B8B7BD1961469400752ED6 /* Houses.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B8B7BC1961469400752ED6 /* Houses.m */; };
 		14B8B7C01961507600752ED6 /* Support.m in Sources */ = {isa = PBXBuildFile; fileRef = 14B8B7BF1961507600752ED6 /* Support.m */; };
 		14D391F81980EA5E001554E1 /* home_introduce.png in Resources */ = {isa = PBXBuildFile; fileRef = 14D391F71980EA5E001554E1 /* home_introduce.png */; };
+		14D391FC1980ED9D001554E1 /* GroupIntroduceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D391FA1980ED9D001554E1 /* GroupIntroduceView.m */; };
+		14D391FD1980ED9D001554E1 /* GroupIntroduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D391FB1980ED9D001554E1 /* GroupIntroduceView.xib */; };
+		14D391FF1980EEC8001554E1 /* introduce_image2.png in Resources */ = {isa = PBXBuildFile; fileRef = 14D391FE1980EEC8001554E1 /* introduce_image2.png */; };
 		14EE0368196D7DF5002C2F3A /* ActivityCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EE0366196D7DF5002C2F3A /* ActivityCollectionView.m */; };
 		14EE0369196D7DF5002C2F3A /* ActivityCollectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14EE0367196D7DF5002C2F3A /* ActivityCollectionView.xib */; };
 		14EE036C196D7E6B002C2F3A /* ActivityCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 14EE036B196D7E6B002C2F3A /* ActivityCollectionCell.m */; };
@@ -910,6 +913,10 @@
 		14B8B7BE1961507600752ED6 /* Support.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Support.h; sourceTree = "<group>"; };
 		14B8B7BF1961507600752ED6 /* Support.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Support.m; sourceTree = "<group>"; };
 		14D391F71980EA5E001554E1 /* home_introduce.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_introduce.png; sourceTree = "<group>"; };
+		14D391F91980ED9D001554E1 /* GroupIntroduceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupIntroduceView.h; sourceTree = "<group>"; };
+		14D391FA1980ED9D001554E1 /* GroupIntroduceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupIntroduceView.m; sourceTree = "<group>"; };
+		14D391FB1980ED9D001554E1 /* GroupIntroduceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupIntroduceView.xib; sourceTree = "<group>"; };
+		14D391FE1980EEC8001554E1 /* introduce_image2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = introduce_image2.png; sourceTree = "<group>"; };
 		14EE0365196D7DF5002C2F3A /* ActivityCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCollectionView.h; sourceTree = "<group>"; };
 		14EE0366196D7DF5002C2F3A /* ActivityCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCollectionView.m; sourceTree = "<group>"; };
 		14EE0367196D7DF5002C2F3A /* ActivityCollectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityCollectionView.xib; sourceTree = "<group>"; };
@@ -966,8 +973,8 @@
 				14082ECD195A6F8200E09C47 /* MessageUI.framework in Frameworks */,
 				14082EC9195A6F6700E09C47 /* libxml2.dylib in Frameworks */,
 				14082EC7195A6F5A00E09C47 /* CoreText.framework in Frameworks */,
-				14A289A8196ED8C8001E9BB1 /* KeyboardManager.framework in Frameworks */,
 				14B3D6CF197661B400C1B5FE /* TencentOpenAPI.framework in Frameworks */,
+				14A289A8196ED8C8001E9BB1 /* KeyboardManager.framework in Frameworks */,
 				14082EC5195A6F4400E09C47 /* AudioToolbox.framework in Frameworks */,
 				14082EC3195A6F3900E09C47 /* AVFoundation.framework in Frameworks */,
 				14B3D6CB197661B400C1B5FE /* AGCommon.framework in Frameworks */,
@@ -1495,6 +1502,7 @@
 			isa = PBXGroup;
 			children = (
 				14F6C36C197902B10083379E /* cc_back2.png */,
+				14D391FE1980EEC8001554E1 /* introduce_image2.png */,
 				14F6C36A1978CF4F0083379E /* tabbar_bg@2x.png */,
 				141BAFB41977A6C000BA620A /* club_bg2@2x.png */,
 				141BAFB51977A6C000BA620A /* club_bg1@2x.png */,
@@ -1638,6 +1646,9 @@
 				1454E7D6195A80A5008C3C5F /* HomePageView.h */,
 				1454E7D7195A80A5008C3C5F /* HomePageView.m */,
 				1454E7D8195A80A5008C3C5F /* HomePageView.xib */,
+				14D391F91980ED9D001554E1 /* GroupIntroduceView.h */,
+				14D391FA1980ED9D001554E1 /* GroupIntroduceView.m */,
+				14D391FB1980ED9D001554E1 /* GroupIntroduceView.xib */,
 				14A0DDA9195EC26000C12F7C /* MapViewController.h */,
 				14A0DDAA195EC26000C12F7C /* MapViewController.mm */,
 				14A0DDAB195EC26000C12F7C /* MapViewController.xib */,
@@ -2130,6 +2141,7 @@
 				1454E7C2195A7DE9008C3C5F /* top_bg@2x.png in Resources */,
 				14A0DDE7195F0D6500C12F7C /* map_all@2x.png in Resources */,
 				14B3D6A31976435000C1B5FE /* cc_back.png in Resources */,
+				14D391FF1980EEC8001554E1 /* introduce_image2.png in Resources */,
 				143599421973BBDF001749BF /* get_btn.png in Resources */,
 				149E63761967DB7800048DF4 /* ActivityDetailView.xib in Resources */,
 				1408227A1961A39600280FA2 /* map_top_rigth.png in Resources */,
@@ -2161,6 +2173,7 @@
 				142C725B1966837E0075D99F /* MapDetailView.xib in Resources */,
 				1407E04F195C211D00A3E6D2 /* ActivityTableView.xib in Resources */,
 				14A2897B196E915B001E9BB1 /* README.md in Resources */,
+				14D391FD1980ED9D001554E1 /* GroupIntroduceView.xib in Resources */,
 				1432C70A195BBB1C00D77AF8 /* home_detail_btn.png in Resources */,
 				14082276196192B700280FA2 /* map_school_p@2x.png in Resources */,
 				14A0DDAD195EC26000C12F7C /* MapViewController.xib in Resources */,
@@ -2366,6 +2379,7 @@
 				142B9216195A668800A0D2E8 /* AFPropertyListRequestOperation.m in Sources */,
 				14A28977196E915B001E9BB1 /* PSTGridLayoutItem.m in Sources */,
 				142B9278195A687200A0D2E8 /* ImageStore.m in Sources */,
+				14D391FC1980ED9D001554E1 /* GroupIntroduceView.m in Sources */,
 				142B91F6195A63BC00A0D2E8 /* UIViewController+AKTabBarController.m in Sources */,
 				142B9244195A671E00A0D2E8 /* MBProgressHUD.m in Sources */,
 				142B923C195A66D200A0D2E8 /* ASIHTTPRequest.m in Sources */,
@@ -2582,6 +2596,8 @@
 					Framework,
 					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
 					Framework,
+					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
+					Framework,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "NewWorld/NewWorld-Prefix.pch";
@@ -2625,6 +2641,8 @@
 					"$(PROJECT_DIR)/NewWorld/ShareSDK/Extend/QQConnectSDK",
 					"$(PROJECT_DIR)/NewWorld/ShareSDK",
 					"$(PROJECT_DIR)/NewWorld/ShareSDK/UI",
+					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
+					Framework,
 					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",
 					Framework,
 					"$(PROJECT_DIR)/NewWorld/IQKeyboardManager",

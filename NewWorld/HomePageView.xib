@@ -66,11 +66,11 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_navi.png" id="KA6-bu-lnt">
-                            <rect key="frame" x="8" y="189" width="147" height="96"/>
+                            <rect key="frame" x="7" y="187" width="149" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <imageView multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_show.png" id="bVh-JD-rvh">
-                            <rect key="frame" x="165" y="189" width="147" height="96"/>
+                            <rect key="frame" x="166" y="187" width="148" height="100"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ANj-sL-KEK">
@@ -111,7 +111,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="seeHouseAction:" destination="-1" eventType="touchUpInside" id="oHb-Vr-8XY"/>
+                                <action selector="introduceAction:" destination="-1" eventType="touchUpInside" id="ZEk-Pq-OAI"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gnj-ds-YSo">
@@ -157,10 +157,10 @@
         <image name="home_introduce.png" width="127" height="167"/>
         <image name="home_more.png" width="130" height="166"/>
         <image name="home_my.png" width="130" height="166"/>
-        <image name="home_navi.png" width="284" height="190"/>
+        <image name="home_navi.png" width="427" height="286"/>
         <image name="home_praise_btn.png" width="107" height="32"/>
         <image name="home_share_btn.png" width="107" height="32"/>
-        <image name="home_show.png" width="284" height="190"/>
+        <image name="home_show.png" width="427" height="286"/>
         <image name="loadingpic1.png" width="320" height="143"/>
     </resources>
 </document>
