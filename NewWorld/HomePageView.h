@@ -13,6 +13,7 @@
 #import "SGFocusImageFrame.h"
 #import "SGFocusImageItem.h"
 #import "ActivityCollectionView.h"
+#import "OnlineChatView.h"
 
 @interface HomePageView : UIViewController<SGFocusImageFrameDelegate>
 {
@@ -32,5 +33,6 @@
 - (IBAction)showDetailAction:(id)sender;
 - (IBAction)shareAction:(id)sender;
 - (IBAction)clubAction:(id)sender;
+- (IBAction)onlineChatAction:(id)sender;
 
 @end

@@ -95,12 +95,14 @@
     StrikeThroughLabel *slabel = [[StrikeThroughLabel alloc] initWithFrame:CGRectMake(0, 0, 72, 21)];
     slabel.text = [NSString stringWithFormat:@"￥%@", detail.market_price];
     slabel.font = [UIFont italicSystemFontOfSize:12.0f];
+    slabel.backgroundColor = [UIColor clearColor];
     slabel.textColor = [UIColor whiteColor];
     slabel.textAlignment = UITextAlignmentCenter;
     slabel.strikeThroughEnabled = YES;
     [self.marketPriceLb addSubview:slabel];
+    
     self.priceLb.text = [NSString stringWithFormat:@"￥%@", detail.price];
-    self.buysLb.text = [NSString stringWithFormat:@"已售%@", detail.buys];
+    self.buysLb.text = [NSString stringWithFormat:@"已售 %@", detail.buys];
     
     //WebView的背景颜色去除
     [Tool clearWebViewBackground:self.webView];
@@ -137,8 +139,18 @@
 }
 
 - (IBAction)deliveryAction:(id)sender {
+    if ([UserModel Instance].isLogin == NO) {
+        [Tool noticeLogin:self.view andDelegate:self andTitle:@""];
+        return;
+    }
     OrderView *orderView = [[OrderView alloc] init];
     orderView.goodsDetail = detail;
     [self.navigationController pushViewController:orderView animated:YES];
 }
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [Tool processLoginNotice:actionSheet andButtonIndex:buttonIndex andNav:self.navigationController andParent:nil];
+}
+
 @end

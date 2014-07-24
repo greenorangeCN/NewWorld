@@ -69,6 +69,13 @@ BMKMapManager* _mapManager;
         [[self.tabBarController tabBar] setBackgroundImage:[UIImage imageNamed:@"tabbar_bg"]];
     }
     
+    //设置目录不进行IOS自动同步！否则审核不能通过
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *directory = [NSString stringWithFormat:@"%@/cfg", [paths objectAtIndex:0]];
+    NSURL *dbURLPath = [NSURL fileURLWithPath:directory];
+    [self addSkipBackupAttributeToItemAtURL:dbURLPath];
+    [self addSkipBackupAttributeToPath:directory];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:self.tabBarController ];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -109,9 +116,9 @@ BMKMapManager* _mapManager;
      连接新浪微博开放平台应用以使用相关功能，此应用需要引用SinaWeiboConnection.framework
      http://open.weibo.com上注册新浪微博开放平台应用，并将相关信息填写到以下字段
      **/
-    [ShareSDK connectSinaWeiboWithAppKey:@"568898243"
-                               appSecret:@"38a4f8204cc784f81f9f0daaf31e02e3"
-                             redirectUri:@"http://www.sharesdk.cn"];
+    [ShareSDK connectSinaWeiboWithAppKey:@"1434319718"
+                               appSecret:@"c1affea9508aa4d0f8ac8d580d092592"
+                             redirectUri:@"http://house.nwclhn.com"];
     
     /**
      连接腾讯微博开放平台应用以使用相关功能，此应用需要引用TencentWeiboConnection.framework
@@ -119,15 +126,33 @@ BMKMapManager* _mapManager;
      
      如果需要实现SSO，需要导入libWeiboSDK.a，并引入WBApi.h，将WBApi类型传入接口
      **/
-    [ShareSDK connectTencentWeiboWithAppKey:@"801307650"
-                                  appSecret:@"ae36f4ee3946e1cbb98d6965b0b2ff5c"
-                                redirectUri:@"http://www.sharesdk.cn"
+    [ShareSDK connectTencentWeiboWithAppKey:@"801525635"
+                                  appSecret:@"c1affea9508aa4d0f8ac8d580d092592"
+                                redirectUri:@"http://house.nwclhn.com"
                                    wbApiCls:[WeiboApi class]];
     /**
      连接微信应用以使用相关功能，此应用需要引用WeChatConnection.framework和微信官方SDK
      http://open.weixin.qq.com上注册应用，并将相关信息填写以下字段
      **/
-    [ShareSDK connectWeChatWithAppId:@"wx4868b35061f87885" wechatCls:[WXApi class]];
+    [ShareSDK connectWeChatWithAppId:@"wxea1423239d0491ff" wechatCls:[WXApi class]];
+}
+
+- (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL
+{
+    assert([[NSFileManager defaultManager] fileExistsAtPath: [URL path]]);
+    
+    NSError *error = nil;
+    BOOL success = [URL setResourceValue: [NSNumber numberWithBool: YES]
+                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
+    if(!success){
+        NSLog(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
+    }
+    return success;
+}
+
+- (void)addSkipBackupAttributeToPath:(NSString*)path {
+    u_int8_t b = 1;
+    setxattr([path fileSystemRepresentation], "com.apple.MobileBackup", &b, 1, 0, 0);
 }
 
 @end

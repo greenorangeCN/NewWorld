@@ -9,7 +9,7 @@
             <connections>
                 <outlet property="buysLb" destination="ZsO-8G-dNh" id="saF-Ub-Fr7"/>
                 <outlet property="deliveryBtn" destination="cYB-b6-Ujc" id="xxq-JE-8SR"/>
-                <outlet property="marketPriceLb" destination="gpz-Mt-UG3" id="qAa-aP-WB5"/>
+                <outlet property="marketPriceLb" destination="O14-C6-P3Y" id="cVt-aJ-0S1"/>
                 <outlet property="picIv" destination="S41-jD-0AV" id="JfX-Uf-VP8"/>
                 <outlet property="priceLb" destination="EkY-tv-yVr" id="j8o-Md-lkM"/>
                 <outlet property="scrollView" destination="xP7-o4-LYI" id="4IN-GC-6vP"/>
@@ -45,13 +45,6 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gpz-Mt-UG3">
-                            <rect key="frame" x="164" y="191" width="72" height="21"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZsO-8G-dNh">
                             <rect key="frame" x="239" y="191" width="72" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -64,6 +57,13 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </webView>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O14-C6-P3Y">
+                            <rect key="frame" x="156" y="191" width="72" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                 </scrollView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="activity_Bottom.png" id="KBv-nd-uOb">

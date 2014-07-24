@@ -761,4 +761,30 @@
     return detail;
 }
 
++ (NSMutableArray *)readJsonStrToMyOrderArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSArray *orderArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( [orderArray count] <= 0) {
+        return nil;
+    }
+    NSMutableArray *myOrders = [RMMapper mutableArrayOfClass:[MyOrder class]
+                                     fromArrayOfDictionary:orderArray];
+    return myOrders;
+}
+
++ (NSMutableArray *)readJsonStrToMyCouponArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSArray *couponArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( [couponArray count] <= 0) {
+        return nil;
+    }
+    NSMutableArray *myCoupons = [RMMapper mutableArrayOfClass:[MyCoupon class]
+                                       fromArrayOfDictionary:couponArray];
+    return myCoupons;
+}
+
 @end

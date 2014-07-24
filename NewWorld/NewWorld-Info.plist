@@ -31,7 +31,15 @@
 			<string>com.greenorange.NewWorld</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wx4868b35061f87885</string>
+				<string>wxea1423239d0491ff</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wb1434319718，wb801525635</string>
 			</array>
 		</dict>
 	</array>

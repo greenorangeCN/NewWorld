@@ -86,8 +86,10 @@
 
     int contentWidth = 0;
     for (NSString *imageUrl in roomsDetail.images) {
-        EGOImageView *imageView= [[EGOImageView alloc] init];
-        imageView.imageURL = [NSURL URLWithString:imageUrl];
+        //异步加载无法获取网络图片的高度宽度
+        UIImageView *imageView= [[UIImageView alloc] init];
+        imageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]]];
+//        imageView.imageURL = [NSURL URLWithString:imageUrl];
         imageView.frame = CGRectZero;
         [imageView sizeToFit];
         CGRect rect = imageView.frame;

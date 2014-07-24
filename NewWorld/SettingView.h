@@ -12,6 +12,8 @@
 #import "LoginView.h"
 #import "UserModel.h"
 #import "UserInfoView.h"
+#import "MyOrderTableView.h"
+#import "MyCouponView.h"
 
 @interface SettingView : UIViewController<UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate>
 {

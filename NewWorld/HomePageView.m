@@ -221,4 +221,10 @@
     [self.navigationController pushViewController:projectView animated:YES];
 }
 
+- (IBAction)onlineChatAction:(id)sender {
+    OnlineChatView *chatView = [[OnlineChatView alloc] init];
+    chatView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:chatView animated:YES];
+}
+
 @end

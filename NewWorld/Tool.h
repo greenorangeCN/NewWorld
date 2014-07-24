@@ -28,6 +28,8 @@
 #import "LoginView.h"
 #import "RegisterView.h"
 #import "Club.h"
+#import "MyOrder.h"
+#import "MyCoupon.h"
 #import <ShareSDK/ShareSDK.h>
 
 @interface Tool : NSObject
@@ -120,5 +122,7 @@
 + (User *)readJsonStrToUser:(NSString *)str;
 + (Club *)readJsonStrToClub:(NSString *)str;
 + (ClubItem *)readJsonStrToClubDetail:(NSString *)str;
++ (NSMutableArray *)readJsonStrToMyOrderArray:(NSString *)str;
++ (NSMutableArray *)readJsonStrToMyCouponArray:(NSString *)str;
 
 @end

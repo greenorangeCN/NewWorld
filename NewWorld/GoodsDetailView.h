@@ -11,7 +11,7 @@
 #import "StrikeThroughLabel.h"
 #import "OrderView.h"
 
-@interface GoodsDetailView : UIViewController<UIWebViewDelegate>
+@interface GoodsDetailView : UIViewController<UIWebViewDelegate, UIActionSheetDelegate>
 {
     UIWebView *phoneCallWebView;
     MBProgressHUD *hud;

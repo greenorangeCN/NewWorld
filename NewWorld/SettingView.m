@@ -127,12 +127,38 @@
             break;
         case 4:
         {
-            
+            if ([[UserModel Instance] isLogin]) {
+                MyOrderTableView *myOrderView = [[MyOrderTableView alloc] init];
+                myOrderView.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:myOrderView animated:YES];
+            }
+            else
+            {
+                UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"温馨提示"
+                                                             message:@"请先登录"
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"确定"
+                                                   otherButtonTitles:nil];
+                [av show];
+            }
         }
             break;
         case 5:
         {
-            
+            if ([[UserModel Instance] isLogin]) {
+                MyCouponView *myCouponView = [[MyCouponView alloc] init];
+                myCouponView.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:myCouponView animated:YES];
+            }
+            else
+            {
+                UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"温馨提示"
+                                                             message:@"请先登录"
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"确定"
+                                                   otherButtonTitles:nil];
+                [av show];
+            }
         }
             break;
         case 6:

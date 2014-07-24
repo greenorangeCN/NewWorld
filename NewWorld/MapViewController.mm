@@ -14,23 +14,23 @@
 
 static CGFloat kTransitionDuration = 0.45f;
 
-- (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL
-{
-    assert([[NSFileManager defaultManager] fileExistsAtPath: [URL path]]);
-    
-    NSError *error = nil;
-    BOOL success = [URL setResourceValue: [NSNumber numberWithBool: YES]
-                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
-    if(!success){
-        NSLog(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
-    }
-    return success;
-}
-
-- (void)addSkipBackupAttributeToPath:(NSString*)path {
-    u_int8_t b = 1;
-    setxattr([path fileSystemRepresentation], "com.apple.MobileBackup", &b, 1, 0, 0);
-}
+//- (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL
+//{
+//    assert([[NSFileManager defaultManager] fileExistsAtPath: [URL path]]);
+//    
+//    NSError *error = nil;
+//    BOOL success = [URL setResourceValue: [NSNumber numberWithBool: YES]
+//                                  forKey: NSURLIsExcludedFromBackupKey error: &error];
+//    if(!success){
+//        NSLog(@"Error excluding %@ from backup %@", [URL lastPathComponent], error);
+//    }
+//    return success;
+//}
+//
+//- (void)addSkipBackupAttributeToPath:(NSString*)path {
+//    u_int8_t b = 1;
+//    setxattr([path fileSystemRepresentation], "com.apple.MobileBackup", &b, 1, 0, 0);
+//}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -42,6 +42,9 @@ static CGFloat kTransitionDuration = 0.45f;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [Tool showHUD:@"地图加载" andView:self.view andHUD:hud];
+    
     updateLoTime = 0;
     isPinSelected = NO;   //new
     mapsAll = [[NSMutableArray alloc] init];
@@ -49,8 +52,7 @@ static CGFloat kTransitionDuration = 0.45f;
     mapsGov = [[NSMutableArray alloc] init];
     mapsShop = [[NSMutableArray alloc] init];
     mapsService = [[NSMutableArray alloc] init];
-    
-    _mapView.zoomLevel = 13;
+    _mapView.zoomLevel = 14;
     _locService = [[BMKLocationService alloc]init];
     bubbleView = [[KYBubbleView alloc] initWithFrame:CGRectMake(0, 0, 160, 40)];
     bubbleView.hidden = NO;
@@ -65,12 +67,12 @@ static CGFloat kTransitionDuration = 0.45f;
     self.tabBar.selectedItem = [self.tabBar.items objectAtIndex:0];
     self.tabBar.delegate = self;
     
-    //设置目录不进行IOS自动同步！否则审核不能通过
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *directory = [NSString stringWithFormat:@"%@/cfg", [paths objectAtIndex:0]];
-    NSURL *dbURLPath = [NSURL fileURLWithPath:directory];
-    [self addSkipBackupAttributeToItemAtURL:dbURLPath];
-    [self addSkipBackupAttributeToPath:directory];
+//    //设置目录不进行IOS自动同步！否则审核不能通过
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString *directory = [NSString stringWithFormat:@"%@/cfg", [paths objectAtIndex:0]];
+//    NSURL *dbURLPath = [NSURL fileURLWithPath:directory];
+//    [self addSkipBackupAttributeToItemAtURL:dbURLPath];
+//    [self addSkipBackupAttributeToPath:directory];
     
     [self startLocation];
     [self initMapsData];
@@ -306,6 +308,7 @@ static CGFloat kTransitionDuration = 0.45f;
             bubbleView.layer.zPosition = 1;
         }try {
             bubbleView.support = [mapsTemp objectAtIndex:[(KYPointAnnotation*)view.annotation tag]];  //数据全部在数据字典中
+            bubbleView.myCoor = myCoor;
             bubbleView.navigationController = self.navigationController;
             //      [self showBubble:YES];//先移动地图，完成后再显示气泡
         } catch (NSException *exception) {
@@ -467,9 +470,13 @@ static CGFloat kTransitionDuration = 0.45f;
 {
     NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     [_mapView updateLocationData:userLocation];
-//    如果经纬度大于0表单表示定位成功,并成功定位十次，停止定位（一次不能刷新地图，致使地图空白）
-    if (userLocation.location.coordinate.latitude > 0 && updateLoTime == 10) {
+//    如果经纬度大于0表单表示定位成功,并成功定位三次，停止定位（一次不能刷新地图，致使地图空白）
+    if (userLocation.location.coordinate.latitude > 0 && updateLoTime == 3) {
+        myCoor = userLocation.location.coordinate;
         [_locService stopUserLocationService];
+        if (hud != nil) {
+            [hud hide:YES];
+        }
     }
     updateLoTime ++;
 }

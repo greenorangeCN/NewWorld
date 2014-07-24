@@ -33,14 +33,20 @@ static const float kMaxLabelWidth = 300.0f;
         nameLabel.backgroundColor = [UIColor clearColor];
         nameLabel.textColor = [UIColor colorWithRed:0.0/255 green:131.0/255 blue:174.0/255 alpha:1.0];
         nameLabel.font = [UIFont systemFontOfSize:16.0f];
-        [self addSubview:nameLabel];       //self 应该指气泡弹出后对矩形框
+        [self addSubview:nameLabel];
         
         //初始化标题lable
         phoneLabel = [[UILabel alloc] init];
         phoneLabel.backgroundColor = [UIColor clearColor];
         phoneLabel.font = [UIFont systemFontOfSize:14.0f];
         phoneLabel.numberOfLines = 0;
-        [self addSubview:phoneLabel];       //self 应该指气泡弹出后对矩形框
+        [self addSubview:phoneLabel];
+        
+        routeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [routeButton setTitle:@"到这去" forState:UIControlStateNormal];
+        [routeButton setTitle:@"到这去" forState:UIControlStateHighlighted];
+        [routeButton addTarget:self action:@selector(routeAction:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:routeButton];
         
         //气泡view的背景图片 － 被分为左边背景和右边背景两个部分
         UIImage *imageNormal, *imageHighlighted;
@@ -105,9 +111,11 @@ static const float kMaxLabelWidth = 300.0f;
         phoneLabel.hidden = YES;
     }
     
+    routeButton.frame = CGRectMake(5, phoneLabel.frame.origin.y + 40 , nameLabel.frame.size.width, 30);
+    
     CGFloat longWidth = rect1.size.width > rectPro.size.width ? rect1.size.width : rectPro.size.width ;   //判定最大的宽度
     CGRect rect0 = self.frame;   //self 就是气泡view吧？  －－ rect0 代表气泡view的框架
-    rect0.size.height = rect1.size.height + kBorderWidth + kEndCapWidth + 25;                                //气泡view的高
+    rect0.size.height = rect1.size.height + kBorderWidth + kEndCapWidth + 25 + 30;                                //气泡view的高
     rect0.size.width = longWidth + kBorderWidth + 10;   //气泡 view的宽
     
     UITapGestureRecognizer *popViewTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(popViewClick:)];
@@ -144,4 +152,17 @@ static const float kMaxLabelWidth = 300.0f;
     }
     [self.navigationController pushViewController:mapdetailView animated:YES];
 }
+
+- (void)routeAction:(id)sender
+{
+    self.hidden = YES;
+    CLLocationCoordinate2D endCoor;
+    endCoor.longitude = [support.longitude doubleValue];
+    endCoor.latitude = [support.latitude doubleValue];
+    RouteSearchView *routeView = [[RouteSearchView alloc] init];
+    routeView.startCoor = self.myCoor;
+    routeView.endCoor = endCoor;
+    [self.navigationController pushViewController:routeView animated:YES];
+}
+
 @end

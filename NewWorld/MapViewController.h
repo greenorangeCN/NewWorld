@@ -30,8 +30,10 @@
     
     BOOL isPinSelected;     //用于判断大头针是否被选中
     BMKLocationService* _locService;
+    CLLocationCoordinate2D myCoor;
     
     int updateLoTime;
+    MBProgressHUD *hud;
 }
 
 - (void)showBubble:(BOOL)show;
