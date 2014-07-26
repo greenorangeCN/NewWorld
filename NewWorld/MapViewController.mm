@@ -127,7 +127,16 @@ static CGFloat kTransitionDuration = 0.45f;
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        @try {
                                            houses = [Tool readJsonStrToHousesArray:operation.responseString];
-                                           for (Houses *house in houses) {
+                                           for (int i = 0; i < [houses count]; i++) {
+                                               Houses *house = [houses objectAtIndex:i];
+                                               
+                                               if([NSNull null] != house.zhoubian_items) {
+                                                   NSMutableArray *supports = house.zhoubian_items;
+                                                   if (supports != nil && [supports count] > 0) {
+                                                       [mapsAll addObjectsFromArray:supports];
+                                                   }
+                                               }
+                                               
                                                Support *s = [[Support alloc] init];
                                                s.id = house.id;
                                                s.type = @"0";
@@ -137,13 +146,15 @@ static CGFloat kTransitionDuration = 0.45f;
                                                s.telephone = house.telephone;
                                                [mapsAll addObject:s];
                                                
-                                               if([NSNull null] != house.zhoubian_items) {
-                                                   NSMutableArray *supports = house.zhoubian_items;
-                                                   if (supports != nil && [supports count] > 0) {
-                                                       [mapsAll addObjectsFromArray:supports];
-                                                   }
+                                               //将地图中心点定位至最后一个新世界项目（时间最早添加项目）
+                                               if ( i == [houses count] -1 ) {
+                                                   CLLocationCoordinate2D coor;
+                                                   coor.longitude = [s.longitude doubleValue];
+                                                   coor.latitude = [s.latitude doubleValue];
+                                                   [_mapView setCenterCoordinate:coor animated:YES];
                                                }
                                            }
+
                                            mapsTemp = mapsAll;
                                            //添加PointAnnotation
                                            for (int i = 0; i < [mapsAll count]; i++) {
@@ -284,7 +295,7 @@ static CGFloat kTransitionDuration = 0.45f;
             annotationView.image = [UIImage imageNamed:@"map_service_p.png"];
         }
         if([type isEqualToString:@"0"]){
-            annotationView.image = [UIImage imageNamed:@"map_newworld_p.png"];
+            annotationView.image = [UIImage imageNamed:@"map_newworld_p"];
         }
 	}
 	return annotationView ;
@@ -436,10 +447,10 @@ static CGFloat kTransitionDuration = 0.45f;
 
 -(void)startLocation
 {
-    NSLog(@"进入跟随定位态");
+    NSLog(@"进入基本定位态");
     [_locService startUserLocationService];
     _mapView.showsUserLocation = NO;//先关闭显示的定位图层
-    _mapView.userTrackingMode = BMKUserTrackingModeFollow;//设置定位的状态(跟随状态)
+    _mapView.userTrackingMode = BMKUserTrackingModeNone;//设置定位的状态
     _mapView.showsUserLocation = YES;//显示定位图层
 }
 

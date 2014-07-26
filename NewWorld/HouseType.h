@@ -29,6 +29,7 @@
 @property (nonatomic, retain) NSString* comm_name;
 @property (nonatomic, retain) NSString* summary;
 @property (nonatomic, retain) NSMutableArray *images;
+@property (nonatomic, retain) NSString* content;
 @property (retain,nonatomic) UIImage *imgData;
 
 @end

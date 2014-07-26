@@ -64,7 +64,19 @@
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        @try {
                                            myOrders = [Tool readJsonStrToMyOrderArray:operation.responseString];
-                                           [self.myOrderTable reloadData];
+                                           if ([myOrders count] > 0) {
+                                               [self.myOrderTable reloadData];
+                                           }
+                                           else
+                                           {
+                                               UILabel *noDataLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height/2-100, 320, 44)];
+                                               noDataLabel.font = [UIFont boldSystemFontOfSize:18];
+                                               noDataLabel.text = @"暂无数据";
+                                               noDataLabel.textColor = [UIColor blackColor];
+                                               noDataLabel.backgroundColor = [UIColor clearColor];
+                                               noDataLabel.textAlignment = UITextAlignmentCenter;
+                                               [self.view addSubview:noDataLabel];
+                                           }
                                        }
                                        @catch (NSException *exception) {
                                            [NdUncaughtExceptionHandler TakeException:exception];

@@ -14,7 +14,6 @@
 
 @implementation RoomsDetailView
 
-@synthesize picIv;
 @synthesize summaryLb;
 @synthesize imageScrollView;
 @synthesize houseType;
@@ -71,11 +70,6 @@
     roomsDetail = [Tool readJsonStrToHouseTypeDetail:[request responseString]];
     
     self.titleLb.text = roomsDetail.title;
-    //图片加载
-    EGOImageView *picView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic1.png"]];
-    picView.imageURL = [NSURL URLWithString:roomsDetail.thumb];
-    picView.frame = CGRectMake(0.0f, 0.0f, 118.0f, 92.0f);
-    [self.picIv addSubview:picView];
     
     //调整行间距
     NSString *summaryStr = roomsDetail.summary;
@@ -112,7 +106,8 @@
     //    [self.webView setScalesPageToFit:YES];
     [self.webView sizeToFit];
     self.webView.delegate = self;
-    NSString *html = @"暂无数据";
+    
+    NSString *html = [NSString stringWithFormat:@"<body>%@<div id='web_body'>%@</div></body>", HTML_Style, roomsDetail.content];
     NSString *result = [Tool getHTMLString:html];
     [self.webView loadHTMLString:result baseURL:nil];
 }

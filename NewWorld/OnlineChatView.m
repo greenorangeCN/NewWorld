@@ -43,7 +43,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [Tool showHUD:@"连线中" andView:self.view andHUD:hud];
     //直接加载网页
+    self.webView.delegate = self;
     NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"%@", api_livetalk]];
     NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
     [self.webView loadRequest:request];
@@ -57,6 +60,14 @@
         }
     }
 }
+
+- (void)webViewDidFinishLoad:(UIWebView *)webViewP
+{
+    if (hud != nil) {
+        [hud hide:YES];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning
 {

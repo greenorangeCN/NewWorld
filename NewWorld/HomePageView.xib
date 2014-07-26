@@ -96,6 +96,9 @@
                             <state key="normal" image="home_my.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="myAction:" destination="-1" eventType="touchUpInside" id="Aku-XF-yez"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="c9F-j7-lF5">
                             <rect key="frame" x="233" y="403" width="65" height="83"/>
@@ -103,9 +106,12 @@
                             <state key="normal" image="home_more.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="moreAction:" destination="-1" eventType="touchUpInside" id="ppO-cf-vVo"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eL8-0c-Fwc">
-                            <rect key="frame" x="20" y="301" width="65" height="84"/>
+                            <rect key="frame" x="20" y="302" width="65" height="83"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" image="home_introduce.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>

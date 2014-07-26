@@ -21,6 +21,8 @@
     NSMutableDictionary * settingsInSection;
 }
 
+@property (retain,nonatomic) NSString *titleStr;
+
 @property (strong, nonatomic) IBOutlet UITableView *tableSettings;
 @property (retain,nonatomic) NSArray * settings;
 @property (retain,nonatomic) NSMutableDictionary * settingsInSection;

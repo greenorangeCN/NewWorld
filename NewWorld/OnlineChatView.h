@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface OnlineChatView : UIViewController
+@interface OnlineChatView : UIViewController<UIWebViewDelegate>
+{
+    MBProgressHUD *hud;
+}
 
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 

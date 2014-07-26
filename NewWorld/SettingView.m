@@ -21,15 +21,14 @@
         self.tabBarItem.image = [UIImage imageNamed:@"tab_setting"];
         self.tabBarItem.title = @"设置";
         
-        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
-        titleLabel.font = [UIFont boldSystemFontOfSize:18];
-        titleLabel.text = @"设置";
-        titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.textColor = [UIColor whiteColor];
-        titleLabel.textAlignment = UITextAlignmentCenter;
-        self.navigationItem.titleView = titleLabel;
+        
     }
     return self;
+}
+
+- (void)backAction
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - View lifecycle
@@ -37,6 +36,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
+    titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    titleLabel.text = self.titleStr;
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textAlignment = UITextAlignmentCenter;
+    self.navigationItem.titleView = titleLabel;
+    
     if (!IS_IOS7) {
         [self.tableSettings setBackgroundColor:[Tool getBackgroundColor]];
     }
@@ -56,10 +64,23 @@
                       [[SettingModel alloc] initWith:@"客户服务" andImg:@"setting_service" andTag:7 andTitle2:nil],
                       [[SettingModel alloc] initWith:@"注销" andImg:@"setting_logout" andTag:8 andTitle2:nil],
                       nil];
-    [self.settingsInSection setObject:first forKey:@"帐号"];
-    [self.settingsInSection setObject:second forKey:@"我的"];
-    [self.settingsInSection setObject:third forKey:@"设置"];
-    self.settings = [[NSArray alloc] initWithObjects:@"帐号",@"我的",@"设置",nil];
+    if ([self.titleStr isEqualToString:@"设置"]) {
+        [self.settingsInSection setObject:first forKey:@"帐号"];
+        [self.settingsInSection setObject:third forKey:@"设置"];
+        self.settings = [[NSArray alloc] initWithObjects:@"帐号",@"设置",nil];
+    }
+    else if ([self.titleStr isEqualToString:@"我的"])
+    {
+        UIButton *lBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+        [lBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+        [lBtn setImage:[UIImage imageNamed:@"cc_back"] forState:UIControlStateNormal];
+        UIBarButtonItem *btnBack = [[UIBarButtonItem alloc]initWithCustomView:lBtn];
+        self.navigationItem.leftBarButtonItem = btnBack;
+        
+        [self.settingsInSection setObject:second forKey:@"我的"];
+        self.settings = [[NSArray alloc] initWithObjects:@"我的",nil];
+    }
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -252,5 +273,11 @@
     return cell;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+}
 
 @end

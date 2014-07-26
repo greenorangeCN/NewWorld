@@ -16,6 +16,7 @@
 #import <ShareSDK/ShareSDK.h>
 #import "WXApi.h"
 #import "WeiboApi.h"
+#import "BPush.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, BMKGeneralDelegate, WXApiDelegate>
 

@@ -226,4 +226,33 @@
     [self.navigationController pushViewController:introduceView animated:YES];
 }
 
+- (IBAction)myAction:(id)sender {
+    if ([UserModel Instance].isLogin == NO) {
+        [Tool noticeLogin:self.view andDelegate:self andTitle:@""];
+        return;
+    }
+    SettingView *myView = [[SettingView alloc] init];
+    myView.titleStr = @"我的";
+    myView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:myView animated:YES];
+}
+
+- (IBAction)moreAction:(id)sender {
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+	
+	// Configure for text only and offset down
+	hud.mode = MBProgressHUDModeText;
+	hud.labelText = @"更多功能即将推出，敬请期待";
+	hud.margin = 10.f;
+	hud.yOffset = 150.f;
+	hud.removeFromSuperViewOnHide = YES;
+	
+	[hud hide:YES afterDelay:3];
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [Tool processLoginNotice:actionSheet andButtonIndex:buttonIndex andNav:self.navigationController andParent:nil];
+}
+
 @end

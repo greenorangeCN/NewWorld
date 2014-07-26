@@ -63,7 +63,19 @@
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        @try {
                                            myCoupons = [Tool readJsonStrToMyCouponArray:operation.responseString];
-                                           [self.myCouponTable reloadData];
+                                           if ([myCoupons count] > 0) {
+                                               [self.myCouponTable reloadData];
+                                           }
+                                           else
+                                           {
+                                               UILabel *noDataLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, self.view.frame.size.height/2-100, 320, 44)];
+                                               noDataLabel.font = [UIFont boldSystemFontOfSize:18];
+                                               noDataLabel.text = @"暂无数据";
+                                               noDataLabel.textColor = [UIColor blackColor];
+                                               noDataLabel.backgroundColor = [UIColor clearColor];
+                                               noDataLabel.textAlignment = UITextAlignmentCenter;
+                                               [self.view addSubview:noDataLabel];
+                                           }
                                        }
                                        @catch (NSException *exception) {
                                            [NdUncaughtExceptionHandler TakeException:exception];

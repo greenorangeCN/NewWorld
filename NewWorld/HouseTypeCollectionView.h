@@ -14,6 +14,7 @@
 #import "EGOImageView.h"
 #import "StrikeThroughLabel.h"
 #import "RoomsDetailView.h"
+#import "OnlineChatView.h"
 
 @interface HouseTypeCollectionView : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {

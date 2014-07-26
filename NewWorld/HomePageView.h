@@ -15,8 +15,9 @@
 #import "ActivityCollectionView.h"
 #import "OnlineChatView.h"
 #import "GroupIntroduceView.h"
+#import "SettingView.h"
 
-@interface HomePageView : UIViewController<SGFocusImageFrameDelegate>
+@interface HomePageView : UIViewController<SGFocusImageFrameDelegate, UIActionSheetDelegate>
 {
     NSMutableArray *activities;
     SGFocusImageFrame *bannerView;
@@ -36,5 +37,7 @@
 - (IBAction)clubAction:(id)sender;
 - (IBAction)onlineChatAction:(id)sender;
 - (IBAction)introduceAction:(id)sender;
+- (IBAction)myAction:(id)sender;
+- (IBAction)moreAction:(id)sender;
 
 @end

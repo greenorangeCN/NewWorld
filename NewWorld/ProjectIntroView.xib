@@ -87,7 +87,7 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_panorama.png" id="5no-Rg-4xt">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="intro_seeroom.jpg" id="5no-Rg-4xt">
                             <rect key="frame" x="12" y="342" width="86" height="65"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         </imageView>
@@ -98,7 +98,7 @@
                             <color key="textColor" red="0.77647058820000003" green="0.015686274510000001" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="以最真实的体验方式，全景图片，带您参观样板房，让您体味入住时的温馨感受。" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Psg-Kb-yUz">
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大气的户型、精美的装修、精致的社区环境，在线观看新世界楼盘风采。" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Psg-Kb-yUz">
                             <rect key="frame" x="108" y="358" width="193" height="51"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -192,7 +192,6 @@
                             </state>
                             <connections>
                                 <action selector="houseTypeAction:" destination="-1" eventType="touchUpInside" id="7Y8-Rl-7mF"/>
-                                <action selector="summaryAction:" destination="-1" eventType="touchUpInside" id="tEZ-4G-X3t"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="haT-aj-ABH">
@@ -202,9 +201,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="houseTypeAction:" destination="-1" eventType="touchUpInside" id="gcl-gr-YwB"/>
                                 <action selector="seeHouseAction:" destination="-1" eventType="touchUpInside" id="II1-8t-qAW"/>
-                                <action selector="summaryAction:" destination="-1" eventType="touchUpInside" id="QtR-W8-uPd"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="L8m-Ac-UpB">
@@ -214,10 +211,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="houseTypeAction:" destination="-1" eventType="touchUpInside" id="3SD-GV-sbS"/>
                                 <action selector="saleAction:" destination="-1" eventType="touchUpInside" id="FPq-QQ-HfM"/>
-                                <action selector="seeHouseAction:" destination="-1" eventType="touchUpInside" id="44V-EE-cGS"/>
-                                <action selector="summaryAction:" destination="-1" eventType="touchUpInside" id="GYp-GV-pYZ"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZXM-XG-GJ5">
@@ -227,10 +221,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="houseTypeAction:" destination="-1" eventType="touchUpInside" id="apv-Ti-DsV"/>
                                 <action selector="panoramaAction:" destination="-1" eventType="touchUpInside" id="PFi-26-xAM"/>
-                                <action selector="seeHouseAction:" destination="-1" eventType="touchUpInside" id="PYj-Yc-I5Y"/>
-                                <action selector="summaryAction:" destination="-1" eventType="touchUpInside" id="BZ6-Cz-j9a"/>
                             </connections>
                         </button>
                     </subviews>
@@ -248,6 +239,7 @@
         <image name="intro_logo.png" width="172" height="130"/>
         <image name="intro_panorama.png" width="172" height="130"/>
         <image name="intro_sale.png" width="291" height="196"/>
+        <image name="intro_seeroom.jpg" width="172" height="130"/>
         <image name="loadingpic1.png" width="320" height="143"/>
         <image name="right_arrows.png" width="18" height="28"/>
     </resources>

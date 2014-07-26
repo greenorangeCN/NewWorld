@@ -22,7 +22,6 @@
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UILabel *titleLb;
-@property (strong, nonatomic) IBOutlet UIImageView *picIv;
 @property (strong, nonatomic) IBOutlet UILabel *summaryLb;
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 @property (strong, nonatomic) IBOutlet UIScrollView *imageScrollView;

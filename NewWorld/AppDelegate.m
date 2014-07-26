@@ -42,6 +42,7 @@ BMKMapManager* _mapManager;
     UINavigationController *businessNav = [[UINavigationController alloc] initWithRootViewController:self.businessView];
     //设置
     self.settingView = [[SettingView alloc] initWithNibName:@"SettingView" bundle:nil];
+    self.settingView.titleStr = @"设置";
     UINavigationController *settingNav = [[UINavigationController alloc] initWithRootViewController:self.settingView];
     
     self.tabBarController = [[UITabBarController alloc] init];
@@ -51,13 +52,6 @@ BMKMapManager* _mapManager;
                                              businessNav,
                                              settingNav,
                                              nil];
-    // 要使用百度地图，请先启动BaiduMapManager
-	_mapManager = [[BMKMapManager alloc]init];
-	BOOL ret = [_mapManager start:@"HC0Bk3YCO9T3aoN5iGjbwu5D" generalDelegate:self];
-	if (!ret) {
-		NSLog(@"manager start failed!");
-	}
-    
     [[self.tabBarController tabBar] setSelectedImageTintColor:[UIColor colorWithRed:197.0/255 green:36.0/255 blue:42.0/255 alpha:1.0]];
     //设置UINavigationController背景
     if (IS_IOS7) {
@@ -69,6 +63,13 @@ BMKMapManager* _mapManager;
         [[self.tabBarController tabBar] setBackgroundImage:[UIImage imageNamed:@"tabbar_bg"]];
     }
     
+    
+    // 要使用百度地图，请先启动BaiduMapManager
+	_mapManager = [[BMKMapManager alloc]init];
+	BOOL ret = [_mapManager start:@"HC0Bk3YCO9T3aoN5iGjbwu5D" generalDelegate:self];
+	if (!ret) {
+		NSLog(@"manager start failed!");
+	}
     //设置目录不进行IOS自动同步！否则审核不能通过
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *directory = [NSString stringWithFormat:@"%@/cfg", [paths objectAtIndex:0]];
@@ -76,11 +77,50 @@ BMKMapManager* _mapManager;
     [self addSkipBackupAttributeToItemAtURL:dbURLPath];
     [self addSkipBackupAttributeToPath:directory];
     
+    [BPush setupChannel:launchOptions]; // 必须
+    [BPush setDelegate:self]; // 必须。参数对象必须实现onMethod: response:方法，本示例中为self
+    // [BPush setAccessToken:@"3.ad0c16fa2c6aa378f450f54adb08039.2592000.1367133742.282335-602025"];  // 可选。api key绑定时不需要，也可在其它时机调用
+    [application registerForRemoteNotificationTypes:
+     UIRemoteNotificationTypeAlert
+     | UIRemoteNotificationTypeBadge
+     | UIRemoteNotificationTypeSound];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setRootViewController:self.tabBarController ];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
     return YES;
+}
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    
+    [BPush registerDeviceToken:deviceToken]; // 必须
+    [BPush bindChannel]; // 必须。可以在其它时机调用，只有在该方法返回（通过onMethod:response:回调）绑定成功时，app才能接收到Push消息。一个app绑定成功至少一次即可（如果access token变更请重新绑定）。
+}
+
+// 必须，如果正确调用了setDelegate，在bindChannel之后，结果在这个回调中返回。
+// 若绑定失败，请进行重新绑定，确保至少绑定成功一次
+- (void) onMethod:(NSString*)method response:(NSDictionary*)data
+{
+    if ([BPushRequestMethod_Bind isEqualToString:method])
+    {
+        NSDictionary* res = [[NSDictionary alloc] initWithDictionary:data];
+        
+        NSString *appid = [res valueForKey:BPushRequestAppIdKey];
+        NSString *userid = [res valueForKey:BPushRequestUserIdKey];
+        NSString *channelid = [res valueForKey:BPushRequestChannelIdKey];
+        int returnCode = [[res valueForKey:BPushRequestErrorCodeKey] intValue];
+        NSString *requestid = [res valueForKey:BPushRequestRequestIdKey];
+    }
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    [BPush handleNotification:userInfo]; // 可选
+    //userInfo包含推送消息值及消息附加值
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -91,8 +131,7 @@ BMKMapManager* _mapManager;
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    application.applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -102,7 +141,11 @@ BMKMapManager* _mapManager;
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [UserModel Instance].isNetworkRunning = [CheckNetwork isExistenceNetwork];
+    if ([UserModel Instance].isNetworkRunning == NO) {
+        UIAlertView *myalert = [[UIAlertView alloc] initWithTitle:@"警告" message:@"未连接网络,将使用离线模式" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil,nil];
+		[myalert show];
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

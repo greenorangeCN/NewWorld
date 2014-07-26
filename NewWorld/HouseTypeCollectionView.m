@@ -150,6 +150,8 @@
         [cell.shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
         cell.shareBtn.tag = indexRow;
         
+        [cell.orderBtn addTarget:self action:@selector(chatAction:) forControlEvents:UIControlEventTouchUpInside];
+        
         //去除所以子视图
         for(UIView *view in [cell.marketPriceLb subviews])
         {
@@ -204,6 +206,8 @@
         
         [cell.shareBtn addTarget:self action:@selector(shareAction:) forControlEvents:UIControlEventTouchUpInside];
         cell.shareBtn.tag = indexRow;
+        
+        [cell.orderBtn addTarget:self action:@selector(chatAction:) forControlEvents:UIControlEventTouchUpInside];
         
         //去除所以子视图
         for(UIView *view in [cell.marketPriceLb subviews])
@@ -278,6 +282,13 @@
                                     nil];
         [Tool shareAction:sender andShowView:self.view andContent:contentDic];
     }
+}
+
+- (void)chatAction:(id)sender
+{
+    OnlineChatView *chatView = [[OnlineChatView alloc] init];
+    chatView.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:chatView animated:YES];
 }
 
 #pragma mark --UICollectionViewDelegateFlowLayout
