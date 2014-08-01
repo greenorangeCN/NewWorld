@@ -18,8 +18,13 @@
 @property (nonatomic, retain) NSString *mobile;
 @property (nonatomic, retain) NSString *email;
 @property (nonatomic, retain) NSString *address;
-@property (nonatomic, retain) NSString *id_code;
+//@property (nonatomic, retain) NSString *id_code;
 @property (nonatomic, retain) NSString *info;
 @property (nonatomic, retain) NSNumber *status;
+
+@property (nonatomic, retain) NSString *sex;
+@property (nonatomic, retain) NSString *idnum;
+@property (nonatomic, retain) NSString *province;
+@property (nonatomic, retain) NSString *city;
 
 @end

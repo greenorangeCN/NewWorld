@@ -14,9 +14,11 @@
 #import "UserInfoView.h"
 #import "MyOrderTableView.h"
 #import "MyCouponView.h"
+#import "ChangePwdView.h"
 
 @interface SettingView : UIViewController<UITableViewDataSource, UITableViewDelegate,UIAlertViewDelegate>
 {
+    UIWebView *phoneCallWebView;
     NSArray * settings;
     NSMutableDictionary * settingsInSection;
 }

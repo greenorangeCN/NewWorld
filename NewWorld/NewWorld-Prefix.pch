@@ -50,8 +50,11 @@
 #define api_housetype_list @"/api/house_type_list"
 #define api_praise @"/api/points"
 #define api_rooms_list @"/api/get_rooms_list"
+#define api_rooms360_list @"/api/get_rooms360_list"
+#define api_fullview_list @"/api/get_fullview_list"
 #define api_register @"/api/register"
 #define api_login @"/api/login"
+#define api_changePwd @"/api/changePwd"
 #define api_upload_avatar @"/api/upload_avatar"
 #define api_save_info @"/api/editMyinfo"
 #define api_coupon_detail @"/api/get_coupons_detail"
@@ -66,6 +69,7 @@
 #define api_myorder @"/api/my_order_list"
 #define api_mycoupons @"/api/my_coupons_list"
 #define api_livetalk @"http://www.668app.com/app/newworldTalk.html"
+#define api_panorama @"http://121.199.33.43:8911/quanjing/quanjing"
 
 #define SettingTableIdentifier @"SettingTableIdentifier"
 #define ActivityCellIdentifier @"ActivityCellIdentifier"
@@ -100,6 +104,8 @@
 
 #define AppVersion @"1.0"
 #define AppVersionCode @"1"
+
+#define sercice_phone @"0731-85359666"
 
 #define noConnect @"noConnect"
 #define wifi @"wifi"

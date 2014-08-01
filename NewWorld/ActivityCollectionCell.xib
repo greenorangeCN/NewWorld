@@ -67,11 +67,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="( 0 )" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a2m-4s-Zhf">
+                                <rect key="frame" x="87" y="425" width="58" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ZIn-h8-4mK">
                                 <rect key="frame" x="28" y="425" width="109" height="24"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="(  0  )" image="praise_btn.png">
+                                <state key="normal" image="praise_btn.png">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -107,6 +114,7 @@
                 <outlet property="dateLb" destination="ucT-wh-oPl" id="0zU-zt-9Kh"/>
                 <outlet property="imageIv" destination="F7U-eR-cXn" id="LB3-fx-mYu"/>
                 <outlet property="praiseBtn" destination="ZIn-h8-4mK" id="djP-x4-sLu"/>
+                <outlet property="praiseNum" destination="a2m-4s-Zhf" id="Fgz-Wb-fZR"/>
                 <outlet property="qqLb" destination="iVp-hT-SkO" id="qGi-2t-Z2d"/>
                 <outlet property="shareBtn" destination="0pk-Fa-kWF" id="YkW-O0-FU4"/>
                 <outlet property="telephoneLb" destination="9Cg-pS-MPs" id="XbQ-Yo-pAX"/>

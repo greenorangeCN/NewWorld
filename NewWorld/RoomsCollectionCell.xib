@@ -49,11 +49,18 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="( 0 )" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="txh-mf-inp">
+                                <rect key="frame" x="85" y="425" width="54" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6uc-ZU-AkG">
                                 <rect key="frame" x="28" y="425" width="109" height="24"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="(  0  )" image="praise_btn.png">
+                                <state key="normal" image="praise_btn.png">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -77,6 +84,7 @@
                 <outlet property="imageIv" destination="HAd-0S-3dv" id="ulN-Cs-5Lc"/>
                 <outlet property="introTv" destination="gjo-na-Onq" id="2bw-xB-Vfn"/>
                 <outlet property="praiseBtn" destination="6uc-ZU-AkG" id="Xhe-Zq-5Pv"/>
+                <outlet property="praiseNum" destination="txh-mf-inp" id="9wk-pl-1jO"/>
                 <outlet property="shareBtn" destination="ZXd-ZX-T5K" id="OXx-fr-XaH"/>
                 <outlet property="titleLb" destination="ty6-2x-HhH" id="3XK-IL-h4F"/>
             </connections>

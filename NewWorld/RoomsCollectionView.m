@@ -14,6 +14,7 @@
 
 @implementation RoomsCollectionView
 
+@synthesize type;
 @synthesize projectId;
 @synthesize projectName;
 @synthesize roomsCollection;
@@ -24,13 +25,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
-        titleLabel.font = [UIFont boldSystemFontOfSize:18];
-        titleLabel.text = @"在线看房";
-        titleLabel.backgroundColor = [UIColor clearColor];
-        titleLabel.textColor = [UIColor whiteColor];
-        titleLabel.textAlignment = UITextAlignmentCenter;
-        self.navigationItem.titleView = titleLabel;
+        
         
         UIButton *lBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
         [lBtn addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
@@ -49,6 +44,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
+    titleLabel.font = [UIFont boldSystemFontOfSize:18];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.textAlignment = UITextAlignmentCenter;
+    self.navigationItem.titleView = titleLabel;
+    if (type == 0) {
+        titleLabel.text = @"在线看房";
+    }
+    else if (type == 360)
+    {
+        titleLabel.text = @"全景看房";
+    }
+    
     self.roomsCollection.delegate = self;
     self.roomsCollection.dataSource = self;
     //注册CELL类
@@ -76,7 +85,14 @@
 {
     //如果有网络连接
     if ([UserModel Instance].isNetworkRunning) {
-        NSString *url = [NSMutableString stringWithFormat:@"%@%@?cid=%@", api_base_url, api_rooms_list, projectId];
+        NSString *url = @"";
+        if (type == 0) {
+            url = [NSMutableString stringWithFormat:@"%@%@?cid=%@", api_base_url, api_rooms_list, projectId];
+        }
+        else if (type == 360)
+        {
+            url = [NSMutableString stringWithFormat:@"%@%@?cid=%@", api_base_url, api_rooms360_list, projectId];
+        }
         [[AFOSCClient sharedClient]getPath:url parameters:Nil
                                    success:^(AFHTTPRequestOperation *operation, id responseObject) {
                                        @try {
@@ -154,8 +170,8 @@
         
         cell.titleLb.text = [NSString stringWithFormat:@"%@：%@", projectName, room.title];
         cell.introTv.text = room.intro;
-        
-        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", room.points];
+        cell.praiseNum.text = [NSString stringWithFormat:@"( %@ )", room.points];
+//        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", room.points];
         
         EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
         imageView.imageURL = [NSURL URLWithString:room.thumb];
@@ -188,9 +204,9 @@
         
         cell.titleLb.text = [NSString stringWithFormat:@"%@：%@", projectName, room.title];
         cell.introTv.text = room.intro;
-        
-        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", room.points];
-        
+        cell.praiseNum.text = [NSString stringWithFormat:@"( %@ )", room.points];
+//        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", room.points];
+          
         EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
         imageView.imageURL = [NSURL URLWithString:room.thumb];
         imageView.frame = CGRectMake(0.0f, 0.0f, 241.0f, 229);
@@ -268,17 +284,27 @@
 {
     Rooms *room = [rooms objectAtIndex:[indexPath row]];
     if (room) {
-        if (room.images && [room.images count] > 0) {
-            NSMutableArray *photos = [[NSMutableArray alloc] init];
-            for (NSString *imageUrl in room.images) {
-                [photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:imageUrl]]];
+        if (type == 0) {
+            if (room.images && [room.images count] > 0) {
+                NSMutableArray *photos = [[NSMutableArray alloc] init];
+                for (NSString *imageUrl in room.images) {
+                    [photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:imageUrl]]];
+                }
+                self.photos = photos;
+                MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+                browser.displayActionButton = YES;
+                self.navigationController.navigationBar.hidden = NO;
+                [self.navigationController pushViewController:browser animated:YES];
             }
-            self.photos = photos;
-            MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-            browser.displayActionButton = YES;
-            self.navigationController.navigationBar.hidden = NO;
-            [self.navigationController pushViewController:browser animated:YES];
         }
+        else if (type == 360)
+        {
+            PanoramaView *panoramaView = [[PanoramaView alloc] init];
+            panoramaView.roomId = room.id;
+            panoramaView.roomName = room.title;
+            [self.navigationController pushViewController:panoramaView animated:YES];
+        }
+        
     }
 }
 
@@ -293,6 +319,12 @@
     [rooms removeAllObjects];
     rooms = nil;
     [super viewDidUnload];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
 }
 
 //MWPhotoBrowserDelegate委托事件

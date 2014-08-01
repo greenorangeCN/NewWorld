@@ -788,4 +788,17 @@
     return myCoupons;
 }
 
++ (NSMutableArray *)readJsonStrToPanoramaArray:(NSString *)str
+{
+    NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error;
+    NSArray *panoramaArray = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+    if ( [panoramaArray count] <= 0) {
+        return nil;
+    }
+    NSMutableArray *panoramas = [RMMapper mutableArrayOfClass:[Panorama class]
+                                        fromArrayOfDictionary:panoramaArray];
+    return panoramas;
+}
+
 @end

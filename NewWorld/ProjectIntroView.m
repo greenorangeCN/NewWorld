@@ -160,6 +160,12 @@
     bannerView.delegate = nil;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = NO;
+}
+
 - (IBAction)summaryAction:(id)sender {
     MapDetailView *mapdetailView = [[MapDetailView alloc] init];
     mapdetailView.projectId = project.id;
@@ -176,12 +182,18 @@
 
 - (IBAction)seeHouseAction:(id)sender {
     RoomsCollectionView *roomsView = [[RoomsCollectionView alloc] init];
+    roomsView.type = 0;
     roomsView.projectId = project.id;
     roomsView.projectName = project.title;
     [self.navigationController pushViewController:roomsView animated:YES];
 }
 
 - (IBAction)panoramaAction:(id)sender {
+    RoomsCollectionView *roomsView = [[RoomsCollectionView alloc] init];
+    roomsView.type = 360;
+    roomsView.projectId = project.id;
+    roomsView.projectName = project.title;
+    [self.navigationController pushViewController:roomsView animated:YES];
 }
 
 - (IBAction)saleAction:(id)sender {

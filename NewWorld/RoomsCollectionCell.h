@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UIView *bg;
 @property (strong, nonatomic) IBOutlet UILabel *titleLb;
 @property (strong, nonatomic) IBOutlet UITextView *introTv;
+@property (strong, nonatomic) IBOutlet UILabel *praiseNum;
 
 @property (strong, nonatomic) IBOutlet UIButton *praiseBtn;
 @property (strong, nonatomic) IBOutlet UIButton *shareBtn;

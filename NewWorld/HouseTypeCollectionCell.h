@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *unitPriceLb;
 @property (strong, nonatomic) IBOutlet UILabel *areaLb;
 @property (strong, nonatomic) IBOutlet UILabel *houseTypeLb;
+@property (strong, nonatomic) IBOutlet UILabel *praiseNum;
 
 @property (strong, nonatomic) IBOutlet UIButton *orderBtn;
 @property (strong, nonatomic) IBOutlet UIButton *praiseBtn;

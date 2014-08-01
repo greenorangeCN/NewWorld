@@ -30,6 +30,7 @@
 #import "Club.h"
 #import "MyOrder.h"
 #import "MyCoupon.h"
+#import "Panorama.h"
 #import <ShareSDK/ShareSDK.h>
 
 @interface Tool : NSObject
@@ -124,5 +125,6 @@
 + (ClubItem *)readJsonStrToClubDetail:(NSString *)str;
 + (NSMutableArray *)readJsonStrToMyOrderArray:(NSString *)str;
 + (NSMutableArray *)readJsonStrToMyCouponArray:(NSString *)str;
++ (NSMutableArray *)readJsonStrToPanoramaArray:(NSString *)str;
 
 @end

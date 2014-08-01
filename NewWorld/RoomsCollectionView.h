@@ -13,6 +13,7 @@
 #import "UITap.h"
 #import "EGOImageView.h"
 #import "MWPhotoBrowser.h"
+#import "PanoramaView.h"
 
 @interface RoomsCollectionView : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, MWPhotoBrowserDelegate>
 {
@@ -22,6 +23,7 @@
 
 @property (nonatomic, retain) NSArray *photos;
 
+@property int type;
 @property (strong, nonatomic) NSString *projectId;
 @property (strong, nonatomic) NSString *projectName;
 

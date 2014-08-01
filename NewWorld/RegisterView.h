@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "HousesProject.h"
+#import "NSString+STRegex.h"
 
 @interface RegisterView : UIViewController<UIActionSheetDelegate,UIPickerViewDelegate>
 {
@@ -16,6 +17,8 @@
     ASIFormDataRequest *request;
     NSString *projectId;
 }
+
+@property (strong, nonatomic) IBOutlet UITextField *nickNameTf;
 @property (strong, nonatomic) IBOutlet UITextField *userNameTf;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTf;
 @property (strong, nonatomic) IBOutlet UITextField *passwordagainTf;

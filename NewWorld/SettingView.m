@@ -54,13 +54,14 @@
                       [[SettingModel alloc] initWith:@"注册" andImg:@"setting_register" andTag:1 andTitle2:nil],
                       [[SettingModel alloc] initWith: @"登录" andImg:@"setting_login" andTag:2 andTitle2:nil],
                       [[SettingModel alloc] initWith: @"个人信息" andImg:@"setting_info" andTag:3 andTitle2:nil],
+                      [[SettingModel alloc] initWith: @"修改密码" andImg:@"setting_update" andTag:9 andTitle2:nil],
                       nil];
     NSArray *second = [[NSArray alloc] initWithObjects:
                        [[SettingModel alloc] initWith:@"我的送货单" andImg:@"setting_delivery" andTag:4 andTitle2:nil],
                        [[SettingModel alloc] initWith:@"我的优惠券" andImg:@"setting_coupon" andTag:5 andTitle2:nil],
                        nil];
     NSArray *third = [[NSArray alloc] initWithObjects:
-                      [[SettingModel alloc] initWith:@"版本更新" andImg:@"setting_update" andTag:6 andTitle2:nil],
+//                      [[SettingModel alloc] initWith:@"版本更新" andImg:@"setting_update" andTag:6 andTitle2:nil],
                       [[SettingModel alloc] initWith:@"客户服务" andImg:@"setting_service" andTag:7 andTitle2:nil],
                       [[SettingModel alloc] initWith:@"注销" andImg:@"setting_logout" andTag:8 andTitle2:nil],
                       nil];
@@ -130,20 +131,20 @@
             break;
         case 3:
         {
-            if ([[UserModel Instance] isLogin]) {
+//            if ([[UserModel Instance] isLogin]) {
                 UserInfoView *infoView = [[UserInfoView alloc] init];
                 infoView.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:infoView animated:YES];
-            }
-            else
-            {
-                UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"温馨提示"
-                                                             message:@"请先登录"
-                                                            delegate:nil
-                                                   cancelButtonTitle:@"确定"
-                                                   otherButtonTitles:nil];
-                [av show];
-            }
+//            }
+//            else
+//            {
+//                UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"温馨提示"
+//                                                             message:@"请先登录"
+//                                                            delegate:nil
+//                                                   cancelButtonTitle:@"确定"
+//                                                   otherButtonTitles:nil];
+//                [av show];
+//            }
         }
             break;
         case 4:
@@ -189,7 +190,7 @@
             break;
         case 7:
         {
-            
+            [self telAction:sercice_phone];
         }
             break;
         case 8:
@@ -206,15 +207,39 @@
                 [Tool showCustomHUD:@"请先登录" andView:self.view andImage:@"37x-Failure.png" andAfterDelay:1];
             }
         }
+        case 9:
+        {
+            if ([[UserModel Instance] isLogin])
+            {
+                ChangePwdView *changeView = [[ChangePwdView alloc] init];
+                changeView.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:changeView animated:YES];
+            }
+            else
+            {
+                [Tool showCustomHUD:@"请先登录" andView:self.view andImage:@"37x-Failure.png" andAfterDelay:1];
+            }
+        }
             break;
         default:
             break;
     }
 }
+
+- (void)telAction:(NSString *)phoneNum
+{
+    NSURL *phoneUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@", phoneNum]];
+    if (!phoneCallWebView) {
+        phoneCallWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+    }
+    [phoneCallWebView loadRequest:[NSURLRequest requestWithURL:phoneUrl]];
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 44;
 }
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [settings count];

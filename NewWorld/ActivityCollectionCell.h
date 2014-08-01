@@ -17,6 +17,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *conditionLb;
 @property (strong, nonatomic) IBOutlet UILabel *telephoneLb;
 @property (strong, nonatomic) IBOutlet UILabel *qqLb;
+@property (strong, nonatomic) IBOutlet UILabel *praiseNum;
 
 @property (strong, nonatomic) IBOutlet UIButton *praiseBtn;
 @property (strong, nonatomic) IBOutlet UIButton *shareBtn;

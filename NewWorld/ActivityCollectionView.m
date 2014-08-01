@@ -152,7 +152,8 @@
         cell.conditionLb.text = [NSString stringWithFormat:@"活动资格：%@", activity.condition];
         cell.telephoneLb.text = [NSString stringWithFormat:@"咨询电话：%@", activity.telephone];
         cell.qqLb.text = [NSString stringWithFormat:@"咨询QQ：%@", activity.qq];
-        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", activity.points];
+        cell.praiseNum.text = [NSString stringWithFormat:@"( %@ )", activity.points];
+//        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", activity.points];
         
         EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
         imageView.imageURL = [NSURL URLWithString:activity.thumb];
@@ -191,7 +192,8 @@
         cell.conditionLb.text = [NSString stringWithFormat:@"活动资格：%@", activity.condition];
         cell.telephoneLb.text = [NSString stringWithFormat:@"咨询电话：%@", activity.telephone];
         cell.qqLb.text = [NSString stringWithFormat:@"咨询QQ：%@", activity.qq];
-        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", activity.points];
+        cell.praiseNum.text = [NSString stringWithFormat:@"( %@ )", activity.points];
+//        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", activity.points];
         
         EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
         imageView.imageURL = [NSURL URLWithString:activity.thumb];

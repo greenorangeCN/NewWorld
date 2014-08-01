@@ -237,6 +237,10 @@
     {
         cell.distanceLb.text = [NSString stringWithFormat:@"距您%d米", store.distance];
     }
+    //注册距离点击事件
+    UITap *distanceTap = [[UITap alloc] initWithTarget:self action:@selector(distanceAction:)];
+    [cell.distanceLb addGestureRecognizer:distanceTap];
+    distanceTap.tag = [indexPath row];
     
     [Tool roundView:cell.bg andCornerRadius:5.0f];
     
@@ -284,7 +288,21 @@
         goodsView.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:goodsView animated:YES];
     }
-    
+}
+
+- (void)distanceAction:(id)sender
+{
+    UITap *tap = (UITap *)sender;
+    if (tap) {
+        Bussiness *store = [stores objectAtIndex:tap.tag];
+        CLLocationCoordinate2D coor;
+        coor.longitude = [store.longitude doubleValue];
+        coor.latitude = [store.latitude doubleValue];
+        StoreMapPointView *pointView = [[StoreMapPointView alloc] init];
+        pointView.storeCoor = coor;
+        pointView.storeTitle = store.name;
+        [self.navigationController pushViewController:pointView animated:YES];
+    }
 }
 
 #pragma 下载图片

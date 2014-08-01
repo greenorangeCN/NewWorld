@@ -13,6 +13,7 @@
 @end
 
 @implementation RegisterView
+@synthesize nickNameTf;
 @synthesize userNameTf;
 @synthesize passwordTf;
 @synthesize passwordagainTf;
@@ -99,34 +100,41 @@
 }
 
 - (IBAction)registerAction:(id)sender {
+    NSString *nickName = self.nickNameTf.text;
     NSString *userName = self.userNameTf.text;
     NSString *userPassword = self.passwordTf.text;
     NSString *userPassword2 = self.passwordagainTf.text;
     NSString *projectName = self.projectNameTf.text;
-    if (userName == nil || [userName length] == 0) {
-        [Tool ToastNotification:@"请输入用户名" andView:self.view andLoading:NO andIsBottom:NO];
+    if (nickName == nil || [nickName length] == 0) {
+        [Tool showCustomHUD:@"请输入昵称" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
+        return;
+    }
+    if (![userName isValidPhoneNum]) {
+        [Tool showCustomHUD:@"手机号错误" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
         return;
     }
     if (userPassword == nil || [userPassword length] == 0) {
-        [Tool ToastNotification:@"请输入密码" andView:self.view andLoading:NO andIsBottom:NO];
+        [Tool showCustomHUD:@"请输入密码" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
         return;
     }
     if (![userPassword isEqualToString:userPassword2]) {
-        [Tool ToastNotification:@"密码确认不一致" andView:self.view andLoading:NO andIsBottom:NO];
+        [Tool showCustomHUD:@"密码确认不一致" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
         self.passwordagainTf.text = @"";
         return;
     }
-    if (projectName == nil || [projectName length] == 0) {
-        [Tool ToastNotification:@"请选择所在小区" andView:self.view andLoading:NO andIsBottom:NO];
-        return;
-    }
+//    if (projectName == nil || [projectName length] == 0) {
+//        [Tool ToastNotification:@"请选择所在小区" andView:self.view andLoading:NO andIsBottom:NO];
+//        return;
+//    }
     
     NSString *regUrl = [NSString stringWithFormat:@"%@%@", api_base_url, api_register];
     request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:regUrl]];
     [request setUseCookiePersistence:NO];
+    [request setPostValue:nickName forKey:@"nickname"];
+    [request setPostValue:userName forKey:@"tel"];
     [request setPostValue:userName forKey:@"username"];
     [request setPostValue:userPassword forKey:@"pwd"];
-    [request setPostValue:projectId forKey:@"c_id"];
+//    [request setPostValue:projectId forKey:@"c_id"];
     [request setDelegate:self];
     [request setDidFailSelector:@selector(requestFailed:)];
     [request setDidFinishSelector:@selector(requestRegister:)];
@@ -153,6 +161,7 @@
     NSError *error;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
     if (!json) {
+        NSLog(request.responseString);
         UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"错误提示"
                                                      message:request.responseString
                                                     delegate:nil
@@ -161,16 +170,31 @@
         [av show];
         return;
     }
-    int errorCode = [[json objectForKey:@"status"] intValue];
-    NSString *errorMessage = [json objectForKey:@"info"];
+    NSLog(request.responseString);
+    
+    User *user = [Tool readJsonStrToUser:request.responseString];
+    
+    int errorCode = [user.status intValue];
+    NSString *errorMessage = user.info;
     switch (errorCode) {
         case 1:
         {
             [[UserModel Instance] saveIsLogin:YES];
             [[UserModel Instance] saveAccount:self.userNameTf.text andPwd:self.passwordTf.text];
-            [[UserModel Instance] saveValue:self.userNameTf.text ForKey:@"username"];
+            [[UserModel Instance] saveValue:user.id ForKey:@"id"];
+            [[UserModel Instance] saveValue:user.username ForKey:@"username"];
+            [[UserModel Instance] saveValue:user.nickname ForKey:@"nickname"];
+            [[UserModel Instance] saveValue:user.name ForKey:@"name"];
+            [[UserModel Instance] saveValue:user.avatar ForKey:@"avatar"];
+            [[UserModel Instance] saveValue:user.mobile ForKey:@"mobile"];
+            [[UserModel Instance] saveValue:user.email ForKey:@"email"];
+            [[UserModel Instance] saveValue:user.address ForKey:@"address"];
+            [[UserModel Instance] saveValue:user.idnum ForKey:@"idnum"];
+            [[UserModel Instance] saveValue:user.sex ForKey:@"sex"];
+            [[UserModel Instance] saveValue:user.province ForKey:@"province"];
+            [[UserModel Instance] saveValue:user.city ForKey:@"city"];
             UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"注册提醒"
-                                                         message:[NSString stringWithFormat:@"%@，%@", errorMessage, @"并已登陆"]
+                                                         message:[NSString stringWithFormat:@"%@，%@", errorMessage, @"并已登录"]
                                                         delegate:nil
                                                cancelButtonTitle:@"确定"
                                                otherButtonTitles:nil];
@@ -181,7 +205,7 @@
         case 0:
         {
             [Tool showCustomHUD:errorMessage andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
-            [self.navigationController popViewControllerAnimated:YES];
+//            [self.navigationController popViewControllerAnimated:YES];
         }
             break;
     }

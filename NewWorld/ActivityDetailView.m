@@ -72,6 +72,15 @@
     NSString *result = [Tool getHTMLString:html];
     [self.webView loadHTMLString:result baseURL:nil];
     
+    self.webView.opaque = YES;
+    for (UIView *subView in [self.webView subviews])
+    {
+        if ([subView isKindOfClass:[UIScrollView class]])
+        {
+            ((UIScrollView *)subView).bounces = YES;
+        }
+    }
+    
     self.view.backgroundColor = [Tool getBackgroundColor];
     //适配iOS7uinavigationbar遮挡的问题
     if(IS_IOS7)

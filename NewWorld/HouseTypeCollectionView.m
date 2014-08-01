@@ -171,8 +171,8 @@
         cell.unitPriceLb.text = [NSString stringWithFormat:@"单价：%@元/m²", house.unit_price];
         cell.areaLb.text = [NSString stringWithFormat:@"面积：%@m²", house.area];
         cell.houseTypeLb.text = [NSString stringWithFormat:@"户型：%@", house.house_type];
-        
-        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", house.points];
+        cell.praiseNum.text = [NSString stringWithFormat:@"( %@ )", house.points];
+//        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", house.points];
         
         EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
         imageView.imageURL = [NSURL URLWithString:house.thumb];
@@ -228,8 +228,8 @@
         cell.unitPriceLb.text = [NSString stringWithFormat:@"单价：%@元/m²", house.unit_price];
         cell.areaLb.text = [NSString stringWithFormat:@"面积：%@m²", house.area];
         cell.houseTypeLb.text = [NSString stringWithFormat:@"户型：%@", house.house_type];
-        
-        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", house.points];
+        cell.praiseNum.text = [NSString stringWithFormat:@"( %@ )", house.points];
+//        cell.praiseBtn.titleLabel.text = [NSString stringWithFormat:@"( %@ )", house.points];
         
         EGOImageView *imageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic4.png"]];
         imageView.imageURL = [NSURL URLWithString:house.thumb];

@@ -89,11 +89,11 @@
     NSString *userName = self.userNameTf.text;
     NSString *userPassword = self.passwordTf.text;
     if (userName == nil || [userName length] == 0) {
-        [Tool ToastNotification:@"请输用户名" andView:self.view andLoading:NO andIsBottom:NO];
+        [Tool showCustomHUD:@"请输入手机号" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
         return;
     }
     if (userPassword == nil || [userPassword length] == 0) {
-        [Tool ToastNotification:@"请输入密码" andView:self.view andLoading:NO andIsBottom:NO];
+        [Tool showCustomHUD:@"请输入密码" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
         return;
     }
     
@@ -108,7 +108,7 @@
     [request startAsynchronous];
     
     request.hud = [[MBProgressHUD alloc] initWithView:self.view];
-    [Tool showHUD:@"正在登陆" andView:self.view andHUD:request.hud];
+    [Tool showHUD:@"正在登录" andView:self.view andHUD:request.hud];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -141,8 +141,12 @@
             [[UserModel Instance] saveValue:user.mobile ForKey:@"mobile"];
             [[UserModel Instance] saveValue:user.email ForKey:@"email"];
             [[UserModel Instance] saveValue:user.address ForKey:@"address"];
-            [[UserModel Instance] saveValue:user.id_code ForKey:@"id_code"];
-            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"登陆提醒"
+            [[UserModel Instance] saveValue:user.idnum ForKey:@"idnum"];
+            [[UserModel Instance] saveValue:user.sex ForKey:@"sex"];
+            [[UserModel Instance] saveValue:user.province ForKey:@"province"];
+            [[UserModel Instance] saveValue:user.city ForKey:@"city"];
+
+            UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"登录提醒"
                                                          message:errorMessage
                                                         delegate:nil
                                                cancelButtonTitle:@"确定"
@@ -154,7 +158,7 @@
         case 0:
         {
             [Tool showCustomHUD:errorMessage andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
-            [self.navigationController popViewControllerAnimated:YES];
+//            [self.navigationController popViewControllerAnimated:YES];
         }
             break;
     }

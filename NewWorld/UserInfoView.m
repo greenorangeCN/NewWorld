@@ -23,6 +23,9 @@
 @synthesize emailTf;
 @synthesize nameTf;
 @synthesize idTf;
+@synthesize provinceTf;
+@synthesize sexTf;
+@synthesize cityTf;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,11 +56,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //头像事件注册
-    UITapGestureRecognizer *faceTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(faceClick)];
-	[self.faceIv addGestureRecognizer:faceTap];
+    //适配iOS7uinavigationbar遮挡问题
+    if(IS_IOS7)
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+    }
     
-    faceEGOImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic1.png"]];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, self.view.frame.size.height);
+    
+    faceEGOImageView = [[EGOImageView alloc] initWithPlaceholderImage:[UIImage imageNamed:@"loadingpic2.png"]];
     faceEGOImageView.imageURL = [NSURL URLWithString:[[UserModel Instance] getUserValueForKey:@"avatar"]];
     faceEGOImageView.frame = CGRectMake(0.0f, 0.0f, 90.0f, 90.0f);
     [self.faceIv addSubview:faceEGOImageView];
@@ -69,16 +78,18 @@
     self.emailTf.text = [userM getUserValueForKey:@"email"];
     self.nameTf.text = [userM getUserValueForKey:@"name"];
     self.idTf.text = [userM getUserValueForKey:@"id_code"];
-}
-
-- (void)faceClick
-{
-    UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:@"取消"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"拍照", @"从相册中选取", nil];
-    [choiceSheet showInView:self.view];
+    NSString *sexStr = [userM getUserValueForKey:@"sex"];
+    NSString *provinceStr = [userM getUserValueForKey:@"province"];
+    NSString *cityStr = [userM getUserValueForKey:@"city"];
+    if (sexStr != nil && [sexStr length] > 0) {
+        self.sexTf.text = sexStr;
+    }
+    if (provinceStr != nil && [provinceStr length] > 0) {
+        self.provinceTf.text = provinceStr;
+    }
+    if (cityStr != nil && [cityStr length] > 0) {
+        self.cityTf.text = cityStr;
+    }
 }
 
 #pragma mark VPImageCropperDelegate
@@ -139,40 +150,42 @@
 
 #pragma mark UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        // 拍照
-        if ([self isCameraAvailable] && [self doesCameraSupportTakingPhotos]) {
-            UIImagePickerController *controller = [[UIImagePickerController alloc] init];
-            controller.sourceType = UIImagePickerControllerSourceTypeCamera;
-            //使用前置摄像头
-            if ([self isFrontCameraAvailable]) {
-                controller.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+    if (actionSheet.tag == 0) {
+        if (buttonIndex == 0) {
+            // 拍照
+            if ([self isCameraAvailable] && [self doesCameraSupportTakingPhotos]) {
+                UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+                controller.sourceType = UIImagePickerControllerSourceTypeCamera;
+                //使用前置摄像头
+                if ([self isFrontCameraAvailable]) {
+                    controller.cameraDevice = UIImagePickerControllerCameraDeviceFront;
+                }
+                NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
+                [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
+                controller.mediaTypes = mediaTypes;
+                controller.delegate = self;
+                [self presentViewController:controller
+                                   animated:YES
+                                 completion:^(void){
+                                     NSLog(@"Picker View Controller is presented");
+                                 }];
             }
-            NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
-            [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
-            controller.mediaTypes = mediaTypes;
-            controller.delegate = self;
-            [self presentViewController:controller
-                               animated:YES
-                             completion:^(void){
-                                 NSLog(@"Picker View Controller is presented");
-                             }];
-        }
-        
-    } else if (buttonIndex == 1) {
-        // 从相册中选取
-        if ([self isPhotoLibraryAvailable]) {
-            UIImagePickerController *controller = [[UIImagePickerController alloc] init];
-            controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-            NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
-            [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
-            controller.mediaTypes = mediaTypes;
-            controller.delegate = self;
-            [self presentViewController:controller
-                               animated:YES
-                             completion:^(void){
-                                 NSLog(@"Picker View Controller is presented");
-                             }];
+            
+        } else if (buttonIndex == 1) {
+            // 从相册中选取
+            if ([self isPhotoLibraryAvailable]) {
+                UIImagePickerController *controller = [[UIImagePickerController alloc] init];
+                controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                NSMutableArray *mediaTypes = [[NSMutableArray alloc] init];
+                [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
+                controller.mediaTypes = mediaTypes;
+                controller.delegate = self;
+                [self presentViewController:controller
+                                   animated:YES
+                                 completion:^(void){
+                                     NSLog(@"Picker View Controller is presented");
+                                 }];
+            }
         }
     }
 }
@@ -316,12 +329,6 @@
     return newImage;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -335,6 +342,9 @@
     NSString *emailStr = self.emailTf.text;
     NSString *nameStr = self.nameTf.text;
     NSString *idcodeStr = self.idTf.text;
+    NSString *sexStr = self.sexTf.text;
+    NSString *provinceStr = self.provinceTf.text;
+    NSString *cityStr = self.cityTf.text;
     if (nicknameStr == nil || [nicknameStr length] == 0) {
         [Tool showCustomHUD:@"请填写昵称" andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
         return;
@@ -369,7 +379,13 @@
     [request setPostValue:phoneStr forKey:@"mobile"];
     [request setPostValue:addressStr forKey:@"address"];
     [request setPostValue:emailStr forKey:@"email"];
-    [request setPostValue:idcodeStr forKey:@"id_code"];
+    if ([idcodeStr length] > 0 && [idcodeStr isValidIdCardNum]) {
+        [request setPostValue:@"IT00001" forKey:@"type"];
+        [request setPostValue:idcodeStr forKey:@"idnum"];
+    }
+    [request setPostValue:provinceStr forKey:@"province"];
+    [request setPostValue:cityStr forKey:@"city"];
+    [request setPostValue:sexStr forKey:@"sex"];
     [request setDelegate:self];
     [request setDidFailSelector:@selector(requestFailed:)];
     [request setDidFinishSelector:@selector(requestSave:)];
@@ -405,6 +421,167 @@
             [Tool showCustomHUD:user.info andView:self.view  andImage:@"37x-Failure.png" andAfterDelay:1];
         }
             break;
+    }
+}
+
+- (IBAction)faceAction:(id)sender {
+    UIActionSheet *choiceSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"取消"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"拍照", @"从相册中选取", nil];
+    choiceSheet.tag = 0;
+    [choiceSheet showInView:self.view];
+}
+
+- (IBAction)selectSexAction:(id)sender {
+    if (sexData == nil || [sexData count] == 0) {
+        sexData = [[NSArray alloc] initWithObjects:@"男", @"女", nil];
+    }
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"\n\n\n\n\n\n\n\n\n\n"
+                                                             delegate:self
+                                                    cancelButtonTitle:nil
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"确  定", nil];
+    actionSheet.tag = 1;
+    [actionSheet showInView:self.view];
+    UIPickerView *sexPicker = [[UIPickerView alloc] init];
+    sexPicker.delegate = self;
+    sexPicker.showsSelectionIndicator = YES;
+    sexPicker.tag = 0;
+    [actionSheet addSubview:sexPicker];
+}
+
+- (IBAction)selectCityAction:(id)sender {
+    if (provinces == nil || [provinces count] == 0) {
+        provinces = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ProvincesAndCities.plist" ofType:nil]];
+        cities = [[provinces objectAtIndex:0] objectForKey:@"Cities"];
+    }
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"\n\n\n\n\n\n\n\n\n\n"
+                                                             delegate:self
+                                                    cancelButtonTitle:nil
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"确  定", nil];
+    actionSheet.tag = 2;
+    [actionSheet showInView:self.view];
+    UIPickerView *cityPicker = [[UIPickerView alloc] init];
+    cityPicker.delegate = self;
+    cityPicker.showsSelectionIndicator = YES;
+    cityPicker.tag = 1;
+    [actionSheet addSubview:cityPicker];
+}
+
+//返回显示的列数
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    if (pickerView.tag == 0) {
+        return 1;
+    }
+    else if(pickerView.tag == 1)
+    {
+        return 2;
+    }
+    else
+    {
+        return 0;
+    }
+}
+//返回当前列显示的行数
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    if (pickerView.tag == 0) {
+        return [sexData count];
+    }
+    else if(pickerView.tag == 1)
+    {
+        switch (component) {
+            case 0:
+                return [provinces count];
+                break;
+            case 1:
+                return [cities count];
+                break;
+            default:
+                return 0;
+                break;
+        }
+    }
+    else
+    {
+        return 0;
+    }
+}
+
+#pragma mark Picker Delegate Methods
+
+//返回当前行的内容,此处是将数组中数值添加到滚动的那个显示栏上
+-(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if (pickerView.tag == 0) {
+        return [sexData objectAtIndex:row];
+    }
+    else if(pickerView.tag == 1)
+    {
+        switch (component) {
+            case 0:
+                return [[provinces objectAtIndex:row] objectForKey:@"State"];
+                break;
+            case 1:
+                return [[cities objectAtIndex:row] objectForKey:@"city"];
+                break;
+            default:
+                return nil;
+                break;
+        }
+    }
+    else
+    {
+        return nil;
+    }
+}
+
+-(void) pickerView: (UIPickerView *)pickerView didSelectRow: (NSInteger)row inComponent: (NSInteger)component
+{
+    if (pickerView.tag == 0) {
+        self.sexTf.text = [sexData objectAtIndex:row];
+    }
+    else if(pickerView.tag == 1)
+    {
+        switch (component) {
+            case 0:
+                cities = [[provinces objectAtIndex:row] objectForKey:@"Cities"];
+                [pickerView selectRow:0 inComponent:1 animated:NO];
+                [pickerView reloadComponent:1];
+                self.provinceTf.text = [[provinces objectAtIndex:row] objectForKey:@"State"];;
+                self.cityTf.text = [[cities objectAtIndex:0] objectForKey:@"city"];
+                break;
+            case 1:
+                self.cityTf.text = [[cities objectAtIndex:row] objectForKey:@"city"];
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+-(void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];//即使没有显示在window上，也不会自动的将self.view释放。
+    // Add code to clean up any of your own resources that are no longer necessary.
+    
+    // 此处做兼容处理需要加上ios6.0的宏开关，保证是在6.0下使用的,6.0以前屏蔽以下代码，否则会在下面使用self.view时自动加载viewDidUnLoad
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 6.0) {
+        //需要注意的是self.isViewLoaded是必不可少的，其他方式访问视图会导致它加载 ，在WWDC视频也忽视这一点。
+        if (self.isViewLoaded && !self.view.window)// 是否是正在使用的视图
+        {
+            // Add code to preserve data stored in the views that might be
+            // needed later.
+            
+            // Add code to clean up other strong references to the view in
+            // the view hierarchy.
+            self.view = nil;// 目的是再次进入时能够重新加载调用viewDidLoad函数。
+        }
     }
 }
 

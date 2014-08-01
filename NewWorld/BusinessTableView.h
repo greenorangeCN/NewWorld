@@ -12,6 +12,8 @@
 #import "Bussiness.h"
 #import "BMapKit.h"
 #import "BusinessGoodsView.h"
+#import "UITap.h"
+#import "StoreMapPointView.h"
 
 @interface BusinessTableView : UIViewController<UITableViewDelegate,UITableViewDataSource,IconDownloaderDelegate,UISearchBarDelegate,BMKLocationServiceDelegate>
 {
